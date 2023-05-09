@@ -1,0 +1,108 @@
+<div class="container">
+    <form
+      class="form-signin"
+      [formGroup]="registrationForm"
+      (ngSubmit)="onSubmit()"
+     
+    >
+      <h2 class="form-signin-heading">Create Acount</h2>
+  
+      <div class="form-menu">
+        <div class="name">
+          <label for="inputEmail" class="sr-only">Name</label>
+          <input
+            type="email"
+            id="inputName"
+            class="form-control"
+            placeholder="Name"
+            formControlName="name"
+            required
+          />
+  
+          <div
+            *ngIf="
+              registrationForm.controls.name?.invalid &&
+              (registrationForm.controls.name?.dirty ||
+                registrationForm.controls.name?.touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="registrationForm.controls.name.errors?.['required']">
+              Name is required.
+            </div>
+          </div>
+        </div>
+  
+        <div class="email">
+          <label for="inputEmail" class="sr-only">Email address</label>
+          <input
+            type="email"
+            id="inputEmail"
+            class="form-control"
+            placeholder="Email address"
+            formControlName="email"
+            required
+          />
+  
+          <div
+            *ngIf="
+              registrationForm.controls.email?.invalid &&
+              (registrationForm.controls.email?.dirty ||
+                registrationForm.controls.email?.touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="registrationForm.controls.email.errors?.['required']">
+              email is required.
+            </div>
+            <div *ngIf="registrationForm.controls.email.errors?.['email']">
+              email must be valid.
+            </div>
+          </div>
+        </div>
+  
+        <div class="password">
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input
+            type="password"
+            id="inputPassword"
+            class="form-control"
+            placeholder="Password"
+            formControlName="password"
+            required
+          />
+  
+          <div
+            *ngIf="
+              registrationForm.controls.password?.invalid &&
+              (registrationForm.controls.password?.dirty ||
+                registrationForm.controls.password?.touched)
+            "
+            class="alert alert-danger"
+          >
+            <div *ngIf="registrationForm.controls.password.errors?.['required']">
+              password is required.
+            </div>
+            <div *ngIf="registrationForm.controls.password.errors?.['minlength']">
+              Password must be 6 char
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="registration-form-btn">
+        <div class="registration-btn">
+          <button class="btn btn-lg btn-primary btn-block" type="button" (click)="onSubmit()">
+            Registration
+          </button>
+        </div>
+  
+        <div class="login-btn">
+          <button class="btn btn-lg btn-primary btn-block">
+            <a routerLink="/login">Login Page</a>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  

@@ -1,0 +1,67 @@
+<div class="form">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-menu">
+    <div class="email">
+      <label for="">Email:</label>
+      <input
+        type="email"
+        formControlName="email"
+        required
+        placeholder="email"
+      />
+
+      <div
+        *ngIf="
+          loginForm.controls.email?.invalid &&
+          (loginForm.controls.email?.dirty || loginForm.controls.email?.touched)
+        "
+        class="alert alert-danger"
+      >
+        <div *ngIf="loginForm.controls.email.errors?.['required']">
+          email is required.
+        </div>
+        <div *ngIf="loginForm.controls.email.errors?.['email']">
+          email must be valid.
+        </div>
+      </div>
+    </div>
+
+    <div class="password">
+      <label for="">Passsword:</label>
+      <input
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+        required
+      />
+
+      <div
+        *ngIf="
+          loginForm.controls.password?.invalid &&
+          (loginForm.controls.password?.dirty ||
+            loginForm.controls.password?.touched)
+        "
+        class="alert alert-danger"
+      >
+        <div *ngIf="loginForm.controls.password.errors?.['required']">
+          Password is required.
+        </div>
+        <div *ngIf="loginForm.controls.password.errors?.['minlength']">
+          password must be 6 char.
+        </div>
+      </div>
+    </div>
+
+    <div class="button">
+      <button type="submit" class="btn btn-primary">Login</button>
+      <a [routerLink]="['forgotPassword']">Forget Password</a>
+    </div>
+  </form>
+
+
+  <div class="registration">
+    <a [routerLink]="['registration']">Go To Registration</a>  
+  </div>
+
+</div>
+
+
