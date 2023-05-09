@@ -1,1 +1,21 @@
-<p>users works!</p>
+<h2>Users Details</h2>
+<table class="table" border="1">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr *ngFor="let user of users">
+                <th>{{user.id}}</th>
+                <td>{{user.name | uppercase}} </td>
+                <td>{{user.email | lowercase}}  </td>
+                <td>{{user.phone}}</td>
+                <td><button class="btn btn-primary" (click)="onSelect(user)">View Details</button></td>
+            </tr>
+    </tbody>
+</table>

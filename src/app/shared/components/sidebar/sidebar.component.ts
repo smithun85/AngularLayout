@@ -12,7 +12,7 @@ export class SidebarComponent {
       number:1,
       name:"home",
       icon:"fa-solid fa-house",
-      router:''
+      router:'home'
     },
     {
       number:2,
@@ -49,6 +49,13 @@ export class SidebarComponent {
       name:"contacts",
       icon:"fa-solid fa-phone",
       router:'contacts'
+    },
+
+    {
+      number:8,
+      name:"signup",
+      icon:"fa-solid fa-user-plus",
+      router:'signup'
     }
   ]
 

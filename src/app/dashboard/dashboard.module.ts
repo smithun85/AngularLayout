@@ -8,6 +8,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { SettingComponent } from './setting/setting.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 
 
@@ -19,6 +20,7 @@ import { SharedModule } from '../shared/shared.module';
     ProductsComponent,
     OrdersComponent,
     SettingComponent,
+    ProductDetailsComponent,
     
   ],
   imports: [

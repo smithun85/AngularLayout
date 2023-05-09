@@ -1,1 +1,24 @@
-<p>products works!</p>
+<h2>Products Details</h2>
+<table class="table" border="1">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Type</th>
+            <th>Brand</th>
+            <th>Price</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+            <tr *ngFor="let product of products">
+                <th>{{product.id}}</th>
+                <td>{{product.type | uppercase}} </td>
+                <td>{{product.brand | lowercase}}  </td>
+                <td>{{product.price}}</td>
+                <td><button class="btn btn-primary" (click)="onSelect(product)">View Details</button></td>
+                <td><button>
+                    <a [routerLink]="['/productDetails',product.id]" [queryParams]="{ orderby: product.price, brand:product.brand}">get queryParams though HTML</a>
+                </button></td>
+            </tr>
+    </tbody>
+</table>

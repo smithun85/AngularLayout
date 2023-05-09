@@ -9,17 +9,21 @@ import { ReactiveFormsModule } from '@angular/forms';  //reactive Form lives her
 
 //bootstrap
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-
+//UserDefined Modules:
 import { AuthenticationModule } from './authentication/authentication.module';
 import { DashboardModule } from './dashboard/dashboard.module'
 import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
+import { UserFormModule } from './user-form/user-form.module';
+//Components:
 import { CustomErrorComponent } from './custom-error/custom-error.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomErrorComponent
+    CustomErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,7 @@ import { CustomErrorComponent } from './custom-error/custom-error.component';
     AuthenticationModule,
     DashboardModule,
     SharedModule,
+    UserFormModule,
     UsersModule,
 
   ],

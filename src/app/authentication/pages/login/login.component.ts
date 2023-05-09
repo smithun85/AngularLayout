@@ -23,7 +23,7 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();
       return;
     }
-    // this.router.navigate(['/dashboard'])
+    this.router.navigate(['/home'])
     console.log(this.loginForm.value);
   };
   

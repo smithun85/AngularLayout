@@ -1,0 +1,230 @@
+<div class="container">
+  <form class="form-signin" [formGroup]="signup" (ngSubmit)="onSubmit()">
+    <h2 class="form-signin-heading">Create Acount</h2>
+
+    <div class="form-menu">
+      <div class="name">
+        <label for="inputEmail" class="sr-only">Name</label>
+        <input
+          type="email"
+          id="inputName"
+          class="form-control"
+          placeholder="Name"
+          formControlName="name"
+          required
+        />
+
+        <div
+          *ngIf="
+            signup.controls.name?.invalid &&
+            (signup.controls.name?.dirty || signup.controls.name?.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="signup.controls.name.errors?.['required']">
+            Name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="age">
+        <label for="inputAge" class="sr-only">Age</label>
+        <input
+          type="text"
+          id="inputAge"
+          class="form-control"
+          placeholder="age"
+          formControlName="age"
+          required
+        />
+
+        <div
+          *ngIf="
+            signup.controls.age?.invalid &&
+            (signup.controls.age?.dirty || signup.controls.age?.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="signup.controls.age.errors?.['required']">
+            Age is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="contact">
+        <label for="inputContact" class="sr-only">Contact</label>
+        <input
+          type="email"
+          id="inputContact"
+          class="form-control"
+          placeholder="Contact"
+          formControlName="contact"
+          required
+        />
+
+        <div
+          *ngIf="
+            signup.controls.contact?.invalid &&
+            (signup.controls.contact?.dirty || signup.controls.contact?.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="signup.controls.contact.errors?.['required']">
+            Contact is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="email">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input
+          type="email"
+          id="inputEmail"
+          class="form-control"
+          placeholder="Email address"
+          formControlName="email"
+          required
+        />
+
+        <div
+          *ngIf="
+            signup.controls.email?.invalid &&
+            (signup.controls.email?.dirty || signup.controls.email?.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="signup.controls.email.errors?.['required']">
+            email is required.
+          </div>
+          <div *ngIf="signup.controls.email.errors?.['email']">
+            email must be valid.
+          </div>
+        </div>
+      </div>
+
+      <div class="address" formGroupName="address">
+        <div class="street">
+          <label for="street" class="sr-only">Street: </label>
+          <input
+            type="text"
+            id="street"
+            class="form-control"
+            placeholder="address"
+            formControlName="street"
+            required
+          />
+        </div>
+
+        <div class="city">
+          <label for="city" class="sr-only">City: </label>
+          <input
+            type="text"
+            id="city"
+            class="form-control"
+            placeholder="City"
+            formControlName="city"
+            required
+          />
+        </div>
+
+        <div class="pinCode">
+          <label for="pinCode" class="sr-only">PinCode: </label>
+          <input
+            type="text"
+            id="pinCode"
+            class="form-control"
+            placeholder="PinCode"
+            formControlName="pinCode"
+            required
+          />
+        </div>
+
+        <div class="country">
+          <select name="" id="">
+            <option value="" selected>state</option>
+            <option value=""></option>
+          </select>
+        </div>
+      </div>
+
+      <div class="image">
+        <label for="photo" class="sr-only">Photo: </label>
+          <input
+            type="file"
+            id="photo"
+            class="form-control"
+            placeholder="Photo"
+            formControlName="hoto"
+            required
+          />  
+      </div>
+
+      <div class="password">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input
+          type="password"
+          id="inputPassword"
+          class="form-control"
+          placeholder="Password"
+          formControlName="password"
+          required
+        />
+
+        <div
+          *ngIf="
+            signup.controls.password?.invalid &&
+            (signup.controls.password?.dirty ||
+              signup.controls.password?.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="signup.controls.password.errors?.['required']">
+            password is required.
+          </div>
+          <div *ngIf="signup.controls.password.errors?.['minlength']">
+            Password must be 6 char
+          </div>
+        </div>
+      </div>
+
+      <div class="password">
+        <label for="conformPassword" class="sr-only">Conform Password</label>
+        <input
+          type="password"
+          id="conformPassword"
+          class="form-control"
+          placeholder="Conform Password"
+          formControlName="conformPassword"
+          required
+        />
+
+        <div
+          *ngIf="
+            signup.controls.password?.invalid &&
+            (signup.controls.password?.dirty ||
+              signup.controls.password?.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="signup.controls.password.errors?.['required']">
+            password is required.
+          </div>
+          <div *ngIf="signup.controls.password.errors?.['minlength']">
+            Password must be 6 char
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="registration-btn">
+      <button
+        class="btn btn-lg btn-primary btn-block"
+        type="button"
+        (click)="onSubmit()"
+      >
+        signup
+      </button>
+    </div>
+  </form>
+</div>
