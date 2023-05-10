@@ -6,7 +6,7 @@
       <div class="name">
         <label for="inputEmail" class="sr-only">Name</label>
         <input
-          type="email"
+          type="text"
           id="inputName"
           class="form-control"
           placeholder="Name"
@@ -24,13 +24,22 @@
           <div *ngIf="signup.controls.name.errors?.['required']">
             Name is required.
           </div>
+          <div *ngIf="signup.controls.name.errors?.['minlength']">
+            minimum char length must be 3.
+          </div>
+          <div *ngIf="signup.controls.name.errors?.['maxlength']">
+            maximum char length should be less than 50
+          </div>
+          <div *ngIf="signup.controls.name.errors?.['forbiddenValidator']">
+            name.errors?.forbiddenName.value
+          </div>
         </div>
       </div>
 
       <div class="age">
         <label for="inputAge" class="sr-only">Age</label>
         <input
-          type="text"
+          type="number"
           id="inputAge"
           class="form-control"
           placeholder="age"
@@ -45,16 +54,22 @@
           "
           class="alert alert-danger"
         >
-          <div *ngIf="signup.controls.age.errors?.['required']">
+          <small *ngIf="signup.controls.age.errors?.['required']">
             Age is required.
-          </div>
+          </small>
+          <small *ngIf="signup.controls.age.errors?.['min']">
+            Age must be 18years.
+          </small>
+          <small *ngIf="signup.controls.age.errors?.['max']">
+            Age should be less than or equal to 60
+          </small>
         </div>
       </div>
 
       <div class="contact">
         <label for="inputContact" class="sr-only">Contact</label>
         <input
-          type="email"
+          type="text"
           id="inputContact"
           class="form-control"
           placeholder="Contact"
@@ -71,6 +86,11 @@
         >
           <div *ngIf="signup.controls.contact.errors?.['required']">
             Contact is required.
+          </div>
+          <div
+            *ngIf=" signup.controls.contact.errors?.['minlength'] || signup.controls.contact.errors?.['maxlength']"
+          >
+            Phone number must be 10 Digits.
           </div>
         </div>
       </div>
@@ -102,62 +122,76 @@
         </div>
       </div>
 
-      <div class="address" formGroupName="address">
-        <div class="street">
-          <label for="street" class="sr-only">Street: </label>
-          <input
-            type="text"
-            id="street"
-            class="form-control"
-            placeholder="address"
-            formControlName="street"
-            required
-          />
-        </div>
-
-        <div class="city">
-          <label for="city" class="sr-only">City: </label>
-          <input
-            type="text"
-            id="city"
-            class="form-control"
-            placeholder="City"
-            formControlName="city"
-            required
-          />
-        </div>
-
-        <div class="pinCode">
-          <label for="pinCode" class="sr-only">PinCode: </label>
-          <input
-            type="text"
-            id="pinCode"
-            class="form-control"
-            placeholder="PinCode"
-            formControlName="pinCode"
-            required
-          />
-        </div>
-
-        <div class="country">
-          <select name="" id="">
-            <option value="" selected>state</option>
-            <option value=""></option>
-          </select>
-        </div>
-      </div>
+    
+        <button class="btn btn-primary" (click)="addAddress()" type="button">Add Address</button>
+        <div
+            formArrayName="address"
+            *ngFor="let item of signup.get('address').controls; let i = index"
+          >
+            <div formGroupName="i">
+         
+                <div class="street">
+                  <label for="street" >Street: </label>
+                <input
+                  type="text"
+                  id="street"
+                  
+                  placeholder="Street"
+                  formControlName="street"
+                  required
+                />
+                </div>
+             
+  
+                <div class="city">
+                  <label for="city">City: </label>
+                <input
+                  type="text"
+                  id="city"
+                  
+                  placeholder="City"
+                  formControlName="city"
+                  required
+                />
+                </div>
+              
+            </div>
+            <button type="button" class="btn btn-danger" (click)="removeAddress(i)">remove</button>
+          </div>
+   
+    
+        
+        
 
       <div class="image">
         <label for="photo" class="sr-only">Photo: </label>
-          <input
-            type="file"
-            id="photo"
-            class="form-control"
-            placeholder="Photo"
-            formControlName="hoto"
-            required
-          />  
+        <input
+          type="file"
+          id="photo"
+          class="form-control"
+          placeholder="Photo"
+          formControlName="photo"
+          required
+        />
       </div>
+
+      <div class="mb-3">
+        <label for="">Gender</label>
+        <div class="form-check">
+          <input type="radio" class="form-check-input" name="gender" value="male" formControlName="gender"/>
+          <label class="form-check-label">male</label>
+        </div>
+        <div class="form-check">
+          <input type="radio" class="form-check-input" name="gender" value="female" formControlName="gender"/>
+          <label class="form-check-label">female</label>
+        </div>
+
+        <div *ngIf="f.gender.touched && f.gender.invalid" class="alert alert-danger">
+          <div *ngIf="f.gender.errors.required">gender is required.</div>
+      </div>
+      </div>
+
+      <div class="hobbies"></div>
 
       <div class="password">
         <label for="inputPassword" class="sr-only">Password</label>
@@ -215,6 +249,10 @@
         </div>
       </div>
 
+      <div class="checkout mb-3">
+        <input class="form-check-input" type="checkbox" />
+        <label class="form-check-label">agreed all terms and conditions</label>
+      </div>
     </div>
 
     <div class="registration-btn">
@@ -228,3 +266,5 @@
     </div>
   </form>
 </div>
+
+{{ signup.value | json }}
