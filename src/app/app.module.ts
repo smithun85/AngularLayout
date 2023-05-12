@@ -7,8 +7,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { ReactiveFormsModule } from '@angular/forms';  //reactive Form lives here
 
-//bootstrap
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
+
 //UserDefined Modules:
 import { AuthenticationModule } from './authentication/authentication.module';
 import { DashboardModule } from './dashboard/dashboard.module'
@@ -17,6 +16,7 @@ import { UsersModule } from './users/users.module';
 import { UserFormModule } from './user-form/user-form.module';
 //Components:
 import { CustomErrorComponent } from './custom-error/custom-error.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -30,12 +30,12 @@ import { CustomErrorComponent } from './custom-error/custom-error.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    TooltipModule.forRoot(),
     AuthenticationModule,
     DashboardModule,
     SharedModule,
     UserFormModule,
     UsersModule,
+    BrowserAnimationsModule,
 
   ],
   providers: [],

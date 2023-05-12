@@ -1,55 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PasswordValidator } from 'src/app/shared/password.validator';
+import { CustomValidatorService } from 'src/app/shared/custom-validator.service';
+import { passwordMatch } from 'src/app/shared/password.validator';
 import { forbiddenValidator } from 'src/app/shared/user.validator';
+
+import { imageValidator } from 'src/app/shared/password.validator';
+
+import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
+
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
+  providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: false } }]
 })
 export class SignupComponent implements OnInit{
 
-  // get name() {
-  //   return this.signup.controls;
-  // }
+ 
+  hobbies:Array<any> = [
+    {name:'Football'},
+    {name:'Cricket'},
+    {name:'Singing'},
+    {name:'Chess'},
+    {name:'Reading'},
+    {name:'other'},
+  ]
 
-  countries: string[] = [
-    'country-1',
-    'country-2',
-    'country-3',
-    'country-4',
-    'country-5',
-    'country-6',
-  ];
-  states: string[] = [
-    'state-1',
-    'state-2',
-    'state-3',
-    'state-4',
-    'state-5',
-    'state-6',
-  ];
 
   constructor(
     private router: Router,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private validator:CustomValidatorService,
   ) {}
 
-
-  
-
    
-  signup:FormGroup | any;
+  signupForm:FormGroup | any;
   address:FormArray | any;
-  // address:FormArray | any;
-  ngOnInit(){
-    // this.address = this.fb.group({    
-    //   address:this.fb.array([this.createAddress()])
-    // })
 
-    this.signup = new FormGroup(
+  ngOnInit(){
+   
+    this.signupForm = new FormGroup(
       {
         name: new FormControl('', [
           Validators.required,
@@ -73,27 +65,28 @@ export class SignupComponent implements OnInit{
         email: new FormControl('', [Validators.required, Validators.email]),
 
         address: new FormArray([this.createAddress()]),
+        // address: new FormArray([new FormGroup({
+        //   street:new FormControl('',Validators.required),
+        //   city:new FormControl('',Validators.required),
+        //   pinCode:new FormControl('', Validators.required)
+        // })],[Validators.required]),
   
-        photo: new FormControl('', [Validators.required]),
+        image: new FormControl('', [Validators.required, imageValidator() ]),
   
         gender: new FormControl('', Validators.required),
   
-        hobby: new FormControl(''),
+        hobby: new FormArray([new FormControl(null,  Validators.required)]),
   
         password: new FormControl('', [
           Validators.required,
           Validators.minLength(6),
-        ]),
-  
-        conformPassword: new FormControl(''),
-      },
-      // { validator: PasswordValidator('password', 'conformPassword') }
-    );
+        ]), 
+        confirm_Password: new FormControl('', Validators.required),
 
-    
-    // this.address= new FormGroup({
-    //   address:new FormArray([this.createAddress()])
-    // });
+        checkedOut:new FormControl(false, Validators.requiredTrue),
+      },  
+      { validators:passwordMatch('password', 'confirm_Password') }
+    );
 
   };
 
@@ -102,51 +95,106 @@ export class SignupComponent implements OnInit{
     //   street:[''],
     //   city:[''],
     // })
-
     return new FormGroup({
-      street:new FormControl(''),
-      city:new FormControl('')
+      street:new FormControl('', Validators.required),
+      city:new FormControl('', Validators.required),
+      pinCode:new FormControl('', Validators.required)
     })
   }
 
   addAddress(): void{
-    this.address = this.signup.get('address') as FormArray;
+    this.address = this.signupForm.get('address') as FormArray;
     this.address.push(this.createAddress())
-    console.log("Address:",this.address.value);
+    console.log("Address to add:",this.address.value);
   }
 
   removeAddress(index:number):void {
    console.log('index',index);
-    // (<FormArray>this.signup.get("address")).removeAt(index);
+    // (<FormArray>this.signupForm.get("address")).removeAt(index);
 
     //=========OR=========
-    this.address = this.signup.get('address') as FormArray;
+    this.address = this.signupForm.get('address') as FormArray;
     this.address.removeAt(index);
+    console.log("test", this.signupForm.get('address').controls[index]);
     
   }
+//=============================Multiple Checkbox for hobbies========
+onCheckBoxChange(e:any){
+//   const hobby:FormArray = this.signupForm.get('hobby') as FormArray
 
-  get f(){
-    return this.signup.controls;
+//   if(e.target.value){
+//     hobby.push(new FormControl(e.target.value));
+//   } else {
+//     let i:number = 0 ;
+//     hobby.controls.forEach( (item:any) => {
+//       if(item.value == e.target.value){
+//         hobby.removeAt(i)
+//         return
+//       }
+//       i++
+//     })
+//     console.log(hobby);
+//   }
+}
+
+
+//===================end multiple checkbox============
+
+
+//=======Image upload===============
+readImageFile(event:any){
+  if (event.target.files && event.target.files[0]) {
+
+    if (event.target.files[0].type === 'image/jpeg' || 
+        event.target.files[0].type === 'image/png' || 
+        event.target.files[0].type ==='image/jpg') {
+      if (event.target.files[0].size < 200 * 200) {/* Checking height * width*/ }
+        if (event.target.files[0].size < 1000000) {/* checking size here - 2MB */ }
+    }
   }
+}
+//============================end===================
+
+
+//===========Matched Password==========
+get passwordMatchError() {
+  return (
+    this.signupForm.getError('mismatch') &&
+    this.signupForm.get('confirm_Password')?.touched
+  );
+}
+
+//=====Getter method============
+  get signup(){
+    return this.signupForm.controls;
+  }
+
+  get handleHobbyError(){
+    return this.signupForm.get('hobby') as FormArray
+  }
+
+  get addressHandleError(){
+    return this.signupForm.get('address') as FormArray;
+  }
+
+//   get name() : FormControl{
+//     return this.signupForm.get('firstName') as FormControl;
+// }
+
 
 
 
   onSubmit(): void {
-    console.log(this.signup.value);
-    console.log("Address:",this.address.value);
+    
+    console.log(this.signupForm.value);
 
-    if (this.signup.invalid) {
-      this.signup.markAllAsTouched();
+    if (this.signupForm.invalid) {
+      this.signupForm.markAllAsTouched();
       return;
     }
     this.router.navigate(['/showForm']);
-    console.log(this.signup.value);
-
-    this.signup.reset();
+    
+    this.signupForm.reset();
   }
-
-  // onSubmitForm(){
-  //   console.log("AddressOutSide:",this.address.value)
-  // }
 }
 
