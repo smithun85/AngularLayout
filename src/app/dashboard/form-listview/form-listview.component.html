@@ -1,0 +1,22 @@
+<div class="formContainer">
+    <form 
+    class="form"
+    [formGroup]="formList"
+    (ngSubmit)="onSubmit()">
+        <!-- <div class="id">
+            <label for="">id</label>
+            <input type="text">
+        </div> -->
+        <div class="name">
+            <label for="">Name:</label>
+            <input type="text" 
+                formControlName="name"    
+            >
+        </div>
+        
+       
+        <button>Submit</button>
+    </form>
+</div>
+
+

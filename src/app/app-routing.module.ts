@@ -20,6 +20,8 @@ import { UsersCommentsComponent } from './users/users-comments/users-comments.co
 import { ProductDetailsComponent } from './dashboard/product-details/product-details.component';
 import { SignupComponent } from './user-form/signup/signup.component';
 import { ShowFormDataComponent } from './user-form/show-form-data/show-form-data.component';
+import { FormListviewComponent } from './dashboard/form-listview/form-listview.component';
+import { DynamicFormComponent } from './user-form/dynamic-form/dynamic-form.component';
 
 const routes: Routes = [
   {
@@ -111,6 +113,11 @@ const routes: Routes = [
       },
 
       {
+        path:'formListView',
+        component:FormListviewComponent
+      },
+
+      {
         path:'about',
         component:AboutComponent
       },
@@ -128,6 +135,10 @@ const routes: Routes = [
       {
         path:'showForm',
         component:ShowFormDataComponent
+      },
+      {
+        path:'dynamicForm',
+        component:DynamicFormComponent
       }
     ]
   },

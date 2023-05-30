@@ -7,8 +7,13 @@ import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
 import { SettingComponent } from './setting/setting.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { FormListviewComponent } from './form-listview/form-listview.component';
+
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -21,15 +26,19 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     OrdersComponent,
     SettingComponent,
     ProductDetailsComponent,
+    FormListviewComponent,
+   
+    
+
     
   ],
   imports: [
     CommonModule,
     RouterModule,
-    SharedModule
-  ],
-  exports:[
-    HomeLayoutComponent,
+    SharedModule,
+    NgSelectModule,
+    ReactiveFormsModule,
+    BsDropdownModule ,
   ]
 })
 export class DashboardModule { }

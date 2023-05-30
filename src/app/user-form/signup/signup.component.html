@@ -274,12 +274,11 @@
           id="image"
           class="form-control"
           placeholder="Image"
-          (change)="readImageFile($event)"
           formControlName="image"
-          accept=".jpg, .png | image"
+          
         />
       </div>
-    
+
       <div
         *ngIf="
           signup.image?.invalid &&
@@ -288,9 +287,17 @@
         class="alert alert-danger"
       >
         <div *ngIf="signup.image.errors?.['required']">image is required.</div>
-        <div *ngIf="signup.image.errors?.['invalidImage']">Invalid image type or size.</div>
+        <div *ngIf="signup.image.errors?.['invalidFileType']">
+          Invalid file type. Only JPEG, PNG, and GIF files are allowed.
+        </div>
+        <div *ngIf="signup.image.errors?.['invalidFileSize']">
+          Invalid file size. The maximum file size is 1MB.
+        </div>
+        <div *ngIf="signup.image.errors?.['invalidDimensions']">
+          Invalid image dimensions. The maximum image dimensions are 1000x1000.
+        </div>
       </div>
-      <img src="" alt="">
+      <img src="" alt="" />
 
       <div class="gender mb-3">
         <label for=""><b>Gender</b></label>
@@ -381,13 +388,20 @@
           </div>
         </div>
         <div
-      *ngIf="handleHobbyError.controls[i].invalid && (handleHobbyError.controls[i].dirty || handleHobbyError.controls[i].touched)"
-      class="alert alert-danger"
-    >
-      <div class="error" *ngIf="handleHobbyError.controls[i].errors?.['required']">
-        select atleast one hobby.
-      </div>
-    </div>
+          *ngIf="
+            handleHobbyError.controls[i].invalid &&
+            (handleHobbyError.controls[i].dirty ||
+              handleHobbyError.controls[i].touched)
+          "
+          class="alert alert-danger"
+        >
+          <div
+            class="error"
+            *ngIf="handleHobbyError.controls[i].errors?.['required']"
+          >
+            select atleast one hobby.
+          </div>
+        </div>
       </div>
 
       <div class="password">
@@ -398,7 +412,6 @@
           class="form-control"
           placeholder="Password"
           formControlName="password"
-          required
         />
         <div
           *ngIf="
@@ -424,7 +437,6 @@
           class="form-control"
           placeholder="Confirm Password"
           formControlName="confirm_Password"
-          required
         />
         <div
           *ngIf="

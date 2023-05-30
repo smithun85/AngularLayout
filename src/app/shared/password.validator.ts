@@ -63,7 +63,7 @@ export function ConfirmedValidator(controlName: string, matchingControlName: str
     }
 }
 
-//==========Working
+//==========Working=========================
 export function passwordMatch(password: string, confirm_Password: string) {
   return (formGroup: AbstractControl): ValidationErrors | null => {
     const passwordControl = formGroup.get(password);
@@ -121,22 +121,7 @@ export function passwordMatchValidator(password: string, confirm_Password: strin
 
 
 
-// export class ValidatePassword {
-//   static MatchPassword(abstractControl: AbstractControl) {
-//     let password = abstractControl.get('password').value;
-//     let confirmPassword = abstractControl.get('confirmPassword').value;
-//      if (password != confirmPassword) {
-//          abstractControl.get('confirmPassword').setErrors({
-//            MatchPassword: true
-//          })
-//     } else {
-//       return null
-//     }
-//   }
-  
-// }
-
-
+// ============Image Validation==============
 export function imageValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     if (control.value) {

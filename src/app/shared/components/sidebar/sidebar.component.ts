@@ -56,6 +56,12 @@ export class SidebarComponent {
       name:"signup",
       icon:"fa-solid fa-user-plus",
       router:'signup'
+    },
+
+    {
+      number:9,
+      name:"formListView",
+      router:"formListView"
     }
   ]
 

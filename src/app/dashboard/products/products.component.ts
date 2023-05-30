@@ -18,7 +18,7 @@ export class ProductsComponent {
 
   onSelect( product:Products){
     //using with id
-    this.router.navigate(['/productDetails',product.id], { queryParams: { orderby: product.price, brand:product.brand} })
+    this.router.navigate(['/productDetails',product.id], { queryParams: { orderby: product.price, brand:product.brand } })
      //Using without id
     // this.router.navigate(['/productDetails'], { queryParams: { orderby: product.price, brand:product.brand} })
   }

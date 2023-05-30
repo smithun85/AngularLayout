@@ -41,53 +41,75 @@ export class SignupComponent implements OnInit{
 
   ngOnInit(){
    
+    // this.signupForm = new FormGroup(
+    //   {
+    //     name: new FormControl('', [
+    //       Validators.required,
+    //       Validators.minLength(3),
+    //       Validators.maxLength(50),
+    //       forbiddenValidator(/admin/),
+    //     ]),
+  
+    //     age: new FormControl('', [
+    //       Validators.required,
+    //       Validators.min(18),
+    //       Validators.max(60),
+    //     ]),
+  
+    //     contact: new FormControl('', [
+    //       Validators.required,
+    //       Validators.minLength(10),
+    //       Validators.maxLength(10),
+    //     ]),
+  
+    //     email: new FormControl('', [Validators.required, Validators.email]),
+
+    //     address: new FormArray([this.createAddress()]),
+    //     // address: new FormArray([new FormGroup({
+    //     //   street:new FormControl('',Validators.required),
+    //     //   city:new FormControl('',Validators.required),
+    //     //   pinCode:new FormControl('', Validators.required)
+    //     // })],[Validators.required]),
+  
+    //     image: new FormControl('', [Validators.required, this.validator.validateImage ]),
+  
+    //     gender: new FormControl('', Validators.required),
+  
+    //     hobby: new FormArray([new FormControl(null,  Validators.required)]),
+  
+    //     password: new FormControl('', [
+    //       Validators.required,
+    //       Validators.minLength(6),
+    //     ]), 
+    //     confirm_Password: new FormControl('', Validators.required),
+
+    //     checkedOut:new FormControl(false, Validators.requiredTrue),
+    //   },  
+    //   { validators:passwordMatch('password', 'confirm_Password') }
+    // );
+
+
+
+    //without validation:============== for testing purpose=======================
     this.signupForm = new FormGroup(
       {
-        name: new FormControl('', [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(50),
-          forbiddenValidator(/admin/),
-        ]),
-  
-        age: new FormControl('', [
-          Validators.required,
-          Validators.min(18),
-          Validators.max(60),
-        ]),
-  
-        contact: new FormControl('', [
-          Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(10),
-        ]),
-  
-        email: new FormControl('', [Validators.required, Validators.email]),
-
-        address: new FormArray([this.createAddress()]),
-        // address: new FormArray([new FormGroup({
-        //   street:new FormControl('',Validators.required),
-        //   city:new FormControl('',Validators.required),
-        //   pinCode:new FormControl('', Validators.required)
-        // })],[Validators.required]),
-  
-        image: new FormControl('', [Validators.required, imageValidator() ]),
-  
-        gender: new FormControl('', Validators.required),
-  
-        hobby: new FormArray([new FormControl(null,  Validators.required)]),
-  
-        password: new FormControl('', [
-          Validators.required,
-          Validators.minLength(6),
-        ]), 
-        confirm_Password: new FormControl('', Validators.required),
-
-        checkedOut:new FormControl(false, Validators.requiredTrue),
+        name: new FormControl(''),  
+        age: new FormControl(''), 
+        contact: new FormControl(''), 
+        email: new FormControl(''),
+        address: new FormArray([new FormGroup({
+          street:new FormControl(''),
+          city:new FormControl(''),
+          pinCode:new FormControl('')
+        })]),
+        image: new FormControl(''), 
+        gender: new FormControl(''),  
+        hobby: new FormArray([new FormControl(null)]),
+        password: new FormControl(''), 
+        confirm_Password: new FormControl(''),
+        checkedOut:new FormControl(false),
       },  
-      { validators:passwordMatch('password', 'confirm_Password') }
     );
-
   };
 
   createAddress() {
@@ -142,27 +164,27 @@ onCheckBoxChange(e:any){
 
 
 //=======Image upload===============
-readImageFile(event:any){
-  if (event.target.files && event.target.files[0]) {
+// readImageFile(event:any){
+//   if (event.target.files && event.target.files[0]) {
 
-    if (event.target.files[0].type === 'image/jpeg' || 
-        event.target.files[0].type === 'image/png' || 
-        event.target.files[0].type ==='image/jpg') {
-      if (event.target.files[0].size < 200 * 200) {/* Checking height * width*/ }
-        if (event.target.files[0].size < 1000000) {/* checking size here - 2MB */ }
-    }
-  }
-}
+//     if (event.target.files[0].type === 'image/jpeg' || 
+//         event.target.files[0].type === 'image/png' || 
+//         event.target.files[0].type ==='image/jpg') {
+//       if (event.target.files[0].size < 200 * 200) {/* Checking height * width*/ }
+//         if (event.target.files[0].size < 1000000) {/* checking size here - 2MB */ }
+//     }
+//   }
+// }
 //============================end===================
 
 
 //===========Matched Password==========
-get passwordMatchError() {
-  return (
-    this.signupForm.getError('mismatch') &&
-    this.signupForm.get('confirm_Password')?.touched
-  );
-}
+// get passwordMatchError() {
+//   return (
+//     this.signupForm.getError('mismatch') &&
+//     this.signupForm.get('confirm_Password')?.touched
+//   );
+// }
 
 //=====Getter method============
   get signup(){
@@ -188,11 +210,12 @@ get passwordMatchError() {
     
     console.log(this.signupForm.value);
 
-    if (this.signupForm.invalid) {
-      this.signupForm.markAllAsTouched();
-      return;
-    }
-    this.router.navigate(['/showForm']);
+    // if (this.signupForm.invalid) {
+    //   this.signupForm.markAllAsTouched();
+    //   return;
+    // }
+    // this.router.navigate(['/showForm']);
+    this.router.navigate(['/dynamicForm']);
     
     this.signupForm.reset();
   }

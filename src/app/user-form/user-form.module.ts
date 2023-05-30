@@ -9,13 +9,15 @@ import { ShowFormDataComponent } from './show-form-data/show-form-data.component
 //ngx-bootstrap
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 
 
 
 @NgModule({
   declarations: [
     SignupComponent,
-    ShowFormDataComponent
+    ShowFormDataComponent,
+    DynamicFormComponent
   ],
   imports: [
     CommonModule,
