@@ -24,5 +24,9 @@ export class UsersComponent implements OnInit{
     // console.log(userData);
     this.router.navigate(['/users',userData.id])
   }
+
+  goToForm(){
+    this.router.navigate(['/dynamicForm']);
+  }
   
 }

@@ -15,6 +15,8 @@ import { FormListviewComponent } from './form-listview/form-listview.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgSelectModule } from '@ng-select/ng-select';
 
+import { ATestComponentsModule } from '../a-test-components/a-test-components.module';
+
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgSelectModule,
     ReactiveFormsModule,
     BsDropdownModule ,
+    ATestComponentsModule
   ]
 })
 export class DashboardModule { }

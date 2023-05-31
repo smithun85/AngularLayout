@@ -22,6 +22,7 @@ import { SignupComponent } from './user-form/signup/signup.component';
 import { ShowFormDataComponent } from './user-form/show-form-data/show-form-data.component';
 import { FormListviewComponent } from './dashboard/form-listview/form-listview.component';
 import { DynamicFormComponent } from './user-form/dynamic-form/dynamic-form.component';
+import { CustomPipeComponent } from './a-test-components/custom-pipe/custom-pipe.component';
 
 const routes: Routes = [
   {
@@ -139,6 +140,10 @@ const routes: Routes = [
       {
         path:'dynamicForm',
         component:DynamicFormComponent
+      },
+      {
+        path:'pipe',
+        component:CustomPipeComponent
       }
     ]
   },

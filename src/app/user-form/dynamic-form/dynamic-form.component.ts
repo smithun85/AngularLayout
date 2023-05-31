@@ -13,8 +13,18 @@ export class DynamicFormComponent {
 
 
   
-// constructor(){
+constructor(){
 
-// }
+}
+firstName:any
+
+modelChanged(event:any){
+console.log("modelChanged:",event);
+};
+firstNameChanged(arg:any) {
+  console.log(
+      "firstNameChanged  argument:" + arg + "  component: " + this.firstName
+  );
+}
 
 }

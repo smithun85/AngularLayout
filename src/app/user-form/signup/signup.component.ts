@@ -41,75 +41,75 @@ export class SignupComponent implements OnInit{
 
   ngOnInit(){
    
-    // this.signupForm = new FormGroup(
-    //   {
-    //     name: new FormControl('', [
-    //       Validators.required,
-    //       Validators.minLength(3),
-    //       Validators.maxLength(50),
-    //       forbiddenValidator(/admin/),
-    //     ]),
+    this.signupForm = new FormGroup(
+      {
+        name: new FormControl('', [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(50),
+          forbiddenValidator(/admin/),
+        ]),
   
-    //     age: new FormControl('', [
-    //       Validators.required,
-    //       Validators.min(18),
-    //       Validators.max(60),
-    //     ]),
+        age: new FormControl('', [
+          Validators.required,
+          Validators.min(18),
+          Validators.max(60),
+        ]),
   
-    //     contact: new FormControl('', [
-    //       Validators.required,
-    //       Validators.minLength(10),
-    //       Validators.maxLength(10),
-    //     ]),
+        contact: new FormControl('', [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(10),
+        ]),
   
-    //     email: new FormControl('', [Validators.required, Validators.email]),
+        email: new FormControl('', [Validators.required, Validators.email]),
 
-    //     address: new FormArray([this.createAddress()]),
-    //     // address: new FormArray([new FormGroup({
-    //     //   street:new FormControl('',Validators.required),
-    //     //   city:new FormControl('',Validators.required),
-    //     //   pinCode:new FormControl('', Validators.required)
-    //     // })],[Validators.required]),
+        address: new FormArray([this.createAddress()]),
+        // address: new FormArray([new FormGroup({
+        //   street:new FormControl('',Validators.required),
+        //   city:new FormControl('',Validators.required),
+        //   pinCode:new FormControl('', Validators.required)
+        // })],[Validators.required]),
   
-    //     image: new FormControl('', [Validators.required, this.validator.validateImage ]),
+        image: new FormControl('', [Validators.required, this.validator.validateImage ]),
   
-    //     gender: new FormControl('', Validators.required),
+        gender: new FormControl('', Validators.required),
   
-    //     hobby: new FormArray([new FormControl(null,  Validators.required)]),
+        hobby: new FormArray([new FormControl(null,  Validators.required)]),
   
-    //     password: new FormControl('', [
-    //       Validators.required,
-    //       Validators.minLength(6),
-    //     ]), 
-    //     confirm_Password: new FormControl('', Validators.required),
+        password: new FormControl('', [
+          Validators.required,
+          Validators.minLength(6),
+        ]), 
+        confirm_Password: new FormControl('', Validators.required),
 
-    //     checkedOut:new FormControl(false, Validators.requiredTrue),
-    //   },  
-    //   { validators:passwordMatch('password', 'confirm_Password') }
-    // );
+        checkedOut:new FormControl(false, Validators.requiredTrue),
+      },  
+      { validators:passwordMatch('password', 'confirm_Password') }
+    );
 
 
 
     //without validation:============== for testing purpose=======================
-    this.signupForm = new FormGroup(
-      {
-        name: new FormControl(''),  
-        age: new FormControl(''), 
-        contact: new FormControl(''), 
-        email: new FormControl(''),
-        address: new FormArray([new FormGroup({
-          street:new FormControl(''),
-          city:new FormControl(''),
-          pinCode:new FormControl('')
-        })]),
-        image: new FormControl(''), 
-        gender: new FormControl(''),  
-        hobby: new FormArray([new FormControl(null)]),
-        password: new FormControl(''), 
-        confirm_Password: new FormControl(''),
-        checkedOut:new FormControl(false),
-      },  
-    );
+    // this.signupForm = new FormGroup(
+    //   {
+    //     name: new FormControl(''),  
+    //     age: new FormControl(''), 
+    //     contact: new FormControl(''), 
+    //     email: new FormControl(''),
+    //     address: new FormArray([new FormGroup({
+    //       street:new FormControl(''),
+    //       city:new FormControl(''),
+    //       pinCode:new FormControl('')
+    //     })]),
+    //     image: new FormControl(''), 
+    //     gender: new FormControl(''),  
+    //     hobby: new FormArray([new FormControl(null)]),
+    //     password: new FormControl(''), 
+    //     confirm_Password: new FormControl(''),
+    //     checkedOut:new FormControl(false),
+    //   },  
+    // );
   };
 
   createAddress() {
@@ -158,8 +158,6 @@ onCheckBoxChange(e:any){
 //     console.log(hobby);
 //   }
 }
-
-
 //===================end multiple checkbox============
 
 
@@ -210,12 +208,12 @@ onCheckBoxChange(e:any){
     
     console.log(this.signupForm.value);
 
-    // if (this.signupForm.invalid) {
-    //   this.signupForm.markAllAsTouched();
-    //   return;
-    // }
-    // this.router.navigate(['/showForm']);
-    this.router.navigate(['/dynamicForm']);
+    if (this.signupForm.invalid) {
+      this.signupForm.markAllAsTouched();
+      return;
+    }
+    this.router.navigate(['/showForm']);
+    // this.router.navigate(['/dynamicForm']);
     
     this.signupForm.reset();
   }

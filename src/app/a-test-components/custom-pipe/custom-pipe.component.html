@@ -1,0 +1,64 @@
+<p>custom-pipe works!</p>
+
+<div class="card">
+    <div class="card-header">
+        <p>{{title}}</p>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <h3>Fahrenheit to Celsius</h3>
+        </div>
+        <div class="row">
+            <p>Fahrenheit: <input type="text" [(ngModel)]="fahrenhiet">
+                Celsius: {{fahrenhiet | tempConverter:'C'}}
+            </p>
+        </div>
+
+        <div class="row">
+            <h3>Celsius to Fahrenheit</h3>
+        </div>
+        <div class="row">
+            <p>Celsius: <input type="text" [(ngModel)]="celsius">
+            Fahrenheit:{{celsius | tempConverter:'F'}}</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- shareReplay() method : -->
+<!-- async pipe is use with ngIf -->
+<div *ngIf="(obsValue | async); else elseBlock">   <!-- obsValue  Subscribed here  -->
+    <!-- async pipe is use with interpolation -->
+    {{ obsValue | async}}    <!-- obsValue  Subscribed here again -->
+  </div>
+ 
+  <ng-template #elseBlock>
+    Observable is loading. Please wait 
+  </ng-template>
+
+  <div *ngIf="(obsValue | async);">
+    observable has recevied data
+  </div>
+
+<br>
+
+
+
+<div *ngIf="(obsValue1 | async) as value; else elseBlock1">
+    <!-- works only inside the If Block -->
+    {{ value}}      
+  </div>
+   
+  <ng-template #elseBlock1>
+    Observable is loading. Please wait
+  </ng-template>
+   
+  <!-- {{ value}}   // will not work  -->
+
+
+
+
+ 
+   
+ 

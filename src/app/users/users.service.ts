@@ -18,11 +18,23 @@ export class UsersService {
   }
  
   public user?:any
-  getUserDataById(){
-    let user = this.users.map( (data)=>{
-      // console.log(data);
-      this.user = data
-    })
-    return this.user
-  }
+  //======================Method-1===================
+  // getUserDataById(id:any){
+  //  this.users.map( (data)=>{
+  //     // console.log("DataById",data);
+  //     // console.log(id);
+  //     if(id == data.id){
+  //       this.user = data;
+        
+  //     }
+  //   })
+ 
+  //   return this.user
+  // };
+
+
+  //or  : =========================method-2============================= 
+  getUserDataById(ids:any){   
+      return this.users.find( (p:any)=>p.id == ids)         
+   }
 }

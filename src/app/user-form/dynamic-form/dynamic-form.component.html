@@ -1,1 +1,5 @@
 <p>dynamic-form works!</p>
+name:
+<input type="text" name="name" ngModel (ngModelChange)="modelChanged($event)">
+<br>
+<input [(ngModel)]="firstName" (ngModelChange)="firstNameChanged($event)"/>
