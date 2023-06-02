@@ -1,0 +1,63 @@
+
+<!-- name:
+<input type="text" name="name" ngModel (ngModelChange)="modelChanged($event)">
+<br>
+<input [(ngModel)]="firstName" (ngModelChange)="firstNameChanged($event)"/> -->
+
+
+<!-- <div style="text-align: center">
+  <h2>Dynamic Form:</h2>
+  <div class="mx-3">
+    <form [formGroup]="registerForm" (ngSubmit)="onsubmit()">
+      <div *ngFor="let field of fields">
+        <label>{{field}}: </label>
+        {{field}}
+          <input
+          class="mb-3 "
+            [type]="field"
+            [formControlName]="field"
+            placeholder="{{ field }}"
+          />
+       
+      </div>
+
+      <button class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div> -->
+
+<div style="text-align: center">
+  <h2>Dynamic Form:</h2>
+  <div class="mx-3">
+    <form [formGroup]="registerForm" (ngSubmit)="onsubmit()">
+      <div *ngFor="let field of dynamicFields">
+        <!-- <label>{{field.label}}: </label>
+        {{field.type}}
+          <input
+          class="mb-3 "
+            [type]="field.type"
+            [formControlName]="field.fieldName"
+            placeholder="{{ field.label }}"
+          /> -->
+          <!-- value:  {{field |json}} -->
+
+          <ng-container [ngSwitch]="field.type">
+            <app-dynamic-input *ngSwitchCase="'text'" [formName]="registerForm" [field]="field"></app-dynamic-input>
+            <app-dynamic-input *ngSwitchCase="'number'" [formName]="registerForm" [field]="field"></app-dynamic-input>
+            <app-dynamic-input *ngSwitchCase="'date'" [formName]="registerForm" [field]="field"></app-dynamic-input>
+            <app-dynamic-select *ngSwitchCase="'select'" [formName]="registerForm" [field]="field"></app-dynamic-select>
+            <app-dynamic-radio *ngSwitchCase="'radio'" [formName]="registerForm" [field]="field"></app-dynamic-radio>
+            <app-dynamic-checkbox *ngSwitchCase="'checkbox'" [formName]="registerForm" [field]="field"></app-dynamic-checkbox>
+          </ng-container>
+       
+      </div>
+     
+
+      <button class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
+{{registerForm.value | json }}
+
+
+

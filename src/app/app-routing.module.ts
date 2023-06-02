@@ -23,6 +23,7 @@ import { ShowFormDataComponent } from './user-form/show-form-data/show-form-data
 import { FormListviewComponent } from './dashboard/form-listview/form-listview.component';
 import { DynamicFormComponent } from './user-form/dynamic-form/dynamic-form.component';
 import { CustomPipeComponent } from './a-test-components/custom-pipe/custom-pipe.component';
+import { FormTestComponent } from './a-test-components/form-test/form-test.component';
 
 const routes: Routes = [
   {
@@ -30,11 +31,11 @@ const routes: Routes = [
     component:AuthLayoutComponent,
     children:[
 
-      // {
-      //   path:'',
-      //   redirectTo:'login',
-      //   pathMatch:'full'
-      // },
+      {
+        path:'',
+        redirectTo:'login',
+        pathMatch:'full'
+      },
 
       {
         path:'',
@@ -144,6 +145,10 @@ const routes: Routes = [
       {
         path:'pipe',
         component:CustomPipeComponent
+      },
+      {
+        path:'form',
+        component:FormTestComponent
       }
     ]
   },

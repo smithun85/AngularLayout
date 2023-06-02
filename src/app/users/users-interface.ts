@@ -4,3 +4,13 @@ export interface Users {
     email:string,
     phone:number
 }
+
+
+export interface Models {
+    name:string,
+    // lastName: string,
+    // address: string,
+    // age: number,
+    email:string,
+    phone:number
+}

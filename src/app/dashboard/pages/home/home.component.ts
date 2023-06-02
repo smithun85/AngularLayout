@@ -15,4 +15,8 @@ export class HomeComponent {
   onCustomPipe(){
     this.router.navigate(['/pipe'])
   }
+
+  onDynamicForm(){
+    this.router.navigate(['/form'])
+  }
 }

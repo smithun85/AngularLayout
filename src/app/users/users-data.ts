@@ -1,5 +1,5 @@
 
-import { Users } from "./users-interface";
+import { Users, Models} from "./users-interface";
 
 export const UsersData:Users[] = [
     {
@@ -32,4 +32,14 @@ export const UsersData:Users[] = [
         email:"shan@gmail.com",
         phone:7766554499,
     }
-]
+];
+
+
+export const  model_DynamicForm:Models = {
+    name: '',
+    // lastName: '',
+    // address: '',
+    // age: 0,
+    email:'',
+    phone:0,
+};

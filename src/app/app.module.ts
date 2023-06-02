@@ -34,7 +34,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AuthenticationModule,
     DashboardModule,
     SharedModule,
-    UserFormModule,
     UsersModule,
     BrowserAnimationsModule,
 

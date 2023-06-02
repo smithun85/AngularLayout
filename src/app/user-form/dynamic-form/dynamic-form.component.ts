@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { QuestionBase } from './question-base';
+import { FormControl, FormGroup } from '@angular/forms';
+import { UsersService } from 'src/app/users/users.service'; //Form field model exists in Userservice 
 
 @Component({
   selector: 'app-dynamic-form',
@@ -7,24 +9,45 @@ import { QuestionBase } from './question-base';
   styleUrls: ['./dynamic-form.component.scss']
 })
 
-export class DynamicFormComponent {
-// export class DynamicFormComponent extends QuestionBase<string>{
-//   override controlType = 'textbox';
+export class DynamicFormComponent implements OnInit{
 
-
+  registerForm: FormGroup | any;
+  fields:any = [];
+  // model = {                 //this model is coming from UserService 
+  //         name: '',
+  //         lastName: '',
+  //         address: '',
+  //         age: '',
+  //  };
   
-constructor(){
+constructor(private model:UsersService){ }
 
+ngOnInit() {
+  this.buildForm();
 }
-firstName:any
 
-modelChanged(event:any){
-console.log("modelChanged:",event);
-};
-firstNameChanged(arg:any) {
-  console.log(
-      "firstNameChanged  argument:" + arg + "  component: " + this.firstName
-  );
+getFormControlsFields() {
+  const formGroupFields:any = {};
+
+  // console.log("Object Key:",Object.keys(this.model.getModels()));  //Object Key= [name='',lastName='',...]
+  //we can not directly iterate of Object so !st we convert in array then apply iteration
+  for(const field of Object.keys(this.model.getModels())){   
+    // console.log("field:",field);                // field:name, field:lastName,.....
+    formGroupFields[field] = new FormControl(''); 
+    this.fields.push(field);                  
+  }
+  // console.log("formGroupFields",formGroupFields); //{name: FormControl, lastName: FormControl, address: FormControl, age: FormControl}
+  // console.log("Fields:",this.fields);            //fields= [name='',lastName='',...]
+  return formGroupFields;  //it returns {name: FormControl, lastName: FormControl, address: FormControl, age: FormControl}
 }
+
+buildForm() {
+  this.registerForm = new FormGroup(this.getFormControlsFields());
+}
+
+onSubmit(){
+  console.log("registerForm:",this.registerForm.value);
+}
+
 
 }

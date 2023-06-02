@@ -1,5 +1,11 @@
 <p>dynamic-form works!</p>
-name:
-<input type="text" name="name" ngModel (ngModelChange)="modelChanged($event)">
-<br>
-<input [(ngModel)]="firstName" (ngModelChange)="firstNameChanged($event)"/>
+<div class="dynamicForm">
+    <h2>RegisterForm</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div *ngFor="let field of fields">
+        <label>{{field}}</label>
+       <div> <input type="text" [formControlName]="field" placeholder={{field}}/></div>
+    </div>
+    <button>submit</button>
+</form>
+</div>
