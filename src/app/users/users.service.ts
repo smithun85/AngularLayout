@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UsersData, model_DynamicForm} from './users-data';
 import { ActivatedRoute } from '@angular/router';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -44,4 +45,20 @@ export class UsersService {
   getModels(){
     return this.models
   }
+
+  private _userFieldsSource = new BehaviorSubject<any>({});
+  selectedUserData$= this._userFieldsSource.asObservable();
+
+  private _userFieldsListBus = new BehaviorSubject<any>([]);
+  userFieldsList$ = this._userFieldsListBus.asObservable();
+
+  setUserData(userData:any){
+    this._userFieldsSource.next(userData)
+  };
+
+  setUserList(userList:any){
+    this._userFieldsListBus.next(userList)
+    console.log("ServiceData",userList);
+  }
+
 }

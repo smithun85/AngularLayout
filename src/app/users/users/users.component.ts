@@ -14,15 +14,20 @@ export class UsersComponent implements OnInit{
   //get userData using service
   users?:Users[];
 
+  userList: any
+
   constructor(private userService:UsersService, private router:Router ){}
 
   ngOnInit(){
-    this.users=this.userService.getData()
+    this.users=this.userService.getData() ;
+    
+    
   }
 
   onSelect(userData:Users){
     // console.log(userData);
-    this.router.navigate(['/users',userData.id])
+    this.userService.setUserData(userData)
+    // this.router.navigate(['/details',userData.id])
   }
 
   goToForm(){

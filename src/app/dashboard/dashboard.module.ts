@@ -16,6 +16,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 import { ATestComponentsModule } from '../a-test-components/a-test-components.module';
+import { dashboardRoutingModule } from './dashboard-routing.module';
+
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 
@@ -41,7 +44,10 @@ import { ATestComponentsModule } from '../a-test-components/a-test-components.mo
     NgSelectModule,
     ReactiveFormsModule,
     BsDropdownModule ,
-    ATestComponentsModule
-  ]
+    ATestComponentsModule,
+    dashboardRoutingModule,
+    PaginationModule.forRoot(),
+  ],
+  exports:[RouterModule]
 })
 export class DashboardModule { }

@@ -9,7 +9,14 @@ import { DynamicInputComponent } from './dynamic-fields-form/dynamic-input/dynam
 import { DynamicCheckboxComponent } from './dynamic-fields-form/dynamic-checkbox/dynamic-checkbox.component';
 import { DynamicRadioComponent } from './dynamic-fields-form/dynamic-radio/dynamic-radio.component';
 import { DynamicSelectComponent } from './dynamic-fields-form/dynamic-select/dynamic-select.component';
+import { ATestRoutingComponent } from './a-test.routing';
+import { TestComponent } from './test/test.component';
 
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
+
+import { RouterModule } from '@angular/router';
+import { PaginationExampleComponent } from './pagination-example/pagination-example.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +26,18 @@ import { DynamicSelectComponent } from './dynamic-fields-form/dynamic-select/dyn
     DynamicInputComponent,
     DynamicCheckboxComponent,
     DynamicRadioComponent,
-    DynamicSelectComponent
+    DynamicSelectComponent,
+    TestComponent,
+    PaginationExampleComponent,
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ReactiveFormsModule,
-    FormsModule
-  ]
+    FormsModule,
+    PaginationModule.forRoot(),
+    ATestRoutingComponent,
+  ],
+  exports:[RouterModule]
 })
 export class ATestComponentsModule { }

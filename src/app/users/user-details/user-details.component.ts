@@ -18,7 +18,7 @@ export class UserDetailsComponent {
   constructor(
     private route:ActivatedRoute,
     private router:Router,
-    private user:UsersService
+    private userService:UsersService
   ) {}
 
 
@@ -26,8 +26,10 @@ export class UserDetailsComponent {
   // ngOnInit(): void{
     
   //   let id = this.route.snapshot.params['id']
+
   // //or ;    router parameter from the params array
   //   // let id = this.route.snapshot.params?.['id']
+
   // //or : value from the paramMap object.
   //   // let id = this.route.snapshot.paramMap.get('id') //snapshot property returns the current value of the route
   //   // console.log("paramsId",id);
@@ -49,19 +51,22 @@ ngOnInit():void{
   let id = this.route.params.subscribe( params => { 
     this.userId = params['id']; 
 
-      let user = this.user.getUserDataById(this.userId)
+      let user = this.userService.getUserDataById(this.userId)
     // console.log("user:", user);
     this.userData=user
-    
   })
-}
+};
+
 
   goToUsers():void{
     this.router.navigate(['users'])
   }
 
   putComment(){
-    // this.router.navigate(['comments'])
+    this.router.navigate(['comments'])
   }
+//   ngOnDestroy() {
+//     this.userId.unsubscribe();
+// }
 
 }

@@ -52,7 +52,7 @@
     </div>
 
     <div class="button">
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
       <a [routerLink]="['forgotPassword']">Forget Password</a>
     </div>
   </form>

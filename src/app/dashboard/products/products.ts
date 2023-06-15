@@ -42,4 +42,45 @@ export let ProductsData:Products[] = [
         brand:'MI',
         price:1200,
     },
+    {
+        id:6,
+        type:"tablet",
+        brand:'sumsung',
+        price:54200,
+    },
+
+    {
+        id:7,
+        type:"watch",
+        brand:'Apple',
+        price:12000,
+    },
+
+    {
+        id:8,
+        type:"tv",
+        brand:'Honor',
+        price:12060,
+    },
+
+    {
+        id:9,
+        type:"Mobile",
+        brand:'Nokia',
+        price:8200,
+    },
+
+    {
+        id:10,
+        type:"router",
+        brand:'Realme',
+        price:6200,
+    },
+
+    {
+        id:11,
+        type:"Mobile",
+        brand:'vivo',
+        price:1200,
+    },
 ]

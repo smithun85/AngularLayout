@@ -28,40 +28,13 @@ import { FormTestComponent } from './a-test-components/form-test/form-test.compo
 const routes: Routes = [
   {
     path:'',
+    redirectTo:'auth',
+    pathMatch:'full'
+  },
+  {
+    path:'auth',
     component:AuthLayoutComponent,
-    children:[
-
-      {
-        path:'',
-        redirectTo:'login',
-        pathMatch:'full'
-      },
-
-      {
-        path:'',
-       component:LoginComponent
-      },
-    
-      {
-        path:'registration',
-        component:RegistrationComponent
-      },
-    
-      {
-        path:'forgotPassword',
-        component:ForgotPasswordComponent
-      },
-    
-      {
-        path:'otpValidate',
-        component:OtpValidationComponent
-      },
-    
-      {
-        path:'setPassword',
-        component:SetPasswordComponent
-      }
-    ]
+    loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
   },
 
   {
@@ -78,7 +51,7 @@ const routes: Routes = [
       },
 
       {
-        path:'users/:id',
+        path:'details/:id',
         component:UserDetailsComponent,
         children:[
           {
@@ -88,45 +61,16 @@ const routes: Routes = [
         ]
       },
 
-      {
-        path:"products",
-        component:ProductsComponent,
-      },
-
-       {
-          path:'productDetails/:id',
-          component:ProductDetailsComponent
-        },
-
-        //Using without id
-      // {
-      //   path:'productDetails',
-      //   component:ProductDetailsComponent
-      // },
 
       {
-        path:'orders',
-        component:OrdersComponent
-      },
-
-      {
-        path:'setting',
-        component:SettingComponent
+        path:'',
+        loadChildren: () => import('./dashboard/dashboard.module').then(m=>m.DashboardModule),
+        // component:ProductsComponent,
       },
 
       {
         path:'formListView',
         component:FormListviewComponent
-      },
-
-      {
-        path:'about',
-        component:AboutComponent
-      },
-
-      {
-        path:'contacts',
-        component:ContactsComponent
       },
 
       {
@@ -149,6 +93,11 @@ const routes: Routes = [
       {
         path:'form',
         component:FormTestComponent
+      },
+
+      {
+        path:'pagination',
+        loadChildren: () => import('./a-test-components/a-test-components.module').then(m => m.ATestComponentsModule)
       }
     ]
   },

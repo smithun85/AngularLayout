@@ -478,6 +478,7 @@
         class="btn btn-lg btn-primary btn-block"
         type="button"
         (click)="onSubmit()"
+        [disabled]="signup.invalid"
       >
         signupForm
       </button>

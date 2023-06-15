@@ -15,12 +15,16 @@
                 <td>{{user.name | uppercase}} </td>
                 <td>{{user.email | lowercase}}  </td>
                 <td>{{user.phone}}</td>
-                <td><button class="btn btn-primary" (click)="onSelect(user)">View Details</button></td>
+                <!-- <td><button class="btn btn-primary" (click)="onSelect(user)">View Details</button></td> -->
+                <td><button class="btn btn-primary"  [routerLink]="['/details',user.id]">View Details</button></td>
+
             </tr>
     </tbody>
 </table>
 
 
+
 <h2 style="text-align: center;" class="mt-4">Add Dynamic Reactive Form in Angular</h2>
 
 <button type="button" class="btn btn-success"(click)=goToForm()>Add user_list</button>
+<router-outlet></router-outlet>

@@ -1,5 +1,4 @@
-export interface Products {
-    
+export interface Products {    
     id:number,
     type:string,
     brand:string,

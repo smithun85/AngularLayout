@@ -14,4 +14,8 @@ export class ProductsService {
   getProducts(){
     return ProductsData
   }
+
+  getProductById(productId:number){
+    return ProductsData.find( p=>p.id = productId)
+  }
 }
