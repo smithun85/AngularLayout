@@ -17,6 +17,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { RouterModule } from '@angular/router';
 import { PaginationExampleComponent } from './pagination-example/pagination-example.component';
+import { SearchTextComponent } from './search-text/search-text.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PaginationExampleComponent } from './pagination-example/pagination-exam
     DynamicSelectComponent,
     TestComponent,
     PaginationExampleComponent,
+    SearchTextComponent,
   ],
   imports: [
     CommonModule,

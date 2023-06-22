@@ -1,4 +1,12 @@
 <h2>Products Details</h2>
+<div>
+    <input type="search" [(ngModel)]="searchText">
+    <button (click)="onSearch()">submit</button>
+</div>
+<div class="text-contaniner" [innerHtml]="text"  >
+</div>
+
+
 <table class="table" border="1">
     <thead>
         <tr>

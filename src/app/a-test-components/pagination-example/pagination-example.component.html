@@ -31,8 +31,9 @@
   </div>
 </div>
 
+<!-- ======================================================== -->
 <div>
-  <table class="table table-responci">
+  <table class="table table-responce">
     <thead class="thead-light">
       <tr>
         <th scope="col">Random</th>
@@ -49,16 +50,9 @@
       > -->
       <tr
         *ngFor="
-          let item of usersList
-           | paginate
-              : {
-                  itemsPerPage: 6,
-                  currentPage: pagination,
-                  totalItems: allStudents
-                }
-        "
+          let item of usersList"          
       >
-        <th scope="row">{{ item.random }}</th>
+        <th scope="row">{{ item.id }}</th>
         <td>{{ item.name }}</td>
         <td>{{ item.email }}</td>
       </tr>
@@ -73,6 +67,8 @@
   ></ngb-pagination> -->
 
   <pagination
-  (pageChange)="renderPage($event)"
+  [totalItems]="usersList.length"
+  [itemsPerPage]="12"
+  (pageChanged)="renderPage($event)"
 ></pagination>
 </div>

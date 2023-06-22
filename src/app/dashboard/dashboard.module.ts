@@ -7,7 +7,7 @@ import { ProductsComponent } from './products/products.component';
 import { OrdersComponent } from './orders/orders.component';
 import { SettingComponent } from './setting/setting.component';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { FormListviewComponent } from './form-listview/form-listview.component';
@@ -43,6 +43,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     SharedModule,
     NgSelectModule,
     ReactiveFormsModule,
+    FormsModule,
     BsDropdownModule ,
     ATestComponentsModule,
     dashboardRoutingModule,

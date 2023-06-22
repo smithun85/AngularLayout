@@ -14,7 +14,9 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 export class ProductsComponent implements OnInit {
   
 
-  products:Products[] = []
+  products:Products[] = [];
+  searchText:any ;
+  text=`somedummy text here`
 
   routerInfo:string = ''
   constructor(
@@ -38,6 +40,10 @@ this.products = this.productService.getProducts()
     this.router.navigate(['/productDetails',product.id], { queryParams: { orderby: product.price, brand:product.brand } })
      //Using without id
     // this.router.navigate(['/productDetails'], { queryParams: { orderby: product.price, brand:product.brand} })
+  }
+
+  onSearch(){
+
   }
 
 }
