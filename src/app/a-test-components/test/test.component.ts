@@ -90,7 +90,7 @@ export class TestComponent implements OnInit {
     }, 3000)
 
 
-    // ===================Example: Create Observable=====================================
+    // ============================Example: Create Observable=================================================
     console.log('========Create Observable==========');
     const obsCreate = Observable.create((observer: any) => {
       observer.next(1);

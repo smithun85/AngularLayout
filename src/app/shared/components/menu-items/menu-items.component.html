@@ -1,0 +1,54 @@
+
+
+<div class="group">
+  <div class="symbol">
+
+    <div *ngIf="item.router; then isRouter else isToggle"></div>
+    <ng-template  #isRouter>
+      <div >
+        <i [class]="item.icon"></i>
+        <a [routerLink]="item.router">
+          {{ item.title }}
+        </a>
+      </div>
+    </ng-template>
+
+    <ng-template #isToggle>
+      <div >
+        <i [class]="item.icon"></i>
+        <span>
+          <a (click)="toggleItem(item)" >
+            {{ item.title }}
+          </a>
+        </span>
+      </div>
+       <div>
+      <span
+      class=" caret"
+        [ngClass]="{ 'rotate-caret': is_open }"
+        >
+          v
+        </span>
+    </div>
+    </ng-template>
+
+    
+
+    
+   
+  </div>
+     
+
+
+<!-- 
+    <ul *ngIf="item.parent">
+        <li *ngFor="let child of inputArr">
+          <a [routerLink]="child.router" *ngIf="child.parent === item.key">{{ child.title }}</a>
+          <ul *ngIf="child.parent === item.key">
+            <li *ngFor="let grandChild of inputArr">
+              <a [routerLink]="grandChild.router" *ngIf="grandChild.parent === child.key">{{ grandChild.title }}</a>
+            </li>
+          </ul>
+        </li>
+      </ul> -->
+  </div>

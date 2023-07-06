@@ -103,10 +103,10 @@
         .caret {
           position: absolute;
           transition: transform ease-out 0.2s;
-          top: 15px;
+          top: 13px;
           right: 10px;
           color: white;
-          font-size: 10px;
+          font-size: 20px;
           transform: translateY(-50%) rotate(-90deg);
         }
       }
@@ -164,8 +164,9 @@
 
   .symbol{
     display: flex;
-    justify-content: center;
+    justify-content:end;
     align-items: center;
+    gap: 40px;
   }
 
   

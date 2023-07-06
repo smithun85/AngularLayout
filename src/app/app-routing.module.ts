@@ -25,6 +25,7 @@ import { DynamicFormComponent } from './user-form/dynamic-form/dynamic-form.comp
 import { CustomPipeComponent } from './a-test-components/custom-pipe/custom-pipe.component';
 import { FormTestComponent } from './a-test-components/form-test/form-test.component';
 
+
 const routes: Routes = [
   {
     path:'',
@@ -98,7 +99,7 @@ const routes: Routes = [
       {
         path:'pagination',
         loadChildren: () => import('./a-test-components/a-test-components.module').then(m => m.ATestComponentsModule)
-      }
+      },
     ]
   },
  
