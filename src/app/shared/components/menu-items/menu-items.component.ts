@@ -11,7 +11,7 @@ export class MenuItemsComponent implements OnInit{
  is_open:boolean = false
 
  ngOnInit(): void {
-   console.log(this.item);
+  //  console.log(this.item);
 
   
  }
