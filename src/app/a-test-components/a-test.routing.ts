@@ -4,6 +4,7 @@ import { TestComponent } from "./test/test.component";
 import { CustomPipeComponent } from "./custom-pipe/custom-pipe.component";
 import { FormTestComponent } from "./form-test/form-test.component";
 import { PaginationExampleComponent } from "./pagination-example/pagination-example.component";
+import { LogicsComponent } from "./logics/logics.component";
 
 
 const routes:Routes = [
@@ -24,7 +25,11 @@ const routes:Routes = [
     {
         path:'test',
         component:TestComponent
-    }
+    },
+   {
+    path:'logics',
+    component:LogicsComponent
+   },
 ];
 
 @NgModule({

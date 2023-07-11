@@ -18,6 +18,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { RouterModule } from '@angular/router';
 import { PaginationExampleComponent } from './pagination-example/pagination-example.component';
 import { SearchTextComponent } from './search-text/search-text.component';
+import { LogicsComponent } from './logics/logics.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SearchTextComponent } from './search-text/search-text.component';
     TestComponent,
     PaginationExampleComponent,
     SearchTextComponent,
+    LogicsComponent,
   ],
   imports: [
     CommonModule,

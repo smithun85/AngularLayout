@@ -43,11 +43,12 @@ export class HomeComponent {
 
   onTest(){
     this.router.navigate(['/test']);
-
-    
-
     this.activatedRoute.url.subscribe({
       next:url=>console.log(`The URL changed to:${url}`)
     })
+  }
+
+  onLogics(){
+    this.router.navigate(['/logics'])
   }
 }
