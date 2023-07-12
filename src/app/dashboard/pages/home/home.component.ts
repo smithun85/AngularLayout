@@ -51,4 +51,8 @@ export class HomeComponent {
   onLogics(){
     this.router.navigate(['/logics'])
   }
+
+  onCheckbox(){
+    this.router.navigate(['/checkbox'])
+  }
 }

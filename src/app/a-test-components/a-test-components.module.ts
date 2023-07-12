@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
 import { PaginationExampleComponent } from './pagination-example/pagination-example.component';
 import { SearchTextComponent } from './search-text/search-text.component';
 import { LogicsComponent } from './logics/logics.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { LogicsComponent } from './logics/logics.component';
     PaginationExampleComponent,
     SearchTextComponent,
     LogicsComponent,
+    CheckboxComponent,
   ],
   imports: [
     CommonModule,

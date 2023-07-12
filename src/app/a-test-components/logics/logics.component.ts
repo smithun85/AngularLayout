@@ -61,11 +61,8 @@ export class LogicsComponent implements OnInit{
   ngOnInit(): void {
 
     this.moduleForm = new FormGroup({
-      module : new FormGroup({
-        permision:new FormControl()
-      }),
-     
-    })
+      
+      })
 
 
   //   for(let i=1; i<=5;i++){
@@ -113,7 +110,6 @@ this.formModule = e.target.value
   else{
      // find the unselected element
      let i: number = 0;
-
      this.formModuleGroup.controls.forEach((ctrl:any) => {
        if(ctrl.value == e.target.value) {
          // Remove the unselected element from the arrayForm
@@ -127,7 +123,9 @@ this.formModule = e.target.value
 };
 
 formPermisionArray:any = []
+formPermision = ''
 onCheckChangePermision(e:any){
+  this.formPermision = e.target.value
  this.permision = this.formModuleGroup.get('permision') ;
   console.log(e.target.value);
   console.log(this.permision);
@@ -155,15 +153,114 @@ onSubmit(){
   this.formResult = []
   console.log("Form_Module:",this.moduleForm.value);
 
-  // this.modules.map( (item:any,i:number)=>{
-  //   if(e.target.value == item.label){
-
-  //     console.log(Object.assign({},item));
-  //   }
-  // })
+  this.modules.map( (item:any,i:number)=>{
+    if(this.formModule == item.label){
+      this.formResult.push({})
+      console.log(Object.assign({},item));
+    }
+  })
 
 }
 
   }
+
+
+
+
+
+  // module:string = '';
+  // isModule:boolean = false;
+  // onCheckChangeModule(module:string,event: any) {
+  //   this.module = event.target.value;
+  //   this.isModule = event.target.checked;
+  //   const moduleControl = this.moduleForm.controls[this.module];
+  //   console.log("event:", this.module);
+  //   console.log(" from_FormControl:", moduleControl.value);
+  //   console.log("Object_key:",Object.keys(moduleControl.value));
+    
+  //   Object.keys(moduleControl.value).forEach((permissionName) => {
+  //     console.log("module_Control:",moduleControl);
+  //     console.log("get_Permission name:",moduleControl.get(permissionName));
+  //     moduleControl.get(permissionName)?.setValue(event.target.checked);
+  //   });
+  // }
+
+  // permission:string =''
+  // isPermission:boolean = false
+  // onCheckChangePermission(event: any) {
+  //   this.permission = event.target.value;
+  //   this.isPermission = event.target.checked
+  //   const moduleName = event.target.name;
+  //   const permissionName = event.target.value;
+  //   const moduleControl = this.moduleForm.controls[moduleName];
+  //   // console.log(moduleControl.value);
+  //   moduleControl.get(permissionName)?.setValue(event.target.checked);
+  // }
+
+
+ 
+
+
+ 
+
+  // onSubmit() {
+  //   const result:any = {};
+  //   this.modulesFormArray.controls.forEach((permissionsFormArray, moduleIndex) => {
+  //     const permissions = permissionsFormArray.value
+  //       .map((checked:any, permissionIndex:number) => {
+  //         if (checked) {
+  //           return this.permissions[permissionIndex].value;
+  //         }
+  //       })
+  //       .filter((value:any) => value !== undefined);
+  //     if (permissions.length > 0) {
+  //       const moduleName = this.modules[moduleIndex].value;
+  //       result[moduleName] = permissions;
+  //     }
+  //   });
+  //   console.log(result);
+  // }
   
 
+//   constructor(private formBuilder: FormBuilder){
+//     this.moduleForm = this.formBuilder.group({});
+
+//     this.modules.forEach((module:any) => {
+//       const permissionsFormArray:any = new FormArray([]);
+//       this.permissions.forEach((permission:any) => {
+//         permissionsFormArray.push(this.formBuilder.control(false));
+//       });
+//       this.moduleForm.addControl(module.value, permissionsFormArray);
+//     });
+//   }
+
+//   ngOnInit(): void {
+
+//     // this.moduleForm = this.fb.group({});
+     
+//     // this.modules.forEach(module => {
+//     //   this.moduleForm.addControl(module.value, this.fb.group({}));
+      
+//     //   this.permissions.forEach( (permission:any )=> {
+//     //     this.moduleForm.controls[module.value].addControl(permission.value, this.fb.control(false));
+//     //   });
+//     // });   
+//   }
+
+  
+
+// this.modules.forEach((module) => {
+//   const modulePermissions : any= {};
+//   this.permissions.forEach((permission) => {
+//     modulePermissions[permission.value] = false;
+//   });
+//   // The addControl() method adds a control to the FormGroup at runtime. Find the method declaration.
+//   // addControl(name: string, control: AbstractControl): void 
+//   // name: This is the control name to add to the FormGroup.
+//   // control: This is the any implementation class of AbstractControl such as FormGroup, 
+//   // FormControl and FormArray.
+//   this.moduleForm.addControl(module.value, this.formBuilder.control(modulePermissions));
+// });
+// console.log("Forms_value:",this.moduleForm.value);
+// console.log("Forms_controls:",this.moduleForm.controls);
+// }

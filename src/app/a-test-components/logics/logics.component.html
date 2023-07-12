@@ -13,11 +13,11 @@
         <tbody>
             <tr *ngFor="let module of modules; let i=index">
                 <th>
-                    <input type="checkbox" [name]="module.value" [value]="module.value" (change)="onCheckChangeModule($event)">
+                    <input type="checkbox" [name]="module.value" [value]="module.value" >
                     {{module.label}}: 
                 </th>
                <td *ngFor="let permision of permisions; let i=index"> 
-                <input type="checkbox" [name]="module.value" [value]="permision.value" (change)="onCheckChangePermision($event)">
+                <input type="checkbox" [name]="module.value" [value]="permision.value">
             </td>
                 
             </tr>

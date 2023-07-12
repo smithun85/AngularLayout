@@ -5,6 +5,7 @@ import { CustomPipeComponent } from "./custom-pipe/custom-pipe.component";
 import { FormTestComponent } from "./form-test/form-test.component";
 import { PaginationExampleComponent } from "./pagination-example/pagination-example.component";
 import { LogicsComponent } from "./logics/logics.component";
+import { CheckboxComponent } from "./checkbox/checkbox.component";
 
 
 const routes:Routes = [
@@ -29,6 +30,11 @@ const routes:Routes = [
    {
     path:'logics',
     component:LogicsComponent
+   },
+
+   {
+    path:'checkbox',
+    component:CheckboxComponent
    },
 ];
 

@@ -1,0 +1,37 @@
+<p>checkbox works!</p>
+
+   <form [formGroup]="moduleForm" (ngSubmit)="onSubmit()">
+    <table>
+        <thead>
+            <tr >
+                <th>modules</th>
+                <th *ngFor="let permission of permissions">{{permission['label']}}</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let module of modules; let moduleIndex = index">
+                <th>
+                    <input 
+                        type="checkbox" 
+                        [formControlName]="module['value']"    
+                    >
+                    {{module['label']}}: 
+                </th>
+                
+               <td *ngFor="let permission of permissions; let i=index"> 
+                <input 
+                    type="checkbox" 
+                    [formControlName]="module['value'] + '.' + permission['value'] " 
+                    >
+            </td>
+            <!-- (change)="toggleModulePermissions(module['value'],$event)" -->
+            <!-- [formControlName]="module['value']"     -->
+            <!-- [formControlName]="module['value'] + '.' + permission['value'] " -->
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="submit">submit</button>
+   </form>
+
