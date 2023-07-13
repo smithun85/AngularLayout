@@ -100,6 +100,11 @@ const routes: Routes = [
         path:'pagination',
         loadChildren: () => import('./a-test-components/a-test-components.module').then(m => m.ATestComponentsModule)
       },
+
+      {
+        path:'login-test',
+        loadChildren: () => import('./login/login.module').then(m => m.LoginModuleModule)
+      },
     ]
   },
  

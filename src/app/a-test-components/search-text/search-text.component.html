@@ -1,1 +1,11 @@
 <p>search-text works!</p>
+
+<div *ngFor="let city of cities; let i = index" formArrayName="cities">
+    <input type="checkbox" [formControlName]="i">
+    <span>{{city}}</span>
+  </div>
+  
+  <div *ngFor="let zipCode of zip_codes; let i = index" formArrayName="zip_codes">
+    <input type="checkbox" [formControlName]="i">
+    <span>{{zipCode}}</span>
+  </div>

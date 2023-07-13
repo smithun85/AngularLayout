@@ -20,7 +20,7 @@ import { MenuItemsComponent } from './components/menu-items/menu-items.component
   ],
   exports:[
     SidebarComponent,  //exports b/c we use SidebarComponent in other module
-    HeaderComponent ,  //same
+    HeaderComponent ,  //same ,,
   ]
 })
 export class SharedModule { }

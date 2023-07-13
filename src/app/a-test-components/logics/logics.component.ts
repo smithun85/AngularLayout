@@ -264,3 +264,27 @@ onSubmit(){
 // console.log("Forms_value:",this.moduleForm.value);
 // console.log("Forms_controls:",this.moduleForm.controls);
 // }
+
+
+
+
+
+//  // Initialize the form group and form controls
+//  this.moduleForm = this.formBuilder.group({});
+
+//  // Create form controls for each module and permission combination using addControl() method
+//  this.modules.forEach((module) => {
+//    const modulePermissions: { [key: string]: boolean } = {};
+
+//    this.permissions.forEach((permission) => {
+//      modulePermissions[permission['value']] = false;
+//    });
+
+//    this.moduleForm.addControl(
+//      module['value'],
+//      this.formBuilder.control(modulePermissions)
+//    );
+//  });
+//  console.log('Forms_value:', this.moduleForm.value);
+//  console.log('Forms_controls:', this.moduleForm.controls);
+// }

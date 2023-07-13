@@ -12,7 +12,8 @@ export class DynamicInputComponent {
 @Input() formName:FormGroup | any
 
 constructor(){
-  console.log("InputFieldsData",this.field);
+  console.log("InputFieldsData from dynamic",this.field);
+  console.log("FormGroup",this.formName);
 }
 
 }

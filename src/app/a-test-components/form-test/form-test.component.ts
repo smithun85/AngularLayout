@@ -51,6 +51,11 @@ public model:any ={
     value: "",
     label: "Birthday",
   },
+  birthDay1: {
+    type: "date",
+    value: "",
+    label: "Birthday-1",
+  },
   typeBussiness: {
     label: "Bussiness Type",
     value: "premium",
@@ -62,6 +67,25 @@ public model:any ={
       },
       {
         label: "Home",
+        value: "6",
+      },
+      {
+        label: "Personal",
+        value: "1",
+      },
+    ],
+  },
+  typeBussiness_1: {
+    label: "Bussiness Type-1",
+    value: "premium",
+    type: "radio",
+    options: [
+      {
+        label: "Enterprise-1",
+        value: "1500",
+      },
+      {
+        label: "Home-1",
         value: "6",
       },
       {
@@ -94,7 +118,28 @@ public model:any ={
       },
     ],
   },
+
+  City: {
+    label: " City=",
+    value: "premium",
+    type: "select",
+    options: [
+      {
+        label: "Select",
+        value: "",
+      },
+      {
+        label: "City-1",
+        value: "city-1",
+      },
+      {
+        label: "city-2",
+        value: "city-2",
+      },
+    ],
+  },
 };
+
 
 public dynamicFields:any = []
 
@@ -120,13 +165,15 @@ getFormControlsFields(){
   // console.log("Object.key:",modelArray);
   for( const field of modelArray){
 const fieldProps = this.model[field] //fieldProps stores object value which is also a object; { type:"text"  value:"", label:"FirstName"},{type:"text"  value:"", label:"lastName" }...so on
- console.log("fieldProps",fieldProps);
+//  console.log("fieldProps",fieldProps);
+//Create the dynamic form:
  formGroupFields[field] = new FormControl(fieldProps.value) //create the formControl field with keys and store in formGroupFields object
  this.dynamicFields.push({...fieldProps,fieldName:field})
 
 }
 console.log("FormGroupFields:",formGroupFields);
-console.log("fields:",this.dynamicFields);
+console.log("fields:",this.dynamicFields); //[{type: 'text', value: 'Mr.', label:"firstname", fieldName:"firstname"},...]
+
 return formGroupFields
 }
 

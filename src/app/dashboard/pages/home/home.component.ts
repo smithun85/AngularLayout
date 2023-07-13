@@ -54,5 +54,9 @@ export class HomeComponent {
 
   onCheckbox(){
     this.router.navigate(['/checkbox'])
+  };
+
+  onLoginCustom(){
+    this.router.navigate(['/login-test'])
   }
 }

@@ -4,109 +4,88 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss']
+  styleUrls: ['./checkbox.component.scss'],
 })
-export class CheckboxComponent implements OnInit{
+export class CheckboxComponent implements OnInit {
 
-  moduleForm:FormGroup ;
-  formResult:any[] = []
-  permission?:FormControl
-
-  modules:{[key:string]:string}[] = [
+  modules: { [key: string]: string }[] = [
     {
-      "label":"module-1",
-      "value":"module-1"
+      label: 'module-1',
+      value: 'module-1',
     },
     {
-      "label":"module-2",
-      "value":"module-2"
+      label: 'module-2',
+      value: 'module-2',
     },
     {
-      "label":"module-3",
-      "value":"module-3"
+      label: 'module-3',
+      value: 'module-3',
     },
     {
-      "label":"module-4",
-      "value":"module-4"
+      label: 'module-4',
+      value: 'module-4',
     },
     {
-      "label":"module-5",
-      "value":"module-5"
+      label: 'module-5',
+      value: 'module-5',
     },
-
   ];
 
-  permissions:{[key:string]:string}[] = [
+  permissions: { [key: string]: string }[] = [
     {
-      "label":"permision-1",
-      "value": "permision-1"
+      label: 'permission-1',
+      value: 'permission-1',
     },
     {
-      "label":"permision-2",
-      "value": "permision-2"
+      label: 'permission-2',
+      value: 'permission-2',
     },
     {
-      "label":"permision-3",
-      "value": "permision-3"
+      label: 'permission-3',
+      value: 'permission-3',
     },
     {
-      "label":"permision-4",
-      "value": "permision-4"
+      label: 'permission-4',
+      value: 'permission-4',
     },
-
   ];
 
-
-
-
-
-  constructor(private formBuilder: FormBuilder) {
-    // Initialize the form group and form controls
-   this.moduleForm = this.formBuilder.group({});
-
-   // Create form controls for each module and permission combination using addControl() method
-      this.modules.forEach((module) => {
-        const modulePermissions:{[key:string]:boolean}= {};
-  
-        this.permissions.forEach((permission) => {
-          modulePermissions[permission['value']] = false;
-        });
-      
-        this.moduleForm.addControl(module['value'], this.formBuilder.control(modulePermissions));
-      });
-      console.log("Forms_value:",this.moduleForm.value);
-      console.log("Forms_controls:",this.moduleForm.controls);
-    }
-
-    
-
-  ngOnInit() {
-  }
-  onSubmit() {
-        // Access the selected modules and their permissions on form submission
+  constructor(private formBuilder: FormBuilder) {}
    
-    console.log("entities of form:",Object.entries(this.moduleForm.value));
-    const selectedModules = Object.entries(this.moduleForm.value)
-    .filter((permissions) => Object.values(permissions).some((value: any) => value))
-    .map((module, permissions:any) => {
-      const selectedPermissions = Object.keys(permissions).filter((permission:any) => permissions[permission]);
-      return { module, permissions: selectedPermissions };
-    });
 
-  console.log(selectedModules);
+  ngOnInit() {}
+
+  checkedData: { [key: string]: string[] } = {};
+  isCheckedModule:boolean = false
+  onCheckChangeModule(event: any, moduleValue: string) {
+    if (event.target.checked) {
+      this.isCheckedModule = event.target.checked
+        this.checkedData[moduleValue] = [];
+    } else {
+        delete this.checkedData[moduleValue];
+    }
+}
+
+//Not completed: output comes if we have not selected the module but permission of this module came. 
+onCheckChangePermission(event: any, moduleValue: string, permissionValue: string) {
+    if (event.target.checked ) {
+      if (!this.checkedData[moduleValue]) {
+          this.checkedData[moduleValue] = [];
+      }
+      this.checkedData[moduleValue].push(permissionValue);
+  } else {
+      const index = this.checkedData[moduleValue].indexOf(permissionValue);
+      if (index > -1) {
+          this.checkedData[moduleValue].splice(index, 1);
+      }
+      if (this.checkedData[moduleValue].length === 0) {
+          delete this.checkedData[moduleValue];
+      }
   }
+ 
+}
 
-
-
-  toggleModulePermissions(module: any, event: any) {
-    console.log(event.target.checked);
-    // const modulePermissions = this.moduleForm.get(module) as FormGroup;
-    // Object.keys(modulePermissions.controls).forEach((permission) => {
-    //   const control = modulePermissions.get(permission) as FormControl;
-    //   control.setValue(event.target.checked);
-    // });
-  }
-
-  }
-
-
+onSubmit() {
+  console.log(this.checkedData);
+}
+}

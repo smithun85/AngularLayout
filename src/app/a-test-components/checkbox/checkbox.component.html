@@ -1,6 +1,6 @@
 <p>checkbox works!</p>
 
-   <form [formGroup]="moduleForm" (ngSubmit)="onSubmit()">
+   <form (ngSubmit)="onSubmit()">
     <table>
         <thead>
             <tr >
@@ -14,7 +14,9 @@
                 <th>
                     <input 
                         type="checkbox" 
-                        [formControlName]="module['value']"    
+                        [name]="module['value']" 
+                        [value]="module['value']"
+                        (change)="onCheckChangeModule($event, module['value'])" 
                     >
                     {{module['label']}}: 
                 </th>
@@ -22,7 +24,9 @@
                <td *ngFor="let permission of permissions; let i=index"> 
                 <input 
                     type="checkbox" 
-                    [formControlName]="module['value'] + '.' + permission['value'] " 
+                    [name]="module['value']" 
+                    [value]="permission['value']"
+                    (change)="onCheckChangePermission($event, module['value'], permission['value'])"
                     >
             </td>
             <!-- (change)="toggleModulePermissions(module['value'],$event)" -->
