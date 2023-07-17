@@ -1,0 +1,49 @@
+.rows-column{
+    display: flex;
+    gap: 10px;
+}
+
+.rows-column div{
+    display: flex;
+    flex-direction: column;
+}
+
+.rows-column div input{
+    width: 80px;
+};
+
+.matrix input{
+    border: none;
+  border-bottom: 2px solid black;
+  outline: none;
+  width:70px;
+  margin: 5px 5px;
+  padding-left: 10px;
+  box-sizing: border-box;
+};
+.matrix h4{
+    margin-bottom: 0px;
+    margin-top: 20px;
+};
+
+.matrix-result{
+    width: 200px;
+    height: auto;
+    background-color: #e4dfdf;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:10px 50px ;
+    padding: 10px;
+
+};
+
+.matrix-result h4{
+    color: rgb(100, 104, 104);
+    font-weight: bold;
+};
+
+.matrix-result table tr td{ 
+    padding: 5px;
+}

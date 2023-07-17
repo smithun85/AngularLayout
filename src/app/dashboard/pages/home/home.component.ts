@@ -59,4 +59,8 @@ export class HomeComponent {
   onLoginCustom(){
     this.router.navigate(['/login-test'])
   }
+
+  onMatrixMultiple(){
+    this.router.navigate(['/matrix'])
+  }
 }

@@ -10,7 +10,6 @@ export class CustomFormComponent {
 
   @Input() formControls :FormControl |any;
   @Input() fields : any
-  @Input() name :any
 
 
   constructor() {

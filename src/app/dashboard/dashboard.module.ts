@@ -19,6 +19,7 @@ import { ATestComponentsModule } from '../a-test-components/a-test-components.mo
 import { dashboardRoutingModule } from './dashboard-routing.module';
 
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { MatrixModule } from '../matrix/matrix.module';
 
 
 
@@ -31,11 +32,7 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     OrdersComponent,
     SettingComponent,
     ProductDetailsComponent,
-    FormListviewComponent,
-   
-    
-
-    
+    FormListviewComponent,    
   ],
   imports: [
     CommonModule,
@@ -45,9 +42,10 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     ReactiveFormsModule,
     FormsModule,
     BsDropdownModule ,
-    ATestComponentsModule,
+    ATestComponentsModule,  //we use this module component here 
     dashboardRoutingModule,
     PaginationModule.forRoot(),
+    MatrixModule     ////we use this module component here 
   ],
   exports:[RouterModule]
 })

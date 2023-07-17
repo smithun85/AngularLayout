@@ -105,6 +105,10 @@ const routes: Routes = [
         path:'login-test',
         loadChildren: () => import('./login/login.module').then(m => m.LoginModuleModule)
       },
+      {
+        path:'matrix',
+        loadChildren: ()=> import('./matrix/matrix.module').then(m=>m.MatrixModule)
+      }
     ]
   },
  
