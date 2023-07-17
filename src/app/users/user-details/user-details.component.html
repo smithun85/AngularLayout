@@ -1,0 +1,14 @@
+<h2>user-detail</h2>
+<h4>UserId: {{userId}}</h4>
+
+<div class="userDetail" >  
+    <p><b>Name: </b>{{userData.name}}</p>
+    <p><b>Email: </b>{{userData.email}}</p>
+    <p><b>Phone: </b>{{userData.phone}}</p> 
+</div>
+
+<button (click)="goToUsers()">Back</button>
+
+<!-- <button (click)="putComment()">Connents</button> -->
+<button><a [routerLink]="['comments']">Comments</a></button>
+

@@ -1,0 +1,75 @@
+<form [formGroup]="matrixForm" (ngSubmit)="onSubmit()">
+  <div formArrayName="rows">
+    <div *ngFor="let row of matrixForm.get('rows').controls; let i = index" [formGroupName]="i">
+      <div formArrayName="cells">
+        <input *ngFor="let cell of row.get('cells').controls; let j = index" [formControlName]="j" type="number">
+      </div>
+      <button type="button" (click)="addCell(row)">Add Cell</button>
+    </div>
+  </div>
+  <button type="button" (click)="addRow()">Add Row</button>
+  <button type="submit">Submit</button>
+</form>
+
+//matrix
+ngOnInit() {
+    this.matrixForm = this.fb.group({
+      rows: this.fb.array([
+        this.initRow()
+      ])
+    });
+  }
+  
+  initRow() {
+    return this.fb.group({
+      cells: this.fb.array([
+        this.initCell()
+      ])
+    });
+  }
+  
+  initCell() {
+    return this.fb.control('', Validators.required);
+  }
+  
+  addRow() {
+    const rows = this.matrixForm.get('rows') as FormArray;
+    rows.push(this.initRow());
+  }
+  
+  addCell(row:any) {
+    const cells = row.get('cells') as FormArray;
+    cells.push(this.initCell());
+  }
+  
+  onSubmit() {
+    console.log(this.matrixForm.value);
+  }
+
+
+ngOnInit(){
+    this.matrixForm = this.fb.group({
+        matrix_1:this.fb.array([]),
+        matrix_2:this.fb.array([]),
+    })
+}
+
+====================================
+matrix_1:this.fb.array([
+this.fb.group({
+  cells: this.fb.array([])
+})
+]),
+
+//Matrix-1
+for(let i=0; i<matrix_1_rows;i++){     
+  const firstRow = this.matrix_1.controls[i] as FormGroup;
+  console.log(firstRow)
+  const cellsArray = firstRow.get('cells') as FormArray;
+  console.log(cellsArray)
+  for(let j=0; j < matrix_1_columns; j++){
+    cellsArray.push(this.fb.control('')); 
+  }
+  this.matrix_1.push(cellsArray)
+  console.log(cellsArray.value)
+}

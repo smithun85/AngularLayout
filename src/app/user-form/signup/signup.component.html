@@ -1,0 +1,491 @@
+<div class="container">
+  <form
+    class="form-signin"
+    [formGroup]="signupForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+  >
+    <h2 class="form-signin-heading">Create Acount</h2>
+
+    <div class="form-menu">
+      <div class="name">
+        <label for="inputEmail" class="sr-only">Name</label>
+        <input
+          type="text"
+          id="inputName"
+          class="form-control"
+          placeholder="Name"
+          formControlName="name"
+        />
+
+        <div
+          *ngIf="
+            signup.name?.invalid && (signup.name?.dirty || signup.name?.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="signup.name.errors?.['required']">Name is required.</div>
+          <div *ngIf="signup.name.errors?.['minlength']">
+            minimum char length must be 3.
+          </div>
+          <div *ngIf="signup.name.errors?.['maxlength']">
+            maximum char length should be less than 50
+          </div>
+          <div *ngIf="signup.name.errors?.['forbiddenValidator']">
+            name.errors?.forbiddenName.value
+          </div>
+        </div>
+      </div>
+
+      <div class="age">
+        <label for="inputAge" class="sr-only">Age</label>
+        <input
+          type="number"
+          id="inputAge"
+          class="form-control"
+          placeholder="age"
+          formControlName="age"
+          required
+        />
+
+        <div
+          *ngIf="
+            signup.age?.invalid && (signup.age?.dirty || signup.age?.touched)
+          "
+          class="alert alert-danger"
+        >
+          <small *ngIf="signup.age.errors?.['required']">
+            Age is required.
+          </small>
+          <small *ngIf="signup.age.errors?.['min']">
+            Age must be 18years.
+          </small>
+          <small *ngIf="signup.age.errors?.['max']">
+            Age should be less than or equal to 60
+          </small>
+        </div>
+      </div>
+
+      <div class="contact">
+        <label for="inputContact" class="sr-only">Contact</label>
+        <input
+          type="text"
+          id="inputContact"
+          class="form-control"
+          placeholder="Contact"
+          formControlName="contact"
+          required
+        />
+
+        <div
+          *ngIf="
+            signup.contact?.invalid &&
+            (signup.contact?.dirty || signup.contact?.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="signup.contact.errors?.['required']">
+            Contact is required.
+          </div>
+          <div
+            *ngIf=" signup.contact.errors?.['minlength'] || signup.contact.errors?.['maxlength']"
+          >
+            Phone number must be 10 Digits.
+          </div>
+        </div>
+      </div>
+
+      <div class="email">
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input
+          type="email"
+          id="inputEmail"
+          class="form-control"
+          placeholder="Email address"
+          formControlName="email"
+          required
+        />
+
+        <div
+          *ngIf="
+            signup.email?.invalid &&
+            (signup.email?.dirty || signup.email?.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="signup.email.errors?.['required']">
+            email is required.
+          </div>
+          <div *ngIf="signup.email.errors?.['email']">email must be valid.</div>
+        </div>
+      </div>
+
+      <!-- <button class="btn btn-primary" (click)="addAddress()" type="button">
+        Add Address
+      </button>
+      <div
+        formArrayName="address"
+        *ngFor="let item of signupForm.get('address').controls; let i = index"
+      >
+        <div [formGroupName]="i">
+          <div class="street">
+            <label for="street">Street: </label>
+            <input
+              type="text"
+              id="street"
+              placeholder="Street"
+              formControlName="street"
+              required
+            />
+            <div
+              *ngIf="
+                signup.street?.invalid && (signup.street?.dirty || signup.street?.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="signup.street.errors?.['required']">
+                All fields of address is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="city">
+            <label for="city">City: </label>
+            <input
+              type="text"
+              id="city"
+              placeholder="City"
+              formControlName="city"
+              required
+            />
+            <div
+              *ngIf="signup.city?.invalid && (signup.city?.dirty || signup.city?.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="signup.city.errors?.['required']">
+                All fields of address is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-danger" (click)="removeAddress(i)">
+          remove
+        </button>
+      </div> -->
+
+      <div class="address">
+        <button class="btn btn-primary" (click)="addAddress()" type="button">
+          Add more Address
+        </button>
+        <table
+          formArrayName="address"
+          *ngFor="let item of signupForm.get('address').controls; let i = index"
+          border="1"
+        >
+          <tbody [formGroupName]="i">
+            <tr>
+              <th>Street:</th>
+              <td><input type="text" formControlName="street" /></td>
+              <br />
+            </tr>
+            <tr>
+              <th></th>
+              <td>
+                <div
+                  *ngIf="
+                    addressHandleError.controls[i].get('street')?.invalid &&
+                    (addressHandleError.controls[i].get('street')?.dirty ||
+                      addressHandleError.controls[i].get('street')?.touched)
+                  "
+                  class="alert alert-danger"
+                >
+                  <div
+                    *ngIf="addressHandleError.controls[i].get('street')?.errors?.['required']"
+                  >
+                    Street is required.
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <th>City:</th>
+              <td><input type="text" formControlName="city" /></td>
+            </tr>
+            <tr>
+              <th></th>
+              <td>
+                <div
+                  *ngIf="
+                    addressHandleError.controls[i].get('city')?.invalid &&
+                    (addressHandleError.controls[i].get('city')?.dirty ||
+                      addressHandleError.controls[i].get('city')?.touched)
+                  "
+                  class="alert alert-danger"
+                >
+                  <div
+                    *ngIf="addressHandleError.controls[i].get('city')?.errors?.['required']"
+                  >
+                    City is required.
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <th>PinCode:</th>
+              <td><input type="text" formControlName="pinCode" /></td>
+            </tr>
+            <tr>
+              <th></th>
+              <td>
+                <div
+                  *ngIf="
+                    addressHandleError.controls[i].get('pinCode')?.invalid &&
+                    (addressHandleError.controls[i].get('pinCode')?.dirty ||
+                      addressHandleError.controls[i].get('pinCode')?.touched)
+                  "
+                  class="alert alert-danger"
+                >
+                  <div
+                    *ngIf="addressHandleError.controls[i].get('pinCode')?.errors?.['required']"
+                  >
+                    Pin Code is required.
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+
+          <button
+            class="btn btn-danger"
+            type="button"
+            (click)="removeAddress(i)"
+          >
+            Remove
+          </button>
+        </table>
+      </div>
+
+      <div class="image">
+        <label for="image" class="sr-only">Image: </label>
+        <input
+          type="file"
+          id="image"
+          class="form-control"
+          placeholder="Image"
+          formControlName="image"
+          
+        />
+      </div>
+
+      <div
+        *ngIf="
+          signup.image?.invalid &&
+          (signup.image?.dirty || signup.image?.touched)
+        "
+        class="alert alert-danger"
+      >
+        <div *ngIf="signup.image.errors?.['required']">image is required.</div>
+        <div *ngIf="signup.image.errors?.['invalidFileType']">
+          Invalid file type. Only JPEG, PNG, and GIF files are allowed.
+        </div>
+        <div *ngIf="signup.image.errors?.['invalidFileSize']">
+          Invalid file size. The maximum file size is 1MB.
+        </div>
+        <div *ngIf="signup.image.errors?.['invalidDimensions']">
+          Invalid image dimensions. The maximum image dimensions are 1000x1000.
+        </div>
+      </div>
+      <img src="" alt="" />
+
+      <div class="gender mb-3">
+        <label for=""><b>Gender</b></label>
+        <div class="form-check">
+          <input
+            type="radio"
+            class="form-check-input"
+            name="gender"
+            value="male"
+            formControlName="gender"
+          />
+          <label class="form-check-label">male</label>
+        </div>
+        <div class="form-check">
+          <input
+            type="radio"
+            class="form-check-input"
+            name="gender"
+            value="female"
+            formControlName="gender"
+          />
+          <label class="form-check-label">female</label>
+        </div>
+
+        <div
+          *ngIf="signup.gender.touched && signup.gender.invalid"
+          class="alert alert-danger"
+        >
+          <div *ngIf="signup.gender.errors.required">gender is required.</div>
+        </div>
+      </div>
+
+      <!-- <div class="hobbies">
+        <label for=""><b>Hobbies:</b></label>
+        <div *ngFor="let data of hobbies; let i = index">
+          <input
+            type="checkbox"
+            [value]="data.value"
+            (change)="onCheckBoxChange($event)"
+          />
+          <label for="">{{ data.name }}</label>
+        </div>
+        <div
+          *ngIf="signup['hobby'].invalid && (signup['hobby'].dirty || signup['hobby'].touched)"
+          class="alert alert-danger"
+        >
+          <div class="error" *ngIf="signup['hobby'].errors?.['required']">
+            Checkbox is required, select atleast one value.
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <div class="btn-group" dropdown>
+        <button id="button-animated" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                aria-controls="dropdown-animated">
+          Hobbies<span class="caret"></span>
+        </button>
+        <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="button-animated">
+          <li role="menuitem"> <div class="dropdown-item" *ngFor="let data of hobbies; let i = index">
+            <input
+               type="checkbox"
+              [value]="data.value"
+              (change)="onCheckBoxChange($event)"
+            />
+            <label for="">{{ data.name }}</label>
+          </div></li>
+        </ul>      
+      </div> -->
+
+      <div
+        class="row"
+        formArrayName="hobby"
+        *ngFor="let item of signupForm.controls.hobby.controls; let i = index"
+      >
+        <div class="col-md-12">
+          <div class="form-group">
+            <label><b>Hobbies</b></label>
+            <ng-select
+              [items]="hobbies"
+              [searchable]="true"
+              [multiple]="true"
+              bindLabel="name"
+              placeholder="Select hobbies"
+              [formControlName]="i"
+            >
+            </ng-select>
+          </div>
+        </div>
+        <div
+          *ngIf="
+            handleHobbyError.controls[i].invalid &&
+            (handleHobbyError.controls[i].dirty ||
+              handleHobbyError.controls[i].touched)
+          "
+          class="alert alert-danger"
+        >
+          <div
+            class="error"
+            *ngIf="handleHobbyError.controls[i].errors?.['required']"
+          >
+            select atleast one hobby.
+          </div>
+        </div>
+      </div>
+
+      <div class="password">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input
+          type="password"
+          id="inputPassword"
+          class="form-control"
+          placeholder="Password"
+          formControlName="password"
+        />
+        <div
+          *ngIf="
+            signup.password?.invalid &&
+            (signup.password?.dirty || signup.password?.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="signup.password.errors?.['required']">
+            password is required.
+          </div>
+          <div *ngIf="signup.password.errors?.['minlength']">
+            Password must be 6 char
+          </div>
+        </div>
+      </div>
+
+      <div class="password">
+        <label for="confirmPassword" class="sr-only">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          class="form-control"
+          placeholder="Confirm Password"
+          formControlName="confirm_Password"
+        />
+        <div
+          *ngIf="
+            signup.confirm_Password?.touched &&
+            (signup.confirm_Password?.dirty || signup.confirm_Password?.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div *ngIf="signup.confirm_Password.errors?.['required']">
+            Conformed_Password is required.
+          </div>
+
+          <div *ngIf="signup.confirm_Password.errors?.['passwordMismatch']">
+            Password and Confirm Password must be match.
+          </div>
+        </div>
+      </div>
+
+      <div class="checkout mb-3">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          formControlName="checkedOut"
+        />
+        <label class="form-check-label">agreed all terms and conditions</label>
+        <div
+          *ngIf="signup.checkedOut.touched && signup.checkedOut.invalid"
+          class="alert alert-danger"
+        >
+          <div *ngIf="signup.checkedOut.errors?.['required']">
+            Please select the terms and conditions.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="registration-btn">
+      <button
+        class="btn btn-lg btn-primary btn-block"
+        type="button"
+        (click)="onSubmit()"
+        [disabled]="signup.invalid"
+      >
+        signupForm
+      </button>
+    </div>
+  </form>
+</div>
+
+Is Form Valid : {{ signupForm.valid }} <br />
+{{ signupForm.value | json }} <br />
+<!-- Hobby: {{selectedHobby}} -->

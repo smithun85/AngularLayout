@@ -1,0 +1,11 @@
+
+<form [formGroup]="formName">
+  <label>{{field.label}}: </label>
+        {{field.type}}
+          <input
+          class="mb-3 "
+            [type]="field.type"
+            [formControlName]="field.fieldName"
+            placeholder="{{ field.label }}"
+          />
+</form>

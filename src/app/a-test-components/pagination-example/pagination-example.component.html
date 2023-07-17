@@ -1,0 +1,74 @@
+<p>pagination-example works!</p>
+
+<div class="">
+  <div class="">
+    <div class="">
+      <p class="" *ngFor="let content of returnedArray">{{ content }}</p>
+    </div>
+    <pagination
+      [boundaryLinks]="showBoundaryLinks"
+      [directionLinks]="showDirectionLinks"
+      [totalItems]="contentArray.length"
+      [itemsPerPage]="5"
+      [rotate]="rotate"
+      [maxSize]="maxSize"
+      (pageChanged)="pageChanged($event)"
+    ></pagination>
+  </div>
+</div>
+
+<div>
+  <div class="checkbox">
+    <label
+      ><input type="checkbox" [(ngModel)]="showBoundaryLinks" />Show Boundary
+      Links</label
+    >
+    <br />
+    <label
+      ><input type="checkbox" [(ngModel)]="showDirectionLinks" />Show Direction
+      Links</label
+    >
+  </div>
+</div>
+
+<!-- ======================================================== -->
+<div>
+  <table class="table table-responce">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Random</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr
+        *ngFor="
+          let item of usersList
+            | slice : (page - 1) * pageSize : (page - 1) * pageSize + pageSize
+        "
+      > -->
+      <tr
+        *ngFor="
+          let item of usersList"          
+      >
+        <th scope="row">{{ item.id }}</th>
+        <td>{{ item.name }}</td>
+        <td>{{ item.email }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- <ngb-pagination
+    class="d-flex justify-content-center"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="usersList.length"
+  ></ngb-pagination> -->
+
+  <pagination
+  [totalItems]="usersList.length"
+  [itemsPerPage]="12"
+  (pageChanged)="renderPage($event)"
+></pagination>
+</div>

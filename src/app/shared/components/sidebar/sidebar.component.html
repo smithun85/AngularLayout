@@ -1,0 +1,80 @@
+<div class="sidebar">
+  <ul class="nav-list">
+    <li class="nav-list-item" *ngFor="let item of lists">
+      <i class="{{ item.icon }}"></i>
+      <span>
+        <a [routerLink]="item.router" [routerLinkActive]="['active-link']">{{
+          item.name
+        }}</a>
+      </span>
+    </li>
+  </ul>
+   
+
+
+  <!-- 
+  <div class="wrapper element-shadow">
+    <div class="group" *ngFor="let item of menuItems; let i = index">
+      <a *ngIf="!item.submenu.length" [routerLink]="item.parentLink">
+        {{item.linkText}}
+      </a>
+      <a *ngIf="item.submenu.length" (click)="clickToggle(i)">
+        {{item.linkText}}
+      </a>
+      
+      <div
+        *ngIf="item.submenu.length"
+        class="caret"
+        [ngClass]="{ 'rotate-caret': item.menu }"
+      >
+        v
+      </div>
+      <div class="sub-menu" [ngClass]="{ 'show-menu': item.menu }">
+        <ul *ngFor="let menu of menuItems[i].submenu">
+          <li>
+            <a [routerLink]="menu.childRouter">{{ menu.childName }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div> -->
+
+<ul class="nav-list">
+    <li class="group" *ngFor="let item of inputArr">   
+          <app-menu-items 
+          *ngIf="!item.parent && item.router" 
+          [item]=item>
+        </app-menu-items> 
+          
+         <div class="menu-style">
+          <app-menu-items 
+          *ngIf="!item.parent && !item.router" 
+          (click)="toggle()"
+          [item]=item>
+        </app-menu-items> 
+
+        <ul  *ngIf="visible">
+          <li *ngFor="let childItem of inputArr">           
+            <app-menu-items 
+            *ngIf="childItem.parent && item.key===childItem.parent"
+            (click)="toggle1()"
+             [item]=childItem>
+            </app-menu-items>
+          </li>
+        </ul>
+<!-- 
+        <ul  *ngIf="visible1">
+          <li *ngFor="let grandChildItem of inputArr">           
+            <app-menu-items 
+            *ngIf="grandChildItem.parent && grandChildItem.key===item.parent "
+             [item]=grandChildItem>
+            </app-menu-items>
+          </li>
+        </ul> -->
+         </div>
+          
+          <!-- <app-menu-items  [item]=item></app-menu-items>  -->
+    </li>
+  </ul>
+
+</div>

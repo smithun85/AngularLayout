@@ -1,0 +1,35 @@
+app-header{
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    height:4rem;
+    z-index: 2;
+}
+
+main{
+    position: fixed;
+    width: 100%;
+    top: 4rem; //since header height is 4rem
+    z-index: 1;
+   
+
+}
+
+app-sidebar{
+    position: absolute;
+    left: 0;
+    height: calc(100vh - 4rem);
+    background-color: rgba(34, 34,34,1);
+    padding:1rem;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, .5);
+    border-radius: 1px solid white;
+     scroll-behavior: smooth;
+    overflow-x: auto
+}
+
+.display-area{
+    position:absolute;
+    left: 15rem;
+    top: 4rem;
+    width: calc(100% - 15rem);
+}

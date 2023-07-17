@@ -1,0 +1,24 @@
+<p>login works!</p>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <label >Profile</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Enter profile"
+      formControlName="profile"
+    />
+    <div *ngIf="profile?.invalid && (profile?.dirty || profile?.touched)"
+        class="alert alert-danger"
+    >
+        <div *ngIf="profile.errors?.['required']">Profile is required</div>
+    </div>
+
+    <app-custom-form [formControls]="nameControl" [fields]="name" ></app-custom-form>
+
+    <button type="submit" [disabled]="!loginForm.valid">submit</button>
+</form>
+
+
+
+
