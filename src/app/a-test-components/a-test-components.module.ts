@@ -10,7 +10,7 @@ import { DynamicCheckboxComponent } from './dynamic-fields-form/dynamic-checkbox
 import { DynamicRadioComponent } from './dynamic-fields-form/dynamic-radio/dynamic-radio.component';
 import { DynamicSelectComponent } from './dynamic-fields-form/dynamic-select/dynamic-select.component';
 import { ATestRoutingComponent } from './a-test.routing';
-import { TestComponent } from './test/test.component';
+import { TestComponent } from './observable/test.component';
 
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
