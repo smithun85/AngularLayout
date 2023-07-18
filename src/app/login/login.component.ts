@@ -20,7 +20,11 @@ export class LoginComponent implements OnInit{
   constructor(private fb:FormBuilder){
     this.loginForm = this.fb.group({
       profile:['', [Validators.required]],
+<<<<<<< HEAD
+      name: ['this.name.value'],
+=======
       name: [this.name.value],
+>>>>>>> a88f14b26800f56e1afc6006159efcb9a4c7461d
     })
 
     
