@@ -1,0 +1,14 @@
+<div class="weather-menu">
+    <ul class="weather-lists">
+        <li *ngFor="let menu of weather_menu">
+            <i class=""></i>
+            <span>
+                <a [routerLink]="menu.path">{{menu.title}}</a>
+            </span>
+        </li>
+
+        
+        <button (click)="onGraph()">graph</button>
+        
+    </ul>
+</div>

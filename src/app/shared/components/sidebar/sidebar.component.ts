@@ -162,56 +162,56 @@ export class SidebarComponent implements OnInit {
       name:"home",
       icon:"fa-solid fa-house",
       router:'home',
-     menu: false,
-      submenu: [],
+      
+    },
+    {
+      number:10,
+      name:"weather",
+      icon:"fa-solid fa-cloud",
+      router:'weather',
+      
     },
     {
       number:2,
       name:"users",
       icon:"fa-solid fa-user",
       router:'users',
-     menu: false,
-      submenu: [],
+     
     },
     {
       number:3,
       name:"Products",
       icon:"fa-solid fa-box",
       router:'products',
-     menu: false,
-      submenu: [],
+     
     },
     {
       number:4,
       name:"orders",
       icon:"fa-solid fa-cart-shopping",
       router:'orders',
-     menu: false,
-      submenu: [],
+     
     },
     {
       number:5,
       name:"setting",
       icon:"fa-solid fa-gear",
       router:'setting',
-      menu: false,
-      submenu: [],
+      
     },
     {
       number:6,
       name:"about",
       icon:"fa-solid fa-circle-info",
       router:'about',
-     menu: false,
-      submenu: [],
+     
     },
     {
       number:7,
       name:"contacts",
       icon:"fa-solid fa-phone",
       router:'contacts',  
-      menu: false,
-      submenu: [],
+      
     },
 
     {
@@ -219,8 +219,7 @@ export class SidebarComponent implements OnInit {
       name:"signup",
       icon:"fa-solid fa-user-plus",
       router:'signup', 
-      menu: false,
-      submenu: [],
+      
     },
 
     {
@@ -228,7 +227,7 @@ export class SidebarComponent implements OnInit {
       name:"formListView",
       router:"formListView",
       menu: false,
-            submenu: [],
+      submenu: [],
     }, 
   ]
 

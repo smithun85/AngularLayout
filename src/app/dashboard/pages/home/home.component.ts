@@ -62,5 +62,9 @@ export class HomeComponent {
 
   onMatrixMultiple(){
     this.router.navigate(['/matrix'])
+  };
+
+  onWeather(){
+    this.router.navigate(['/weather'])
   }
 }

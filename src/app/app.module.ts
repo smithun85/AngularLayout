@@ -18,6 +18,8 @@ import { UserFormModule } from './user-form/user-form.module';
 import { CustomErrorComponent } from './custom-error/custom-error.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -29,6 +31,7 @@ import { RouterModule } from '@angular/router';
     CustomErrorComponent,
   ],
   imports: [
+   
     BrowserModule,
     AppRoutingModule,
     RouterModule,
@@ -39,7 +42,9 @@ import { RouterModule } from '@angular/router';
     SharedModule,
     UsersModule,
     BrowserAnimationsModule,
-    
+    CommonModule,
+    HttpClientModule, 
+  
     
 
   ],

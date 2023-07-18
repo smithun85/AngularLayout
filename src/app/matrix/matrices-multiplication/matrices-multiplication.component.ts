@@ -24,10 +24,13 @@ export class MatricesMultiplicationComponent implements OnInit{
 
   ngOnInit() {
     this.matrixForm = this.fb.group({
-      matrix1_rows: ['', Validators.required],
-      matrix1_columns: ['', Validators.required],
-      matrix2_rows: ['', Validators.required],
-      matrix2_columns: ['', Validators.required]
+      matrix1_rows: ['', [Validators.required, Validators.min(1)]],
+      matrix1_columns: ['', [Validators.required, Validators.min(1)]],
+      matrix2_rows: ['', [Validators.required, Validators.min(1)]],
+      matrix2_columns: ['', [Validators.required, Validators.min(1)]],
+      // matrix:this.fb.array([
+      //   this.fb.array([])
+      // ])
     });
   }
 
@@ -63,7 +66,7 @@ export class MatricesMultiplicationComponent implements OnInit{
       const row: any[] = [];
 
       for (let j = 0; j < columns; j++) {
-        row.push(new FormControl(''));
+        row.push(new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$")]));
       }
       matrix.push(row);
     }

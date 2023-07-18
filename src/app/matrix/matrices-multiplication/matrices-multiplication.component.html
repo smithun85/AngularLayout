@@ -1,86 +1,95 @@
-<form [formGroup]="matrixForm">
-  <div class="rows-column">
-    <div>
-      <label>Number of Rows (Matrix 1):</label>
-      <input type="number" formControlName="matrix1_rows" min="1" />
+<div class="matrix-container">
+  <form [formGroup]="matrixForm">
+    <div class="rows-column">
+      <div>
+        <label>Number of Rows (Matrix 1):</label>
+        <input type="number" formControlName="matrix1_rows" min="1" />
+      </div>
+      <div>
+        <label >Number of Columns (Matrix 1):</label>
+        <input type="number" formControlName="matrix1_columns" min="1" />
+      </div>
+      <div>
+        <label>Number of Rows (Matrix 2):</label>
+        <input type="number" formControlName="matrix2_rows" min="1" />
+      </div>
+      <div>
+        <label >Number of Columns (Matrix 2):</label>
+        <input type="number" formControlName="matrix2_columns" min="1" />
+      </div>
     </div>
     <div>
-      <label >Number of Columns (Matrix 1):</label>
-      <input type="number" formControlName="matrix1_columns" min="1" />
+      <div *ngIf="matrix1_columns !== matrix2_rows">
+          <span class="text-danger" >Invalid Input: Columns of matrix-1 and rows of matrix-2 must be matched</span>
+      </div>
+  
+      <button
+      class="btn btn-primary"
+        type="button"
+        (click)="generateMatrices()"
+        [disabled]="matrixForm.invalid"
+      >
+        Generate Matrices
+      </button>
+     
     </div>
-    <div>
-      <label>Number of Rows (Matrix 2):</label>
-      <input type="number" formControlName="matrix2_rows" min="1" />
-    </div>
-    <div>
-      <label >Number of Columns (Matrix 2):</label>
-      <input type="number" formControlName="matrix2_columns" min="1" />
-    </div>
-  </div>
+  </form>
+  
+  
+   <div class="matrix"  *ngIf="matrix1_columns == matrix2_rows && isDisable_Result_btn" >  
   <div>
-    <div *ngIf="matrix1_columns !== matrix2_rows">
-        <span class="text-danger" >Invalid Input: Columns of matrix-1 and rows of matrix-2 must be matched</span>
+    <h4>Matrix 1:</h4>
+    <table>
+      <tr *ngFor="let row of matrix_1; let rowIndex = index">
+        <ng-container *ngFor="let cell of row; let colIndex = index">
+          <td>
+            <input
+              [formControl]="cell"
+              placeholder="Cell {{ rowIndex }}-{{ colIndex }}"
+              onlyNumber
+            />
+          </td>
+        </ng-container>
+      </tr>
+    </table>
+  </div> 
+    <div>
+      <h4>Matrix 2:</h4>
+    <table>
+      <tr *ngFor="let row of matrix_2; let rowIndex = index">
+        <ng-container *ngFor="let cell of row; let colIndex = index">
+          <td>
+            <input
+              [formControl]="cell"
+              placeholder="Cell {{ rowIndex }}-{{ colIndex }}"
+              onlyNumber
+            />
+          </td>
+        </ng-container>
+      </tr>
+    </table>
+    <!-- <div class="form-control-feedback" *ngIf="Mobile.errors && (Mobile.dirty || Mobile.touched)">
+      <p *ngIf="Mobile.errors.pattern" class="text-danger">Number Only</p>
+    </div> -->
     </div>
-
-    <button
-      type="button"
-      (click)="generateMatrices()"
-      [disabled]="matrixForm.invalid"
-    >
-      Generate Matrices
-    </button>
-   
+    <div class="matrix-result" *ngIf="resultMatrix">
+      <h4><u>Result Matrix:</u></h4>
+      <table border="1">
+        <tr *ngFor="let row of resultMatrix">
+          <td *ngFor="let cell of row">{{ cell }} &nbsp;&nbsp;</td>
+        </tr>
+      </table>
+    </div>
   </div>
-</form>
-
-
- <div class="matrix"  *ngIf="matrix1_columns == matrix2_rows && isDisable_Result_btn" >  
-<h4>Matrix 1:</h4>
-  <table>
-    <tr *ngFor="let row of matrix_1; let rowIndex = index">
-      <ng-container *ngFor="let cell of row; let colIndex = index">
-        <td>
-          <input
-            [formControl]="cell"
-            placeholder="Cell {{ rowIndex }}-{{ colIndex }}"
-          />
-        </td>
-      </ng-container>
-    </tr>
-  </table>
- 
-  <h4>Matrix 2:</h4>
-  <table>
-    <tr *ngFor="let row of matrix_2; let rowIndex = index">
-      <ng-container *ngFor="let cell of row; let colIndex = index">
-        <td>
-          <input
-            [formControl]="cell"
-            placeholder="Cell {{ rowIndex }}-{{ colIndex }}"
-   
-          />
-        </td>
-      </ng-container>
-    </tr>
-  </table>
-  <div></div>
   <button 
   *ngIf="isDisable_Result_btn"
-type="button"
-(click)="multiplyMatrices()"
->
-Multiply Matrices
-</button>
+  type="button"
+  (click)="multiplyMatrices()"
+  >
+  Multiply Matrices
+  </button>
 </div>
 
 
-<div class="matrix-result" *ngIf="resultMatrix">
-  <h4><u>Result Matrix:</u></h4>
-  <table border="1">
-    <tr *ngFor="let row of resultMatrix">
-      <td *ngFor="let cell of row">{{ cell }} &nbsp;&nbsp;</td>
-    </tr>
-  </table>
-</div>
 
 

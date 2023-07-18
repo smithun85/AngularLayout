@@ -108,6 +108,11 @@ const routes: Routes = [
       {
         path:'matrix',
         loadChildren: ()=> import('./matrix/matrix.module').then(m=>m.MatrixModule)
+      },
+
+      {
+        path:'weather',
+        loadChildren: ()=> import('./weather/weather.module').then(m=>m.WeatherModule)
       }
     ]
   },

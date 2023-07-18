@@ -1,0 +1,33 @@
+ async getWeatherData(): Promise<any> {
+    // Create a Promise to handle the asynchronous operations
+    const subscriptionPromise = new Promise<any>((resolve, reject) => {
+      // Subscribe to each observable in the array individually
+      this.weatherService.getWeather().forEach((subscriber) => {
+        subscriber.subscribe((result: any) => {
+          // Push the received data into the array
+          this.weather_Data.push(result);
+          // Check if all subscriptions have completed
+          resolve(this.weather_Data); // Resolve the Promise when all subscriptions have completed
+        },
+        (error:any) => {
+          // Reject the Promise if any observable encounters an error
+          reject(error);
+        });
+      });
+    });
+      // Wait for all subscriptions to complete
+     await subscriptionPromise;
+    console.log('this.weather_Data');
+    // Return the resulting data array
+  return this.weather_Data;
+  };
+
+  // Usage
+async  doSubscriptions() {
+  try {
+    const resultArray = await this.getWeatherData();
+    console.log(this.weather_Data);
+  } catch (error) {
+    console.error(error);
+  }
+}

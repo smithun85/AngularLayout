@@ -20,6 +20,7 @@ import { dashboardRoutingModule } from './dashboard-routing.module';
 
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { MatrixModule } from '../matrix/matrix.module';
+import { WeatherModule } from '../weather/weather.module';
 
 
 
@@ -45,8 +46,9 @@ import { MatrixModule } from '../matrix/matrix.module';
     ATestComponentsModule,  //we use this module component here 
     dashboardRoutingModule,
     PaginationModule.forRoot(),
-    MatrixModule     ////we use this module component here 
-  ],
+    MatrixModule ,    //we use this module component here ,
+    // WeatherModule   //we use Weather module component here ,
+   ],
   exports:[RouterModule]
 })
 export class DashboardModule { }
