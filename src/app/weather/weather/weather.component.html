@@ -5,10 +5,11 @@
             <span>
                 <a [routerLink]="menu.path">{{menu.title}}</a>
             </span>
-        </li>
-
-        
+        </li>        
         <button (click)="onGraph()">graph</button>
         
     </ul>
 </div>
+<router-outlet></router-outlet>
+
+

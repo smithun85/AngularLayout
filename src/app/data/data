@@ -31,3 +31,68 @@ async  doSubscriptions() {
     console.error(error);
   }
 }
+
+
+
+
+
+
+
+getWeatherData() {
+  // Subscribe to each observable in the array individually
+  this.weatherService.getWeather().forEach((subscriber) => {
+    subscriber.subscribe(
+      (result: any) => {
+        this.weather_Data.push(result);
+        console.log(this.weather_Data);
+      },
+      (error: any) => {
+        // Handle the error if necessary
+        console.error(error);
+      }
+    );
+  });
+}
+
+
+
+
+
+// x-axis
+.map( (weather:any) => {
+  weather.forecast.forecastday.map( (data:any) => {
+    data.hour.map( (hour:any)=>{
+      hour.temp_c
+    })
+  })
+}),
+
+// y-axis
+this.weatherService.getWeather().forEach( (weather:any) => {
+  weather.subscribe( (data:any) => {
+    data.forecast.forecastday[0].hour.forEach( (hour:any)=>{
+      hour.temp_c
+    })
+  })
+}),
+
+
+this.weather_Data.map(result=>{
+  result.forecast.forecastday.map( (data:any)=>{
+    data.hour.map( (hour:any)=>{
+      console.log(hour.temp_c);
+    })
+  })
+})
+
+
+
+this.weather_Data.map(result=>{
+  result.forecast.forecastday.map( (data:any)=>{
+   data.hour.map( (hour:any)=>{
+     hour.temp_c
+   })
+   })
+ }),
+
+ 

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WeatherService } from '../weather.service';
-import { HttpClient } from '@angular/common/http';
-import { forkJoin } from 'rxjs';
+import { liveQuery } from 'dexie';
 
 @Component({
   selector: 'app-weather',
@@ -33,28 +32,27 @@ export class WeatherComponent implements OnInit {
   constructor(
     private router: Router,
     private weatherService: WeatherService,
-    private http: HttpClient
   ) {}
 
   ngOnInit() {
-    this.getWeatherData();
+    // this.getWeatherData();
   }
 
-  getWeatherData() {
-    // Subscribe to each observable in the array individually
-    this.weatherService.getWeather().forEach((subscriber) => {
-      subscriber.subscribe(
-        (result: any) => {
-          this.weather_Data.push(result);
-          console.log(this.weather_Data);
-        },
-        (error: any) => {
-          // Handle the error if necessary
-          console.error(error);
-        }
-      );
-    });
-  }
+  // getWeatherData() {
+  //   // Subscribe to each observable in the array individually
+  //   this.weatherService.getWeather().forEach((subscriber) => {
+  //     subscriber.subscribe(
+  //       (result: any) => {
+  //         this.weather_Data.push(result);
+  //         console.log(this.weather_Data);
+  //       },
+  //       (error: any) => {
+  //         // Handle the error if necessary
+  //         console.error(error);
+  //       }
+  //     );
+  //   });
+  // }
 
   onGraph() {
     this.router.navigate(['/graph']);

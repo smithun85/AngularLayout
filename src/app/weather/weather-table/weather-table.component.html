@@ -1,1 +1,27 @@
-<p>weather-table works!</p>
+
+<div >
+    <table class="table table-bordered" >
+     <thead>
+         <tr >
+             <th>City</th>
+             <th>Date</th>
+             <th>Sunrise</th>
+             <th>Sunset</th>
+             <th>Max-emp</th>
+             <th>Min-temp</th>
+         </tr>
+     </thead>
+     <tbody *ngFor="let data of weather_Data">
+         <tr *ngFor="let farecast of data.forecast.forecastday">
+             <td>{{data.location.name}}</td>
+             <td>{{farecast.date}}</td>
+            
+             <td>{{farecast.astro.sunrise}}</td>
+             <td>{{farecast.astro.sunset}}</td>
+             <td>{{farecast.day.maxtemp_c}} C</td>
+             <td>{{farecast.day.mintemp_c}} C</td>
+         </tr>
+     </tbody>
+    </table>
+  </div>
+

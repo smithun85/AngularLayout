@@ -24,10 +24,6 @@ import { RouterModule } from '@angular/router';
   ],
   exports:[
     RouterModule,
-    // WeatherComponent,
-    //  WeatherGraphComponent,
-    // WeatherTableComponent,
-    // WeatherCalenderComponent
   ]
 })
 export class WeatherModule { }

@@ -7,6 +7,11 @@ import { NgModule } from "@angular/core";
 const routes:Routes = [
     {
         path:'',
+        redirectTo:'table',
+        pathMatch:'full'
+      },
+    {
+        path:'',
         component:WeatherComponent,
         children:[
             {
