@@ -1,4 +1,8 @@
 import { Component, Input } from '@angular/core';
+
+import { CalendarOptions } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+
 import { WeatherService } from '../weather.service';
 
 @Component({
@@ -9,6 +13,15 @@ import { WeatherService } from '../weather.service';
 export class WeatherCalenderComponent {
   weather_Data: any[] = [];
 
+  calendarOptions: CalendarOptions = {
+    plugins: [dayGridPlugin],
+    initialView: 'dayGridMonth',
+    weekends: false,
+    events: [
+      { title: 'Meeting', start: new Date() }
+    ]
+  };
+  
   constructor(
     private weatherService: WeatherService,
   ) {}

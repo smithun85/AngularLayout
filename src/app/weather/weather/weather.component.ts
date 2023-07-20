@@ -10,6 +10,11 @@ import { liveQuery } from 'dexie';
 })
 export class WeatherComponent implements OnInit {
   weather_Data: any[] = [];
+  result_object = {};
+  temp = {}
+  tempArr:any[] = []
+  date = {}
+  resultArr:any = []
 
   weather_menu = [
     {
@@ -29,30 +34,50 @@ export class WeatherComponent implements OnInit {
     },
   ];
 
-  constructor(
-    private router: Router,
-    private weatherService: WeatherService,
-  ) {}
+  constructor(private router: Router, private weatherService: WeatherService) { }
 
   ngOnInit() {
-    // this.getWeatherData();
+    this.getWeatherData();
   }
 
-  // getWeatherData() {
-  //   // Subscribe to each observable in the array individually
-  //   this.weatherService.getWeather().forEach((subscriber) => {
-  //     subscriber.subscribe(
-  //       (result: any) => {
-  //         this.weather_Data.push(result);
-  //         console.log(this.weather_Data);
-  //       },
-  //       (error: any) => {
-  //         // Handle the error if necessary
-  //         console.error(error);
-  //       }
-  //     );
-  //   });
-  // }
+  getWeatherData() {
+    // Subscribe to each observable in the array individually
+    this.weatherService.getWeather().forEach((subscriber) => {
+      subscriber.subscribe(
+        (result: any) => {
+          console.log(result);
+
+          Object.assign(this.result_object, result)
+          Object.assign(this.result_object, { 'forecast': { date: '', forecastday:[]}});        
+          
+            // for (let j = 0; j < 24; j++) {
+            //   let temp_c = { ...Object.assign(result.current,{ 'temp_c': Math.floor(Math.random() * 100) }) };
+            //   this.weather_Data.push(temp_c);
+            // }
+
+            for (let i = 0; i < 5; i++) {
+              const date = new Date('2023-07-20'); // current date
+              const nextDate = new Date(date.setDate(date.getDate() + i)).toDateString(); // add 'i' days to current date
+              let tempArr = [];
+              let temp_c = {}
+              for (let j = 0; j < 24; j++) {
+                temp_c = { ...Object.assign(result.current,{ 'temp_c': Math.floor(Math.random() * 100) }) };   
+                tempArr.push(temp_c);            
+              }
+              
+             let dateUpdate = {...Object.assign(this.result_object, { 'forecast': { date: nextDate, forecastday:tempArr}})}
+             this.resultArr.push(dateUpdate)
+            }
+
+            console.log( this.resultArr);
+        },
+        (error: any) => {
+          // Handle the error if necessary
+          console.error(error);
+        }
+      );
+    });
+  }
 
   onGraph() {
     this.router.navigate(['/graph']);

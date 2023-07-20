@@ -5,11 +5,11 @@ import { WeatherTableComponent } from "./weather-table/weather-table.component";
 import { WeatherCalenderComponent } from "./weather-calender/weather-calender.component";
 import { NgModule } from "@angular/core";
 const routes:Routes = [
-    {
-        path:'',
-        redirectTo:'table',
-        pathMatch:'full'
-      },
+    // {
+    //     path:'',
+    //     redirectTo:'table',
+    //     pathMatch:'full'
+    //   },
     {
         path:'',
         component:WeatherComponent,

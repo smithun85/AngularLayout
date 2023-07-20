@@ -8,6 +8,8 @@ import { WeatherRoutingModule } from './weather-routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { FullCalendarModule } from '@fullcalendar/angular';
+
 @NgModule({
   declarations: [
     WeatherComponent,
@@ -21,6 +23,7 @@ import { RouterModule } from '@angular/router';
     WeatherRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    FullCalendarModule // register FullCalendar with your app
   ],
   exports:[
     RouterModule,
