@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
 import Chart from 'chart.js/auto';
+import { DatePipe } from '@angular/common' //date can be converted in typescript to this format 'yyyy-MM-dd'
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-weather-graph',
@@ -9,88 +11,171 @@ import Chart from 'chart.js/auto';
 })
 export class WeatherGraphComponent implements OnInit {
 
-  weather_Data:any[]=[];
+  calenderForm:FormGroup | any
+  weather_Result: any[] = [];
+  result_object = {};
+  temp = {}
+  tempArr: any[] = []
+  citiesName: any[] = []
+  filteredCity: any
+  changeCity:any = ''
+
+  y_ValuesLoop: any[] = []
+
+  //Graph:
   chart: any = [];
-  hour:any = []
 
-  constructor(private weatherService: WeatherService){}
+  constructor(private weatherService: WeatherService, private datepipe:DatePipe) { }
 
-  
+
   ngOnInit() {
+    this.calenderForm = new FormGroup({
+      from_Date : new FormControl(''),
+      to_Date : new FormControl('')
+    })
+
     this.getWeatherData();
     this.getChart();
   };
-  
+
 
   getWeatherData() {
     // Subscribe to each observable in the array individually
-    this.weatherService.getWeather().forEach((subscriber) => {
-      subscriber.subscribe(
-        (result: any) => {
-          this.weather_Data.push(result);
-         console.log(this.weather_Data);
-       
-          // result.forecast.forecastday.map( (data:any) => {
-          //   console.log(data.hour);
-          //   this.hour = data.hour
-          // })
-            
-          result.forecast.forecastday.map( (data:any, i:number) => {
-            console.log(data.hour);
-            this.hour.push(data.hour)
-          })
-        }),
-        (error: any) => {
-          // Handle the error if necessary
-          console.error(error);
-        }
-    });
+    this.weatherService.getWeather()
+      .forEach((subscriber) => {
+        subscriber.subscribe(
+          (result: any) => {
+            // console.log(result);
+
+            Object.assign(this.result_object, result)
+            Object.assign(this.result_object, { 'forecast': { date: '', forecastday: [] } });
+
+            let resultArr = []
+            for (let i = 0; i < 5; i++) {
+              const date = new Date('2023-07-20'); // current date
+              const nextDate = new Date(date.setDate(date.getDate() + i)).toDateString(); // add 'i' days to current date
+              let changeDateFormat = this.datepipe.transform(nextDate, 'yyyy-MM-dd')  //convert date format
+              let tempArr = [];
+              let temp_c = {}
+              for (let j = 0; j < 24; j++) {
+                temp_c = { ...Object.assign(result.current, { 'temp_c': Math.floor(Math.random() * 100), 'wind_kph': Math.floor(Math.random() * 100) }) };
+                tempArr.push(temp_c);
+              }
+
+              let dateUpdate = { ...Object.assign(this.result_object, { 'forecast': { date: changeDateFormat, forecastday: tempArr } }) }
+
+              resultArr.push(dateUpdate)
+              // console.log(resultArr);
+            }
+            this.weather_Result.push(resultArr);
+            // console.log(this.weather_Result);
+
+          },
+          (error: any) => {
+            // Handle the error if necessary
+            console.error(error);
+          }
+        );
+      });
   }
 
-  getChart(){
-   
-    setTimeout( ()=>{
-      console.log(this.hour);
+  changedCity(e: any) {
+    this.changeCity = e.target.value
+    // console.log(e.target.value);
+    
+      this.filteredCity = this.citiesName.filter((city: any) => {
+        return city.toLowerCase().includes(e.target.value.toLowerCase())
+      })
+      // console.log("filteredCity:", this.filteredCity);
+  
+      this.chart.destroy()
+      this.getChart() 
+      this.y_ValuesLoop = []
+  // if(!e.target){
+  //   this.chart.destroy()
+  //   this.getChart() 
+  // }
+
+
+  };
+
+
+
+
+  getChart() {
+
+    let x_Values: any[] = []
+    let y_Values: any[] = [];
+
+
+    setTimeout(() => {
+      this.weather_Result.map((result: any) => {
+        let date: string[] = []
+        let forecastday: any[] = []
+
+        result.map((cities: any) => {
+          // console.log(cities.location.name);  
+          this.citiesName.push(cities.location.name)
+          //  console.log(citiesName);
+
+
+          let tempArr: any = []
+          let y_days: any = []
+
+          cities.forecast.forecastday.map((temp: any) => {
+            //  console.log(temp.temp_c);
+            tempArr.push(temp.temp_c)
+          })
+
+          date.push(cities.forecast.date)
+          // console.log(tempArr);
+          forecastday.push(tempArr)
+          // console.log(forecastday);  
+        })
+        this.citiesName = [...new Set(this.citiesName)]
+
+        
+        x_Values = date
+        y_Values.push(forecastday)
+      })
+
+      // console.log(this.citiesName);
+      // console.log(y_Values);
+
+      for (let i = 0; i < y_Values.length; i++) {
+        // console.log(this.changeCity,this.citiesName[i]);
+        let index = this.citiesName.indexOf(this.changeCity)
+        if(index !== -1){         
+          this.y_ValuesLoop = []
+          this.y_ValuesLoop.push({
+            data:y_Values[index],
+            label:this.citiesName[index],
+            borderWidth: 3,
+          })
+        }else{        
+          this.y_ValuesLoop.push({
+            data: y_Values[i],
+            borderWidth: 3,
+            label: this.citiesName[i]
+          })
+        }
+       
+      }
+      
       this.chart = new Chart('canvas', {
         type: 'line',
         data: {
-          labels: [`00:00 AM`, `2:00 AM`, `4:00 AM`, `6:00 AM`, `8:00 AM`, `10:00 AM`, `12:00 AM`, `02:00 
-          PM`, `04:00 PM`, `06:00 PM`, `08:00 PM`, `10:00 PM`],
-          datasets: [
-            {
-              label: 'London',
-              data: this.hour[0].map( (hour:any)=> hour.temp_c),
-                     
-              borderWidth: 1,
-            },
-            {
-              label: 'New Delhi',
-              data:this.hour[1].map( (hour:any)=> hour.temp_c) ,
-                     
-              borderWidth: 2,
-            },
-            {
-              label: 'Kranchi',
-              data:this.hour[2].map( (hour:any)=> hour.temp_c) ,
-                     
-              borderWidth: 2,
-            },
-            {
-              label: 'china',
-              data:this.hour[3].map( (hour:any)=> hour.temp_c) ,
-                     
-              borderWidth: 2,
-            },
-          ],
+          labels: x_Values,  //dynamic data for x-axis label
+          datasets: this.y_ValuesLoop
         },
         options: {
           animation: false,
           plugins: {
             legend: {
-              display: false
+              display: true
             },
             tooltip: {
-              enabled: false
+              enabled: true
             }
           },
           scales: {
@@ -100,7 +185,15 @@ export class WeatherGraphComponent implements OnInit {
           },
         },
       });
-     },2000)
+    }, 200)
+  }
+
+  onSubmit() {
+    this.chart.destroy()
+    this.getChart() 
+    this.y_ValuesLoop = []
+
+    console.log(this.calenderForm.value);
   }
 
 }

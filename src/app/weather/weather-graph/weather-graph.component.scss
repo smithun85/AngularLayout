@@ -1,0 +1,14 @@
+.graph{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+};
+
+.calender{
+    display: flex;
+    gap: 10px;
+}
+.calender div{
+    display: flex;
+    flex-direction: column;
+}

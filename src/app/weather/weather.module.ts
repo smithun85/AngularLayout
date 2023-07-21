@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { WeatherComponent } from './weather/weather.component';
 import { WeatherGraphComponent } from './weather-graph/weather-graph.component';
 import { WeatherTableComponent } from './weather-table/weather-table.component';
@@ -27,6 +27,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
   ],
   exports:[
     RouterModule,
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class WeatherModule { }
