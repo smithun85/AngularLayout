@@ -58,15 +58,23 @@ export class HomeComponent {
 
   onLoginCustom(){
     this.router.navigate(['/login-test'])
-<<<<<<< HEAD
-  };
-
-  onMatrix(){
-=======
   }
 
   onMatrixMultiple(){
->>>>>>> a88f14b26800f56e1afc6006159efcb9a4c7461d
     this.router.navigate(['/matrix'])
+  };
+
+  onWeather(){
+    this.router.navigate(['/weather'])
+  };
+
+  onWeather_graph(){
+    this.router.navigate(['/weather/graph'])
+  }
+  onWeather_table(){
+    this.router.navigate(['/weather/table'])
+  }
+  onWeather_calender(){
+    this.router.navigate(['/weather/calender'])
   }
 }

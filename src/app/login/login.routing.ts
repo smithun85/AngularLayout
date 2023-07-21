@@ -14,9 +14,5 @@ const routes:Routes = [
     imports:[RouterModule.forChild(routes)],
     exports:[RouterModule]
 })
-
-<<<<<<< HEAD
-export class LoginRoutingModule{}
-=======
 export class LoginRoutingComponent{}
->>>>>>> a88f14b26800f56e1afc6006159efcb9a4c7461d
+

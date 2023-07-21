@@ -166,6 +166,13 @@ export class SidebarComponent implements OnInit {
       submenu: [],
     },
     {
+      number:10,
+      name:"weather",
+      icon:"fa-solid fa-cloud",
+      router:'weather',
+      
+    },
+    {
       number:2,
       name:"users",
       icon:"fa-solid fa-user",
