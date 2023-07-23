@@ -32,11 +32,7 @@
 .sidebar li{
     list-style: none;
     display: flex;
-<<<<<<< HEAD
     justify-content: flex-start;
-=======
-    justify-content: left;
->>>>>>> a88f14b26800f56e1afc6006159efcb9a4c7461d
     align-items: center;
     gap: .6rem;
     // margin-bottom: 1rem;
@@ -149,7 +145,6 @@
     
 
   .rotate-caret {
-
     transform: translateY(-50%) rotate(0deg) !important;
   }
   
@@ -168,11 +163,7 @@
 
   .symbol{
     display: flex;
-<<<<<<< HEAD
     justify-content:flex-end;
-=======
-    justify-content:end;
->>>>>>> a88f14b26800f56e1afc6006159efcb9a4c7461d
     align-items: center;
     gap: 40px;
   }

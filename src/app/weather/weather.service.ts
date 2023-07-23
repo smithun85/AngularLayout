@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of  } from 'rxjs';
+import { result } from './weather-data';
 
 @Injectable({
   providedIn: 'root',
@@ -15,29 +16,14 @@ export class WeatherService {
   url: string = 'https://weatherapi-com.p.rapidapi.com/current.json';
 
   params:any = [
-    {q: 'India'},
-    {q: 'London'},
-    {q:'Pakistan'}
+    {q: 'Mumbai'},
+    {q:'Bengaluru'},
+    {q:'Patna'},
+    // {q:'New Delhi'},
+    // {q:'Ahmedabad'}
   ]
 
-  // params: any = [
-  //   {
-  //     q: 'India',
-  //     days: '5',
-  //   },
-  //   {
-  //     q: 'London',
-  //     days: '5',
-  //   },
-  //   {
-  //     q: 'Pakistan',
-  //     days: '5',
-  //   },
-  //   {
-  //     q: 'China',
-  //     days: '5',
-  //   },
-  // ];
+  
 
   headers: any = {
     'X-RapidAPI-Key': 'ee3d4ebb25msh2232b97ffce7c5ap13b2b2jsn7bc4ae63de02',
@@ -61,7 +47,13 @@ export class WeatherService {
   // }
 
   getWeather(): Observable<any> {
-    return this.params.map((params: any) => {
-      return this.http.get(this.url, { params: params, headers: this.headers });
-    });
-  }}
+    // return this.params.map((params: any) => {
+    //   return this.http.get(this.url, { params: params, headers: this.headers });
+    // });
+    return of(result)
+    
+  }
+
+
+
+}

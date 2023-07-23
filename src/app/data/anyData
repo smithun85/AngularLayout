@@ -73,3 +73,59 @@ for(let i=0; i<matrix_1_rows;i++){
   this.matrix_1.push(cellsArray)
   console.log(cellsArray.value)
 }
+
+
+{/* Select date array */}
+let fromDate = '2023-07-19';
+let toDate = '2023-07-23';
+
+let respective_date_Value = [
+  {'2023-07-17': [1, 2, 3]},
+  {'2023-07-18': [3, 2, 1]},
+  {'2023-07-19': [9, 8, 7]},
+  {'2023-07-20': [1, 2, 3, 32]},
+  {'2023-07-21': [3, 2, 1]},
+  {'2023-07-22': [9, 8, 7]},
+  {'2023-07-23': [1, 2, 23, 32]},
+  {'2023-07-24': [3, 2, 1]},
+  {'2023-07-25': [9, 8, 7]},
+];
+
+function filterDataBetweenDates(dataArray: any[], fromDate: string, toDate: string) {
+  return dataArray.filter((item) => {
+    const dateKey = Object.keys(item)[0];
+    return dateKey >= fromDate && dateKey <= toDate;
+  });
+}
+
+// Example usage:
+let filteredData = filterDataBetweenDates(respective_date_Value, fromDate, toDate);
+console.log(filteredData);
+
+{/* ============================ */}
+let fromDate = '2023-07-19';
+let toDate = '2023-07-23';
+
+let respective_date_Value = [
+  { date: '2023-07-17', data: [1, 2, 3] },
+  { date: '2023-07-18', data: [3, 2, 1] },
+  { date: '2023-07-19', data: [9, 8, 7] },
+  { date: '2023-07-20', data: [1, 2, 3, 32] },
+  { date: '2023-07-21', data: [3, 2, 1] },
+  { date: '2023-07-22', data: [9, 8, 7] },
+  { date: '2023-07-23', data: [1, 2, 23, 32] },
+  { date: '2023-07-24', data: [3, 2, 1] },
+  { date: '2023-07-25', data: [9, 8, 7] },
+];
+
+function filterDataBetweenDates(dataArray: any[], fromDate: string, toDate: string) {
+  return dataArray.filter((item) => {
+    const date = item.date;
+    return date >= fromDate && date <= toDate;
+  });
+}
+
+// Example usage:
+let filteredData = filterDataBetweenDates(respective_date_Value, fromDate, toDate);
+console.log(filteredData);
+

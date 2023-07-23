@@ -40,44 +40,49 @@ export class WeatherComponent implements OnInit {
     this.getWeatherData();
   }
 
+
   getWeatherData() {
     // Subscribe to each observable in the array individually
-    this.weatherService.getWeather().forEach((subscriber) => {
-      subscriber.subscribe(
-        (result: any) => {
-          console.log(result);
+    this.weatherService.getWeather().subscribe((result:any)=>{
+      this.weather_Result = result
+    })
+    // .forEach((subscriber) => {
+    //   subscriber.subscribe(
+    //     (result: any) => {
+    //       // console.log(result);
          
-          Object.assign(this.result_object, result)
-          Object.assign(this.result_object, { 'forecast': { date: '', forecastday:[]}});        
+    //       Object.assign(this.result_object, result)
+    //       Object.assign(this.result_object, { 'forecast': { date: '', forecastday:[]}});        
 
-          let resultArr = []
-            for (let i = 0; i < 5; i++) {
-              const date = new Date('2023-07-20'); // current date
-              const nextDate = new Date(date.setDate(date.getDate() + i)).toDateString(); // add 'i' days to current date
+    //       let resultArr = []
+    //         for (let i = 0; i < 5; i++) {
+    //           const date = new Date('2023-07-20'); // current date
+    //           const nextDate = new Date(date.setDate(date.getDate() + i)).toDateString(); // add 'i' days to current date
             
-              let tempArr = [];
-              let temp_c = {}
-              for (let j = 0; j < 24; j++) {
-                temp_c = { ...Object.assign(result.current,{ 'temp_c': Math.floor(Math.random() * 100) }) };   
-                tempArr.push(temp_c);            
-              }
+    //           let tempArr = [];
+    //           let temp_c = {}
+    //           for (let j = 0; j < 24; j++) {
+    //             temp_c = { ...Object.assign(result.current,{ 'temp_c': Math.floor(Math.random() * 100) }) };   
+    //             tempArr.push(temp_c);            
+    //           }
               
-             let dateUpdate = {...Object.assign(this.result_object, { 'forecast': { date: nextDate, forecastday:tempArr}})}
+    //          let dateUpdate = {...Object.assign(this.result_object, { 'forecast': { date: nextDate, forecastday:tempArr}})}
           
-             resultArr.push(dateUpdate)
-            // console.log(resultArr);
-            }
-            this.weather_Result.push(resultArr);
-            console.log(this.weather_Result);
+    //          resultArr.push(dateUpdate)
+    //         // console.log(resultArr);
+    //         }
+    //         this.weather_Result.push(resultArr);
+            // console.log(this.weather_Result);
            
-        },
-        (error: any) => {
-          // Handle the error if necessary
-          console.error(error);
-        }
-      );
-    });
+    //     },
+    //     (error: any) => {
+    //       // Handle the error if necessary
+    //       console.error(error);
+    //     }
+    //   );
+    // });
   }
+ 
 
   onGraph() {
     this.router.navigate(['/graph']);
