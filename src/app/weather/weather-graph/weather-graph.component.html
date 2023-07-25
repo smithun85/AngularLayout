@@ -1,25 +1,6 @@
-<!-- <div class="graph">
-  <div>
-    <select (change)="changedCity($event)">
-      <option value="">Select City</option>
-      <option [value]="city" *ngFor="let city of citiesName" >{{city}}</option>
-    </select>
-  </div>
-  
-<form class="calender" [formGroup]="calenderForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label>From</label>
-    <input type="date" formControlName="from_Date">
-  </div>
-  <div>
-    <label>To</label>
-    <input type="date" formControlName="to_Date">
-  </div>
-  <button>Submit</button>
-</form>
 
-</div> -->
 
+<app-shared (newFromEvent)="addSharedFormData($event)" (newChangeCityEvent)="addSharedChangeCity($event)"> </app-shared>
 
 <div style="width: 1000px;">
     <canvas id="canvas">{{chart}}</canvas>

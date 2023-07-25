@@ -1,24 +1,70 @@
+<app-shared
+  (newFromEvent)="addSharedFormData($event)"
+  (newChangeCityEvent)="addSharedChangeCity($event)"
+>
+</app-shared>
+<div *ngFor="let cities of response">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>
+          <span>City</span>
+          <!-- if conditions are true then hide the content  using [hidden] property, if both span tag is false then show the all content  -->
+          <!-- <span 
+            class="sortOrder descending" 
+            [hidden]="sortType === 'name' && reverse===true "  
+          ></span>
+          <span 
+            class="sortOrder" 
+            [hidden]="sortType === 'name' && reverse===false "
+          ></span> -->
+        </th>
+        <th (click)="clickSortDate('date')">
+          <span>Date</span>
+          <span 
+          class="sortOrder descending" 
+          [hidden]="sortType === 'date' && reverse===true "
+        ></span>
+        <span 
+          class="sortOrder" 
+          [hidden]="sortType === 'date' && reverse===false "
+        ></span>
+        </th>
+        <th (click)="clickSort('temp_c')">
+          <span>temp (in c)</span>
+          <span 
+          class="sortOrder descending" 
+          [hidden]="sortType === 'temp_c' && reverse===true "
+        ></span>
+        <span 
+          class="sortOrder" 
+          [hidden]="sortType === 'temp_c' && reverse===false "
+        ></span>
+        </th>
+        <th (click)="clickSort('wind_kph')">
+          <span>wind (kph)</span>
+          <span 
+          class="sortOrder descending" 
+          [hidden]="sortType === 'wind_kph' && reverse===true "
+        ></span>
+        <span 
+        class="sortOrder" 
+        [hidden]="sortType === 'wind_kph' && reverse===false "
+      ></span>
+        </th>
+      </tr>
+    </thead>
 
-<div >
-    <table class="table table-bordered" >
-     <thead>
-         <tr >
-             <th>City</th>
-             <th>Date</th>
-             <th>temp</th>
-             
-         </tr>
-     </thead>
-     <tbody *ngFor="let cities of weather_Result">
-            <tr *ngFor="let forecast of cities">
-                <td>{{forecast.location.name}}</td>
-                <td>{{forecast.forecast.date}}</td>               
-               <!-- <div *ngFor="let forecastday of forecast.forecast.forecastday; let i=index">
-                 <td>{{forecastday.temp_c}}</td>
-               </div> -->
-               <td>{{forecast.forecast.forecastday[2].temp_c}}</td>
-            </tr>
-     </tbody>
-    </table>
-  </div>
-
+    <tbody *ngFor="let forecast of cities">
+      <tr
+        *ngFor="let forecastday of forecast.forecast.forecastday; let i = index"
+      >
+        <td>{{ forecast.location.name }}</td>
+        <td>{{ forecast.forecast.date }}; {{forecastday.time}}</td>
+     
+        <td>{{ forecastday.temp_c }}</td>
+        <td>{{ forecastday.wind_kph }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

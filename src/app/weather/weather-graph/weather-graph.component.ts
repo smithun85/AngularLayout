@@ -3,7 +3,7 @@ import { WeatherService } from '../weather.service';
 import Chart from 'chart.js/auto';
 import { DatePipe } from '@angular/common'; //date can be converted in typescript to this format 'yyyy-MM-dd'
 import { FormControl, FormGroup } from '@angular/forms';
-import { SharedDataService } from '../shared-data-service';
+
 
 @Component({
   selector: 'app-weather-graph',
@@ -11,9 +11,9 @@ import { SharedDataService } from '../shared-data-service';
   styleUrls: ['./weather-graph.component.scss'],
 })
 export class WeatherGraphComponent implements OnInit {
-  calenderForm: FormGroup | any;
-  from_Date: FormControl | any;
-  to_Date: FormControl | any;
+
+  from_Date: any;
+  to_Date: any;
   isFormSubmitted: boolean = false;
 
   weather_Result: any[] = [];
@@ -24,30 +24,41 @@ export class WeatherGraphComponent implements OnInit {
   filteredCity: any;
   changeCity: any = '';
 
-  y_ValuesLoop: any[] = [];
-
+  
   //Graph:
   chart: any = [];
+  y_ValuesLoop: any[] = [];
 
   // filered_Date
   dateWise_filteredData: any[] = [];
 
   constructor(
     private weatherService: WeatherService,
-    private SharedDataService:SharedDataService,
     private datepipe: DatePipe
   ) {}
 
   ngOnInit() {
-    this.calenderForm = new FormGroup({
-      from_Date: new FormControl(''),
-      to_Date: new FormControl(''),
-    });
-
-    
-
     this.getWeatherData();
     this.getChart();
+  };
+
+  addSharedChangeCity(city:any){
+    console.log(city);
+    this.changeCity = city;
+    this.chart.destroy();
+    this.getChart();
+    this.y_ValuesLoop = [];
+  }
+  addSharedFormData(formData:any){
+    this.isFormSubmitted = true
+    console.log(formData);
+    this.changeCity = formData.city;
+    this.from_Date = formData.from_Date;
+    this.to_Date = formData.to_Date
+    this.chart.destroy();
+    this.getChart();
+    this.y_ValuesLoop = [];
+    
   }
 
   getWeatherData() {
@@ -105,20 +116,8 @@ export class WeatherGraphComponent implements OnInit {
   };
   
 
-  // changedCity(e: any) {
-  //   this.changeCity = e.target.value;
-  //   // console.log(e.target.value);
-  //   this.chart.destroy();
-  //   this.getChart();
-  //   this.y_ValuesLoop = [];
-  //   // if(!e.target){
-  //   //   this.chart.destroy()
-  //   //   this.getChart()
-  //   // }
-  // }
-
   getChart() {
-   
+   console.log(this.changeCity);
     let x_Values: any[] = [];
     let y_Values: any[] = [];
     let forecastday: any[] = [];
@@ -152,7 +151,7 @@ export class WeatherGraphComponent implements OnInit {
            const dates = item.forecast.date
             return dates >= this.from_Date && dates <= this.to_Date
           })
-          console.log("Date:",this.dateWise_filteredData)
+          // console.log("Date:",this.dateWise_filteredData)
           this.dateWise_filteredData.map((cities: any) => {         
             // 24-hours add with no of dates times
             for (let i = 0; i < 24; i++) {
@@ -174,16 +173,16 @@ export class WeatherGraphComponent implements OnInit {
       // console.log(x_Values);
       // console.log(this.citiesName);
       // console.log(y_Values);
-      this.SharedDataService.getCity().subscribe( (city:any)=>{
+     
         
-        this.changeCity = city
-        console.log(this.changeCity);
-        console.log(this.citiesName);
+        // this.changeCity = city
+        // console.log(this.changeCity);
+        // console.log(this.citiesName);
       for (let i = 0; i < y_Values.length; i++) {       
         // console.log(this.changeCity,this.citiesName[i]);
         let index = this.citiesName.indexOf(this.changeCity);
-        console.log(index);
-        console.log(this.citiesName[index]);
+        // console.log(index);
+        // console.log(this.citiesName[index]);
         if (index !== -1) {
           this.y_ValuesLoop = [];
           this.y_ValuesLoop.push({
@@ -199,7 +198,7 @@ export class WeatherGraphComponent implements OnInit {
           });       
         }
       }
-    })
+
 
 
       this.chart = new Chart('canvas', {
@@ -228,25 +227,4 @@ export class WeatherGraphComponent implements OnInit {
     }, 200);
   }
 
-  onSubmit() {
-    this.isFormSubmitted = true
-    this.chart.destroy();
-    this.getChart();
-    this.y_ValuesLoop = [];
-
-    this.from_Date = this.calenderForm.get('from_Date').value;
-    this.to_Date = this.calenderForm.get('to_Date').value;
-    this.weather_Result.map(weather=>{
-      // console.log(weather)
-      this.dateWise_filteredData = weather.filter((item:any)=>{
-        const date = item.forecast.date
-        return date >= this.from_Date && date <= this.to_Date
-        // console.log("Date:",item.forecast.date)
-      })
-    })
-
-    // console.log(this.from_Date,this.to_Date);
-    // // console.log(this.calenderForm.value.from_Date)
-    // console.log(this.dateWise_filteredData)
-  }
 }

@@ -1,0 +1,22 @@
+<p>shared works!</p>
+
+<form class="graph" [formGroup]="calenderForm" (ngSubmit)="onSubmit()">
+    <div>
+        <select (change)="changedCity($event)" formControlName="city">
+          <option value="">Select City</option>
+          <option [value]="city" *ngFor="let city of citiesName" >{{city}}</option>
+        </select>
+      </div>
+  <div class="calender">
+    <div>
+        <label>From</label>
+        <input type="date" formControlName="from_Date">
+      </div>
+      <div>
+        <label>To</label>
+        <input type="date" formControlName="to_Date">
+      </div>
+      <button [disabled]="calenderForm.invalid">Submit</button>
+  </div>
+  </form>
+

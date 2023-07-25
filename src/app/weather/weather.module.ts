@@ -9,13 +9,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { SharedComponent } from './shared-components/shared-component/shared.component';
 
 @NgModule({
   declarations: [
     WeatherComponent,
     WeatherGraphComponent,
     WeatherTableComponent,
-    WeatherCalenderComponent
+    WeatherCalenderComponent,
+    SharedComponent
   ],
   imports: [
     CommonModule,

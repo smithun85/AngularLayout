@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../weather.service';
 import { FormControl, FormGroup } from '@angular/forms';
-import { SharedDataService } from '../shared-data-service';
+// import { SharedDataService } from '../shared-data-service';
 import { DatePipe } from '@angular/common'; //date can be converted in typescript to this format 'yyyy-MM-dd'
 
 
@@ -26,6 +26,10 @@ export class WeatherComponent implements OnInit {
   tempArr:any[] = []
   citiesName: any[] = [];
 
+  timestamps: string[] = [];
+
+  sortingData:any[]=[]
+
  
 
   weather_menu = [
@@ -48,7 +52,7 @@ export class WeatherComponent implements OnInit {
 
   constructor(
      private weatherService: WeatherService, 
-     private sharedDataService:SharedDataService,
+    
      private datepipe: DatePipe,
      ) { }
 
@@ -65,6 +69,8 @@ export class WeatherComponent implements OnInit {
   
 
   getWeatherData() {
+ 
+  
     // Subscribe to each observable in the array individually
     this.weatherService.getWeather().forEach((subscriber) => {
       subscriber.subscribe(
@@ -88,11 +94,19 @@ export class WeatherComponent implements OnInit {
             ); //convert date format
             let tempArr = [];
             let temp_c = {};
-            for (let j = 0; j < 24; j++) {
+            const hoursPerDay = 24;
+            const format = (num: number) => (num < 10 ? `0${num}` : `${num}`);
+            for (let hour = 0; hour < hoursPerDay; hour++) {
+              const amPM = hour < 12 ? 'AM' : 'PM';
+              const displayHour = hour <= 12 ? hour : hour - 12;
+              const time = `${format(displayHour)} ${amPM}`;
               temp_c = {
                 ...Object.assign(result.current, {
                   temp_c: Math.floor(Math.random() * 100),
                   wind_kph: Math.floor(Math.random() * 100),
+                  time:time,
+                  city:result.location.name,
+                  date:changeDateFormat
                 }),
               };
               tempArr.push(temp_c);
@@ -106,9 +120,11 @@ export class WeatherComponent implements OnInit {
 
             resultArr.push(dateUpdate);
             // console.log(resultArr);
+           
           }         
           this.weather_Result.push(resultArr);
-          // console.log(this.weather_Result);
+          console.log(this.weather_Result);
+           // console.log(this.timestamps);
           // this.sharedDataService.setData(this.weather_Result);  //send response from parent to child using shared-service:
           // Arrange cities in an Array
           let cityArr:any[]=[]
@@ -117,7 +133,8 @@ export class WeatherComponent implements OnInit {
               cityArr.push(cities.location.name)            
             })
             this.citiesName = [...new Set(cityArr)];
-          })        
+          })   ;
+          
         },
         (error: any) => {
           // Handle the error if necessary
@@ -129,7 +146,7 @@ export class WeatherComponent implements OnInit {
 
  
   changedCity(e: any) {
-    this.sharedDataService.setCity(e.target.value)
+    // this.sharedDataService.setCity(e.target.value)
   }
 
 
@@ -137,7 +154,7 @@ export class WeatherComponent implements OnInit {
     this.isFormSubmitted = true;
     this.from_Date = this.calenderForm.get('from_Date').value;
     this.to_Date = this.calenderForm.get('to_Date').value;
-    this.sharedDataService.setDate(this.calenderForm.value)
+    // this.sharedDataService.setDate(this.calenderForm.value)
     console.log(this.calenderForm.value)
  
   }

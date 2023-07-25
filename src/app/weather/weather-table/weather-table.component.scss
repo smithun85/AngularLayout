@@ -1,0 +1,10 @@
+.table tr th{
+    cursor: pointer;
+}
+
+.sortOrder::after {
+    content: '\25b2';
+} 
+.descending::after {
+    content: '\25bc';
+}

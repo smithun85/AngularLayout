@@ -17,10 +17,10 @@ export class WeatherService {
 
   params:any = [
     {q: 'Mumbai'},
-    {q:'Bengaluru'},
-    {q:'Patna'},
-    {q:'New Delhi'},
-    {q:'Ahmedabad'}
+    {q:'England'},
+    {q:'India'},
+    {q:'Pakistan'},
+    {q:'China'}
   ]
 
   
