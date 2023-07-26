@@ -11,12 +11,22 @@
     <div>
         <label>From</label>
         <input type="date" formControlName="from_Date">
+        <div *ngIf="calenderForm.from_Date?.invalid  && (calenderForm.from_Date?.touched || calenderForm.from_Date?.dirty)">
+          <div *ngIf="calenderForm.from_Date.errors?.['required']">All field is required.</div>
+        </div>
       </div>
       <div>
         <label>To</label>
         <input type="date" formControlName="to_Date">
+        <span class="text-danger" *ngIf=" calenderForm.errors?.dateValid && (calenderForm.touched || calenderForm.dirty)">Please add a valid from to date</span>
       </div>
-      <button [disabled]="calenderForm.invalid">Submit</button>
+     
+    <div class="button">
+      <button class="btn btn-primary">Submit</button>
+    </div>
+      <!-- [disabled]="calenderForm.invalid" -->
   </div>
+ 
+     
   </form>
 

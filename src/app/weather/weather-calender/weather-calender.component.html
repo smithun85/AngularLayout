@@ -1,5 +1,9 @@
-<p>weather-calender works!</p>
-<!-- <full-calendar [options]="calendarOptions"></full-calendar> -->
+<app-shared
+  (newFromEvent)="addSharedFormData($event)"
+  (newChangeCityEvent)="addSharedChangeCity($event)"
+  [date]="dateArr"
+>
+</app-shared>
 
 <full-calendar [options]="calendarOptions">
     <ng-template #eventContent let-arg>

@@ -1,6 +1,10 @@
 
 
-<app-shared (newFromEvent)="addSharedFormData($event)" (newChangeCityEvent)="addSharedChangeCity($event)"> </app-shared>
+<app-shared
+  (newFromEvent)="addSharedFormData($event)"
+  (newChangeCityEvent)="addSharedChangeCity($event)"
+  [date]="dateArr"
+> </app-shared>
 
 <div style="width: 1000px;">
     <canvas id="canvas">{{chart}}</canvas>

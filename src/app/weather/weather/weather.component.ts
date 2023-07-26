@@ -106,7 +106,7 @@ export class WeatherComponent implements OnInit {
                   wind_kph: Math.floor(Math.random() * 100),
                   time:time,
                   city:result.location.name,
-                  date:changeDateFormat
+                  date:`${changeDateFormat} ${time}`
                 }),
               };
               tempArr.push(temp_c);
@@ -123,7 +123,7 @@ export class WeatherComponent implements OnInit {
            
           }         
           this.weather_Result.push(resultArr);
-          console.log(this.weather_Result);
+          // console.log(this.weather_Result);
            // console.log(this.timestamps);
           // this.sharedDataService.setData(this.weather_Result);  //send response from parent to child using shared-service:
           // Arrange cities in an Array
@@ -155,7 +155,7 @@ export class WeatherComponent implements OnInit {
     this.from_Date = this.calenderForm.get('from_Date').value;
     this.to_Date = this.calenderForm.get('to_Date').value;
     // this.sharedDataService.setDate(this.calenderForm.value)
-    console.log(this.calenderForm.value)
+    // console.log(this.calenderForm.value)
  
   }
 }

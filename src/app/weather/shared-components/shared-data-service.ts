@@ -28,7 +28,7 @@ export class SharedDataService {
   setDate(date:any){
     this.calenderFormSubject.next(date)
   };
-  getDate(){
+   getDate(){
     return this.calenderFormSubject.asObservable()
   }
 }

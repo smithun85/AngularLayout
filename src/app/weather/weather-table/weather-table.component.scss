@@ -8,3 +8,25 @@
 .descending::after {
     content: '\25bc';
 }
+
+
+
+.tableFixHead {
+    overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+    height: 400px; /*(must be )given an initial height of 400px to the table */
+  }
+  .tableFixHead thead th {
+    position: sticky; /* make the table heads sticky */
+    top: 0px; /* table head will be placed from the top of the table and sticks to it */
+  }
+  table {
+    border-collapse: collapse; /* make the table borders collapse to each other */
+    width: 100%;
+  }
+  th, td {
+    padding: 10px 16px;
+    border: 1px solid #ccc;
+  }
+  th {
+    background: #b9b5b5;
+  }

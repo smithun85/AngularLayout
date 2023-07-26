@@ -1,25 +1,32 @@
+
+<div class="tableFixHead">
 <app-shared
   (newFromEvent)="addSharedFormData($event)"
   (newChangeCityEvent)="addSharedChangeCity($event)"
+  [date]="dateArr"
 >
 </app-shared>
-<div *ngFor="let cities of response">
+
+
+
+
+
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>
+        <th (click)="clickSort('city')">
           <span>City</span>
           <!-- if conditions are true then hide the content  using [hidden] property, if both span tag is false then show the all content  -->
-          <!-- <span 
+          <span 
             class="sortOrder descending" 
-            [hidden]="sortType === 'name' && reverse===true "  
+            [hidden]="sortType === 'city' && reverse===true "  
           ></span>
           <span 
             class="sortOrder" 
-            [hidden]="sortType === 'name' && reverse===false "
-          ></span> -->
+            [hidden]="sortType === 'city' && reverse===false "
+          ></span>
         </th>
-        <th (click)="clickSortDate('date')">
+        <th (click)="clickSort('date')">
           <span>Date</span>
           <span 
           class="sortOrder descending" 
@@ -55,13 +62,12 @@
       </tr>
     </thead>
 
-    <tbody *ngFor="let forecast of cities">
+    <tbody>
       <tr
-        *ngFor="let forecastday of forecast.forecast.forecastday; let i = index"
+        *ngFor="let forecastday of response"
       >
-        <td>{{ forecast.location.name }}</td>
-        <td>{{ forecast.forecast.date }}; {{forecastday.time}}</td>
-     
+        <td>{{ forecastday.city }}</td>
+        <td>{{forecastday.date}} {{forecastday.time}}</td>    
         <td>{{ forecastday.temp_c }}</td>
         <td>{{ forecastday.wind_kph }}</td>
       </tr>
