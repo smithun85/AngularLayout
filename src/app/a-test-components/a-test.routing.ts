@@ -2,10 +2,12 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { TestComponent } from "./observable/test.component";
 import { CustomPipeComponent } from "./custom-pipe/custom-pipe.component";
-import { FormTestComponent } from "./form-test/form-test.component";
+import { FormTestComponent } from "./dynamic-form-parent/form-test.component";
 import { PaginationExampleComponent } from "./pagination-example/pagination-example.component";
 import { LogicsComponent } from "./logics/logics.component";
 import { CheckboxComponent } from "./checkbox/checkbox.component";
+import { SearchTextComponent } from "./form-test/search-text.component";
+import { DateLogicsComponent } from "./date-logics/date-logics.component";
 
 
 const routes:Routes = [
@@ -36,6 +38,14 @@ const routes:Routes = [
     path:'checkbox',
     component:CheckboxComponent
    },
+   {
+    path:'search-text',
+    component:SearchTextComponent
+   },
+   {
+    path:'date-logics',
+    component:DateLogicsComponent
+   }
 ];
 
 @NgModule({

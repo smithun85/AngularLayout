@@ -4,7 +4,7 @@ import { CustomPipeComponent } from './custom-pipe/custom-pipe.component';
 import { tempConverterPipe } from './custom-pipe/temp-converter.pipe';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { FormsModule } from '@angular/forms';
-import { FormTestComponent } from './form-test/form-test.component';
+import { FormTestComponent } from './dynamic-form-parent/form-test.component';
 import { DynamicInputComponent } from './dynamic-fields-form/dynamic-input/dynamic-input.component';
 import { DynamicCheckboxComponent } from './dynamic-fields-form/dynamic-checkbox/dynamic-checkbox.component';
 import { DynamicRadioComponent } from './dynamic-fields-form/dynamic-radio/dynamic-radio.component';
@@ -17,9 +17,10 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 import { RouterModule } from '@angular/router';
 import { PaginationExampleComponent } from './pagination-example/pagination-example.component';
-import { SearchTextComponent } from './search-text/search-text.component';
+import { SearchTextComponent } from './form-test/search-text.component';
 import { LogicsComponent } from './logics/logics.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
+import { DateLogicsComponent } from './date-logics/date-logics.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     SearchTextComponent,
     LogicsComponent,
     CheckboxComponent,
+    DateLogicsComponent,
   ],
   imports: [
     CommonModule,

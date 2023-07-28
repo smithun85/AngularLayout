@@ -172,6 +172,12 @@ export class SidebarComponent implements OnInit {
       
     },
     {
+      number:11,
+      name: "Games",
+      icon:"fa-solid fa-gamepad",
+      router:"games"
+    },
+    {
       number:2,
       name:"users",
       icon:"fa-solid fa-user",

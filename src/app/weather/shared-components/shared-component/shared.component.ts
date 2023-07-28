@@ -49,8 +49,8 @@ export class SharedComponent implements OnInit{
   dateValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     const start = control.get('from_Date');
     const end = control.get('to_Date');
-    console.log("validators called");  
-    console.log(start?.value);
+    // console.log("validators called");  
+    // console.log(start?.value);
     let startDate =this.date[0];
     let endDate = this.date[this.date.length];
    

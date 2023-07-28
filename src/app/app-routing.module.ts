@@ -23,7 +23,7 @@ import { ShowFormDataComponent } from './user-form/show-form-data/show-form-data
 import { FormListviewComponent } from './dashboard/form-listview/form-listview.component';
 import { DynamicFormComponent } from './user-form/dynamic-form/dynamic-form.component';
 import { CustomPipeComponent } from './a-test-components/custom-pipe/custom-pipe.component';
-import { FormTestComponent } from './a-test-components/form-test/form-test.component';
+import { FormTestComponent } from './a-test-components/dynamic-form-parent/form-test.component';
 
 
 const routes: Routes = [
@@ -113,6 +113,11 @@ const routes: Routes = [
       {
         path:'weather',
         loadChildren: ()=> import('./weather/weather.module').then(m=>m.WeatherModule)
+      },
+
+      {
+        path:'games',
+        loadChildren: ()=> import('./games/games.module').then(m=>m.GamesModule)
       }
     ]
   },

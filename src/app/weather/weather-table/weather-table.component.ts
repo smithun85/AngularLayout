@@ -158,7 +158,8 @@ export class WeatherTableComponent {
         return result.city.includes(city);
       });
     } else {
-      this.getWeatherData();
+      this.response = this.weather_flatttedResult
+      // this.getWeatherData();
     }
   }
 
@@ -182,7 +183,7 @@ export class WeatherTableComponent {
         });
       }
     }
- 
+    this.clickSort(this.sortType)
   }
 
   // sorting by key:
@@ -202,7 +203,7 @@ export class WeatherTableComponent {
         return 0;
       }
     });
-    if (this.changeCity) {
+    if (this.changeCity || this.isFormSubmitted) {
       this.response.sort((a: any, b: any) => {
         if (a[key] < b[key]) {
           return -1 * direction;
@@ -213,5 +214,6 @@ export class WeatherTableComponent {
         }
       });
     }
+  
   }
 }

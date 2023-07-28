@@ -66,5 +66,13 @@ export class HomeComponent {
 
   onWeather(){
     this.router.navigate(['/weather'])
+  };
+
+  onFormTest(){
+    this.router.navigate(['./search-text'])
+  };
+
+  onDateLogics(){
+this.router.navigate(['./date-logics'])
   }
 }
