@@ -23,9 +23,6 @@ export class LoginComponent implements OnInit{
 
       name: [this.name.value],
     })
-
-    
-
     this.loginForm
   }
 
@@ -48,6 +45,6 @@ export class LoginComponent implements OnInit{
     console.log(this.loginForm.value);
     console.log(this.nameControl);
     console.log(this.profile.value);
-  }
+  };
 
 }

@@ -1,16 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Hotels } from 'src/app/models/HotelsModel.interface';
 
 @Component({
   selector: 'app-logics',
   templateUrl: './logics.component.html',
   styleUrls: ['./logics.component.scss']
 })
+
 export class LogicsComponent implements OnInit{
 
   moduleForm:FormGroup | any;
   formResult:Array<any> = []
-  permision:FormControl|any
+  permision:FormControl|any;
+
+  formModuleGroup:FormGroup | any
+  formModuleArray:Array<any> = []
+  formModuleSelectedObj ={}
+  formModule = ''
 
   modules:Array<any> = [
     {
@@ -53,18 +60,100 @@ export class LogicsComponent implements OnInit{
       "label":"permision-4",
       "value": "permision-4"
     },
-
   ]
        
-    str:string = '';
-    str1:string = '';
+public hotelsData = [
+  {
+    "module_name": "Marriott",
+    "for_admin": 0,
+    "icon": "bar_chart",
+    "label": "Marriott",
+    "ternary": false,
+    "subModules": [
+        {
+            "name": "marriott-asset-inventory",
+            "label": "Asset Inventory",
+            "icon": "table_chart"
+        },
+        {
+            "name": "marriott-bandwidth",
+            "label": "Bandwidth",
+            "icon": "table_chart"
+        },
+        {
+            "name": "marriott-call-ticket-summary",
+            "label": "Ticket Summary",
+            "icon": "table_chart"
+        },
+        {
+            "name": "marriott-case",
+            "label": "Case Report",
+            "icon": "table_chart"
+        },
+        {
+            "name": "marriott-current-device",
+            "label": "Current Network Device Status",
+            "icon": "table_chart"
+        },
+        {
+            "name": "marriott-device-uptime",
+            "label": "Device Status and Uptime",
+            "icon": "table_chart"
+        }
+    ]
+}  ,
+{
+  "module_name": "hotel_taj",
+  "for_admin": 0,
+  "icon": "bar_chart",
+  "label": "hotel_taj",
+  "ternary": false,
+  "subModules": [
+      {
+          "name": "hotel_taj-asset-inventory",
+          "label": "Asset Inventory",
+          "icon": "table_chart"
+      },
+      {
+          "name": "hotel_taj-bandwidth",
+          "label": "Bandwidth Report",
+          "icon": "table_chart"
+      },
+      {
+          "name": "hotel_taj-call-ticket-summary",
+          "label": "Ticket Summary",
+          "icon": "table_chart"
+      },
+      {
+          "name": "hotel_taj-case",
+          "label": "Case Report",
+          "icon": "table_chart"
+      },
+      {
+          "name": "hotel_taj-current-device",
+          "label": "Current Network Device Status",
+          "icon": "table_chart"
+      },
+      {
+          "name": "hotel_taj-device-uptime",
+          "label": "Device Status and Uptime",
+          "icon": "table_chart"
+      }
+  ]
+}   
+];
   ngOnInit(): void {
 
     this.moduleForm = new FormGroup({
       
       })
+this.starPrint();
+this.addHotel();
+};
 
-
+starPrint(){
+  let   str:string = '';
+    let  str1:string = '';
   //   for(let i=1; i<=5;i++){
   //     for(let j=1; j<=i; j++){
   //       this.str  = this.str + '*'    
@@ -84,24 +173,48 @@ export class LogicsComponent implements OnInit{
 // }  
 // console.log(this.str1);
 
+};
+
+//========================add new hotel of object using existing object======================
+
+addHotel(){
+  let marriott:Hotels = {
+    module_name: '',
+  for_admin: 0,
+  icon: '',
+  label: '',
+  ternary: false,
+  subModules: []}
+ 
+ this.hotelsData.map( (hotels)=>{
+  if(hotels.module_name ==='Marriott'){
+    marriott = hotels;   
+  };
+ });
+//  let _hyatt = marriott
+ console.log("Marriott:",marriott);
+ let newHyattSubModule = marriott.subModules.map( submodule=>({
+  ...submodule,
+  name:`hyatt-${submodule.name.split('-')[1]}`
+ }))
+let _hyatt:any = { ...marriott,
+  "module_name": "hyatt",
+  "label": "hyatt",
+  "subModules": newHyattSubModule
 }
-
-formModuleGroup:FormGroup | any
-formModuleArray:Array<any> = []
-formModuleSelectedObj ={}
-
-formModule = ''
+console.log("Marriott:",marriott);
+console.log("Hotel_Hyatt",_hyatt);
+this.hotelsData.push(_hyatt)
+console.log("New HotelsListt:", this.hotelsData)
+}
+// ==================================Hotel_Logic end=========================================
 onCheckChangeModule(e:any){
 this.formModule = e.target.value
   console.log(e.target.value);  //value
   console.log(e.target.checked); //boolean
-  
-  
-
   if(e.target.checked){
     this.modules.map( (item:any,i:number)=>{
       if(e.target.value == item.label){
-
         console.log(Object.assign({},item));
       }
     })
@@ -159,7 +272,6 @@ onSubmit(){
       console.log(Object.assign({},item));
     }
   })
-
 }
 
   }
