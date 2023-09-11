@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidatorService } from 'src/app/shared/custom-validator.service';
+// =====password matched validator===========use any one===============
 import { passwordMatch } from 'src/app/shared/password.validator';
+import { passwordConfirmedValidator } from 'src/app/shared/password.validator';
+import { passwordMismatchValidator } from 'src/app/shared/password.validator';
+// ================================================================
 import { forbiddenValidator } from 'src/app/shared/user.validator';
 
 import { imageValidator } from 'src/app/shared/password.validator';
@@ -85,7 +89,9 @@ export class SignupComponent implements OnInit{
 
         checkedOut:new FormControl(false, Validators.requiredTrue),
       },  
-      { validators:passwordMatch('password', 'confirm_Password') }
+      // { validators:passwordMatch('password', 'confirm_Password') }
+      {validators:passwordMismatchValidator}
+
     );
 
 

@@ -8,3 +8,16 @@
 
 // select bootstrap style
 @import "~@ng-select/ng-select/themes/default.theme.css";
+
+
+.container{
+    width: 100%;
+    background-color: #4b4949;
+    border: 1px solid rgb(24, 36, 24);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: wheat;
+}

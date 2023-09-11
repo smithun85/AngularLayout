@@ -6,6 +6,7 @@ import { ContactsComponent } from "./pages/contacts/contacts.component";
 import { OrdersComponent } from "./orders/orders.component";
 import { SettingComponent } from "./setting/setting.component";
 import { NgModule } from "@angular/core";
+import { CartHomeLayoutComponent } from "./behaviorSubject-cart-home-layout/cart-home-layout.component";
 
 const routes:Routes = [
     {
@@ -32,6 +33,10 @@ const routes:Routes = [
         path:'contacts',
         component:ContactsComponent
       },
+    {
+        path:'add-to-cart',
+        component:CartHomeLayoutComponent
+    }
 ];
 
 @NgModule({

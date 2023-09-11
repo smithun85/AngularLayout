@@ -21,6 +21,9 @@ import { SearchTextComponent } from './form-test/search-text.component';
 import { LogicsComponent } from './logics/logics.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { DateLogicsComponent } from './date-logics/date-logics.component';
+import { LogicsArrayObjectComponent } from './logics-array-object/logics-array-object.component';
+import { AccordionComponent } from './accordion/accordion.component';
+import { AsyncPipeComponent } from './async-pipe/async-pipe.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { DateLogicsComponent } from './date-logics/date-logics.component';
     LogicsComponent,
     CheckboxComponent,
     DateLogicsComponent,
+    LogicsArrayObjectComponent,
+    AccordionComponent,
+    AsyncPipeComponent,
   ],
   imports: [
     CommonModule,

@@ -44,7 +44,9 @@ export class LoginComponent implements OnInit{
   }
 
   onSubmit(){
-    console.log(this.loginForm.value);
+    console.log('email:',this.loginForm.controls.email.value);
+    console.log('email:',this.loginForm.value.email);
+    console.log('Login_Value',this.loginForm.value);
     console.log(this.nameControl);
     console.log(this.profile.value);
   }

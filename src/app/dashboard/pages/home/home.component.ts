@@ -26,6 +26,10 @@ export class HomeComponent {
   // });
   ngOnInit(){
     this.navStart.subscribe(() => console.log('Navigation Started!'));
+  };
+
+  onAsyncPipe(){
+    this.router.navigate(['async-pipe'])
   }
 
   onCustomPipe(){
@@ -50,6 +54,10 @@ export class HomeComponent {
 
   onLogics(){
     this.router.navigate(['/logics'])
+  };
+
+  onLogicsArrObj(){
+    this.router.navigate(['/logics-arr-obj'])
   }
 
   onCheckbox(){
@@ -74,5 +82,9 @@ export class HomeComponent {
 
   onDateLogics(){
 this.router.navigate(['./date-logics'])
+  };
+
+  onAccordion(){
+    this.router.navigate(['./accordion'])
   }
 }

@@ -1,0 +1,19 @@
+<h2>re-usable works!</h2>
+
+<div class="container margin-30">
+    <div class="card">
+      <div class="card-body">
+        <ol class="list-group list-group-numbered">
+          <li *ngFor="let item of data" class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+              <div class="fw-bold font-fam">{{item.dept}}</div>
+              {{item.name}}
+            </div>
+            <span *ngIf="showCount" class="badge bg-primary rounded-pill">14</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  

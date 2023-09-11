@@ -16,38 +16,8 @@ export function PasswordValidator(control:AbstractControl): {[key: string]: bool
 // return null;
 }
 
-
- export class PasswordCheckValidator {
-     matchingPasswords: ValidatorFn = (c: AbstractControl): ValidationErrors | null => {
-        const password = c.get('password');
-        const confirmPassword = c.get('confirm_Password');
-
-        if (password && confirmPassword && password.value !== confirmPassword.value) {
-            return { passwordMismatch: true };
-        }
-        return null;
-    };
- }
-
-
-
-export class CustomValidators {
-  static MatchValidator(source: string, target: string): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const sourceCtrl = control.get(source);
-      const targetCtrl = control.get(target);
-
-      return sourceCtrl && targetCtrl && sourceCtrl.value !== targetCtrl.value
-        ? { passwordMismatch: true }
-        : null;
-    };
-  }
-
-}
-
-
  
-
+// ========================Syntex=====================================
 export function ConfirmedValidator(controlName: string, matchingControlName: string){
     return (formGroup: FormGroup) => {
         const control = formGroup.controls[controlName];
@@ -61,16 +31,53 @@ export function ConfirmedValidator(controlName: string, matchingControlName: str
            matchingControl.setErrors(null);
         }
     }
+};
+// ==============example==============================
+export function passwordConfirmedValidator(password: string, confirm_Password: string){
+  return (formGroup: FormGroup) => {
+    const control = formGroup.controls[password];
+    const matchingControl = formGroup.controls[confirm_Password];
+    if (matchingControl.errors && !matchingControl.errors?.['passwordMismatch']) {
+        return;
+    }
+    if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ passwordMismatch: true });
+    } else {
+       matchingControl.setErrors(null);
+    }
+}
 }
 
-//==========Working=========================
+//=============================Working====================================
 export function passwordMatch(password: string, confirm_Password: string) {
   return (formGroup: AbstractControl): ValidationErrors | null => {
     const passwordControl = formGroup.get(password);
     const confirmPasswordControl = formGroup.get(confirm_Password);
+    if (!passwordControl || !confirmPasswordControl) {
+      return null;
+    }
+    if (confirmPasswordControl.errors &&  !confirmPasswordControl.errors['passwordMismatch']) {
+      return null;
+    }
 
-    
+    if (passwordControl.value !== confirmPasswordControl.value) {
+      confirmPasswordControl.setErrors({ passwordMismatch: true });
+      return { passwordMismatch: true };
+    } else {
+      confirmPasswordControl.setErrors(null);
+      return null;
+    }
+  };
+}
 
+// ========================OR(working)===================================================
+export const passwordMismatchValidator:ValidatorFn = (fg:AbstractControl):ValidationErrors | null =>{
+        
+  const passwordControl = fg.get('password');
+    const confirmPasswordControl = fg.get('confirm_Password');
+    console.log("validators called");  
+  //   console.log(passwordControl);
+     
     if (!passwordControl || !confirmPasswordControl) {
       return null;
     }
@@ -89,35 +96,19 @@ export function passwordMatch(password: string, confirm_Password: string) {
       confirmPasswordControl.setErrors(null);
       return null;
     }
-  };
 }
-
-
-export function passwordMatchValidator(password: string, confirm_Password: string) {
-  return (formGroup: AbstractControl): ValidationErrors | null => {
-    const passwordControl = formGroup.get(password);
-    const confirmPasswordControl = formGroup.get(confirm_Password);
-
-    if (!passwordControl || !confirmPasswordControl) {
-      return null;
-    }
-
-    if (
-      confirmPasswordControl.errors &&
-      !confirmPasswordControl.errors['passwordMismatch']
-    ) {
-      return null;
-    }
-
-    if (passwordControl.value !== confirmPasswordControl.value) {
-      confirmPasswordControl.setErrors({ passwordMismatch: true });
-      return { passwordMismatch: true };
-    } else {
-      confirmPasswordControl.setErrors(null);
-      return null;
-    }
-  };
-}
+// ===============================OR====================================
+// it is working when we use in template view as 
+// <div *ngIf= ((new_password.touched || new_password.dirty) && (confirm_password.dirty || confirm_password.touched))">
+// <div/>
+export const PasswordMismatchValidator = (fg: FormGroup) => {
+  const new_password = fg.get('new_password')?.value;
+  const confirm_password = fg.get('confirm_password')?.value;
+  
+  return new_password !== '' && confirm_password !== '' && new_password == confirm_password
+    ? null 
+    : { mismatch: true };
+};  
 
 
 
@@ -134,9 +125,9 @@ export function imageValidator(): ValidatorFn {
         return { 'invalidImage': true };
       }
     }
-
     return null;
   };
+  // ==================================end==========================
 }
 
 

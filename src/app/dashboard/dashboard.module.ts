@@ -21,6 +21,12 @@ import { dashboardRoutingModule } from './dashboard-routing.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { MatrixModule } from '../matrix/matrix.module';
 import { WeatherModule } from '../weather/weather.module';
+import { ReUsableComponent } from '../shared/re-usable-component/re-usable.component';
+import { CartHomeLayoutComponent } from './behaviorSubject-cart-home-layout/cart-home-layout.component';
+import { OrderHeaderComponent } from './BehaviorSubject-Example/order-header/order-header.component';
+import { OrderDashboardComponent } from './BehaviorSubject-Example/order-dashboard/order-dashboard.component';
+import { OrderTableComponent } from './BehaviorSubject-Example/order-table/order-table.component';
+
 
 
 
@@ -33,7 +39,11 @@ import { WeatherModule } from '../weather/weather.module';
     OrdersComponent,
     SettingComponent,
     ProductDetailsComponent,
-    FormListviewComponent,    
+    FormListviewComponent,  
+    CartHomeLayoutComponent,  
+    OrderHeaderComponent,
+    OrderTableComponent,
+    OrderDashboardComponent,
   ],
   imports: [
     CommonModule,

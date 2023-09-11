@@ -1,0 +1,17 @@
+.container{
+    background-color: #c9b5b5;
+    color: rgb(199, 20, 20);
+    .box{
+        display: flex;
+        gap: 30px;
+        p{
+            padding: 50px;
+            background-color: #fff;
+            color: rgb(83, 81, 81);
+            span{
+                color: rgb(5, 12, 110);
+            }
+        }
+    }
+   
+}

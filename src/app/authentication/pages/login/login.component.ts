@@ -24,7 +24,9 @@ export class LoginComponent {
       return;
     }
     this.router.navigate(['/home'])
-    console.log(this.loginForm.value);
+    console.log('email:',this.loginForm.controls.email.value);
+    console.log('email:',this.loginForm.value.email);
+    console.log('Login_Value',this.loginForm.value);
   };
   
   // ngOnInit(): void {

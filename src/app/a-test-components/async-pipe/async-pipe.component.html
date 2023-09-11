@@ -1,0 +1,41 @@
+<p>async-pipe works!</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pizza of pizzas$ | async ">
+            <td>{{pizza.id}}</td>
+            <td>{{pizza.name}}</td>
+            <td>{{pizza.price}}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<!-- This would allow us to reuse the variable multiple times inside the template without creating repeat subscriptions: -->
+
+<div *ngIf="(pizzas$ | async) as pizzas" class="mb-3 bg-success">
+    <p class="text-white">🍕 {{ pizzas.length }} Pizzas!</p>
+    <table class="table">
+        <thead>
+            <tr scope="col">
+                <th>id</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr scope="row" *ngFor="let pizza of pizzas ">
+                <td>{{pizza.id}}</td>
+                <td>{{pizza.name}}</td>
+                <td>{{pizza.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

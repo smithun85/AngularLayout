@@ -8,9 +8,16 @@ import { LogicsComponent } from "./logics/logics.component";
 import { CheckboxComponent } from "./checkbox/checkbox.component";
 import { SearchTextComponent } from "./form-test/search-text.component";
 import { DateLogicsComponent } from "./date-logics/date-logics.component";
+import { LogicsArrayObjectComponent } from "./logics-array-object/logics-array-object.component";
+import { AccordionComponent } from "./accordion/accordion.component";
+import { AsyncPipeComponent } from "./async-pipe/async-pipe.component";
 
 
 const routes:Routes = [
+  {
+    path:'async-pipe',
+    component:AsyncPipeComponent
+  },
     {
         path:'pipe',
         component:CustomPipeComponent
@@ -33,6 +40,10 @@ const routes:Routes = [
     path:'logics',
     component:LogicsComponent
    },
+   {
+    path:'logics-arr-obj',
+    component:LogicsArrayObjectComponent
+   },
 
    {
     path:'checkbox',
@@ -45,7 +56,11 @@ const routes:Routes = [
    {
     path:'date-logics',
     component:DateLogicsComponent
-   }
+   },
+   {
+    path:'accordion',
+    component:AccordionComponent
+   },
 ];
 
 @NgModule({

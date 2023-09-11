@@ -1,0 +1,22 @@
+<div class="container">
+    <p>order-table works!</p>
+    <h2>OrderTableComponent</h2>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Item Available</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of item">
+            <td>{{data.item}}</td>
+            <td>
+              <button class="btn btn-success mx-3" (click)="addToCart(data)">Add to Cart</button>
+              <button class="btn btn-info" (click)="addToWishList(data)">Add to WishList</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
