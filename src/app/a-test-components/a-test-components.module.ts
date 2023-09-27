@@ -24,7 +24,7 @@ import { DateLogicsComponent } from './date-logics/date-logics.component';
 import { LogicsArrayObjectComponent } from './logics-array-object/logics-array-object.component';
 import { AccordionComponent } from './accordion/accordion.component';
 import { AsyncPipeComponent } from './async-pipe/async-pipe.component';
-
+import { WithLoadingPipe } from '../pipes/with-loading.pipe'; 
 @NgModule({
   declarations: [
     CustomPipeComponent,
@@ -43,6 +43,7 @@ import { AsyncPipeComponent } from './async-pipe/async-pipe.component';
     LogicsArrayObjectComponent,
     AccordionComponent,
     AsyncPipeComponent,
+    WithLoadingPipe,
   ],
   imports: [
     CommonModule,

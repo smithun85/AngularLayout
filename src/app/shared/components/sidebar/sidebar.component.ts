@@ -20,11 +20,17 @@ export class SidebarComponent implements OnInit {
       
     },
     {
-      number:10,
+      number:12,
       name:"weather",
       icon:"fa-solid fa-cloud",
       router:'weather',
       
+    },
+    {
+      number:13,
+      name:"Dynamic Form",
+      icon:"fa-solid fa-gear",
+      router:'dynamic-form',  
     },
     {
       number:11,
@@ -64,8 +70,7 @@ export class SidebarComponent implements OnInit {
       number:5,
       name:"setting",
       icon:"fa-solid fa-gear",
-      router:'setting',
-      
+      router:'setting',  
     },
     {
       number:6,

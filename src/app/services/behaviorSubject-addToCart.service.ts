@@ -14,10 +14,11 @@ export class AddToCartService {
 
     private _orderCount$ = this._orderCount.asObservable();
 
+    //getter method:
     getOrderCount():Observable<OrderCount> {
         return this._orderCount$;
     };
-
+    //setter method:
     setOrderCount(latestValue:OrderCount){
         return this._orderCount.next(latestValue)
     };

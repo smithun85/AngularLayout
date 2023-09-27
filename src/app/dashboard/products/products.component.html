@@ -25,7 +25,8 @@
                 <td>{{product.price}}</td>
                 <td><button class="btn btn-primary" (click)="onSelect(product)">View Details</button></td>
                 <td><button>
-                    <a [routerLink]="['/productDetails',product.id]" [queryParams]="{ orderby: product.price, brand:product.brand}">get queryParams though HTML</a>
+                    <a [routerLink]="['/productDetails']" [queryParams]="{ orderby: product.price, brand:product.brand}">get queryParams though HTML</a>
+                    <!-- <a [routerLink]="['/productDetails',product.id]" [queryParams]="{ orderby: product.price, brand:product.brand}">get queryParams though HTML</a> -->
                 </button></td>
             </tr>
     </tbody>

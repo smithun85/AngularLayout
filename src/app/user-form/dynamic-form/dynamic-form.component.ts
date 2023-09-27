@@ -22,6 +22,98 @@ export class DynamicFormComponent implements OnInit{
   //         address: '',
   //         age: '',
   //  };
+
+  public FormModel:any ={
+    firstname: {
+      type: "text",
+      value: "Mr.",
+      label: "FirstName",
+    },
+    lastname: {
+      type: "text",
+      value: "",
+      label: "LastName",
+    },
+    address: {
+      type: "textArea",
+      value: "",
+      label: "Address",
+    },
+    age: {
+      type: "number",
+      value: "",
+      label: "age",
+    },
+    birthDay: {
+      type: "date",
+      value: "",
+      label: "Birthday",
+    },
+  
+    typeBussiness: {
+      label: "Bussiness Type",
+      value: "premium",
+      type: "radio",
+      options: [
+        {
+          label: "Enterprise",
+          value: "1500",
+        },
+        {
+          label: "Home",
+          value: "6",
+        },
+        {
+          label: "Personal",
+          value: "1",
+        },
+      ],
+    },
+    newsletterIn: {
+      label: "Suscribe to newsletter",
+      value: "email",
+      type: "checkbox"
+    },
+    suscriptionType: {
+      label: "Suscription Type=",
+      value: "premium",
+      type: "select",
+      options: [
+        {
+          label: "Pick one",
+          value: "",
+        },
+        {
+          label: "Premium",
+          value: "premium",
+        },
+        {
+          label: "Basic",
+          value: "basic",
+        },
+      ],
+    },
+  
+    City: {
+      label: " City=",
+      value: "premium",
+      type: "select",
+      options: [
+        {
+          label: "Select",
+          value: "",
+        },
+        {
+          label: "City-1",
+          value: "city-1",
+        },
+        {
+          label: "city-2",
+          value: "city-2",
+        },
+      ],
+    },
+  };
   
 constructor(private model:UsersService){ }
 
@@ -31,15 +123,15 @@ ngOnInit() {
   
   this.buildForm();
 }
-
+//Create form using user_Data
 getFormControlsFields() {
   const formGroupFields:any = {};
 
-  // console.log("Object Key:",Object.keys(this.model.getModels()));  //Object Key= [name='',lastName='',...]
-  //we can not directly iterate of Object so !st we convert in array then apply iteration
+  // console.log("Object Key:",Object.keys(this.model.getModels()));  //Object Key= ['name', 'lastName',...]
+  //we can not directly iterate of Object so 1st we convert in array then apply iteration
   for(const field of Object.keys(this.model.getModels())){   
     // console.log("field:",field);                // field:name, field:lastName,.....
-    formGroupFields[field] = new FormControl(''); 
+    formGroupFields[field] = new FormControl(''); //Dynamically create object with key-value pair=>key is field name and value os formControl
     this.fields.push(field);                  
   }
   // console.log("formGroupFields",formGroupFields); //{name: FormControl, lastName: FormControl, address: FormControl, age: FormControl}
@@ -61,10 +153,8 @@ onSubmit(){
   console.log("registerForm:",this.registerForm.value);
   
 };
+// ===============================================================================================
 
-// ngAfterViewInit():void{
-//   this.sessionId = this.userList.sessionId
-// }
 
 
 }

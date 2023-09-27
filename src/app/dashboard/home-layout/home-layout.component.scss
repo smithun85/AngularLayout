@@ -11,8 +11,11 @@ main{
     width: 100%;
     top: 4rem; //since header height is 4rem
     z-index: 1;
-   
-
+    margin-left: -400px;
+    transition: all 1s
+};
+main.active{
+    margin-left:0px
 }
 
 app-sidebar{

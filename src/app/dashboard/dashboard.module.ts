@@ -17,15 +17,13 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 import { ATestComponentsModule } from '../a-test-components/a-test-components.module';
 import { dashboardRoutingModule } from './dashboard-routing.module';
-
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { MatrixModule } from '../matrix/matrix.module';
-import { WeatherModule } from '../weather/weather.module';
-import { ReUsableComponent } from '../shared/re-usable-component/re-usable.component';
-import { CartHomeLayoutComponent } from './behaviorSubject-cart-home-layout/cart-home-layout.component';
+import { CartHomeLayoutComponent } from './BehaviorSubject-Example/behaviorSubject-cart-home-layout/cart-home-layout.component';
 import { OrderHeaderComponent } from './BehaviorSubject-Example/order-header/order-header.component';
 import { OrderDashboardComponent } from './BehaviorSubject-Example/order-dashboard/order-dashboard.component';
 import { OrderTableComponent } from './BehaviorSubject-Example/order-table/order-table.component';
+
 
 
 
@@ -44,6 +42,7 @@ import { OrderTableComponent } from './BehaviorSubject-Example/order-table/order
     OrderHeaderComponent,
     OrderTableComponent,
     OrderDashboardComponent,
+
   ],
   imports: [
     CommonModule,

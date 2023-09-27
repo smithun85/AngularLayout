@@ -26,8 +26,8 @@ export class UsersComponent implements OnInit{
 
   onSelect(userData:Users){
     // console.log(userData);
-    this.userService.setUserData(userData)
-    // this.router.navigate(['/details',userData.id])
+    // this.userService.setUserData(userData)
+    this.router.navigate(['/details',userData.id])
   }
 
   goToForm(){

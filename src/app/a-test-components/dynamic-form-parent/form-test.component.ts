@@ -21,10 +21,6 @@ firstNameChanged(arg:any) {
 
 // ==================Dynamic Form Test=================================
 public model:any ={
-// firstName:'',
-// lastName:'',
-// address:'',
-// age:''
 
   firstname: {
     type: "text",

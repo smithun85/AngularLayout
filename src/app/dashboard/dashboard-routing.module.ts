@@ -6,17 +6,27 @@ import { ContactsComponent } from "./pages/contacts/contacts.component";
 import { OrdersComponent } from "./orders/orders.component";
 import { SettingComponent } from "./setting/setting.component";
 import { NgModule } from "@angular/core";
-import { CartHomeLayoutComponent } from "./behaviorSubject-cart-home-layout/cart-home-layout.component";
+import { CartHomeLayoutComponent } from "./BehaviorSubject-Example/behaviorSubject-cart-home-layout/cart-home-layout.component";
 
 const routes:Routes = [
     {
         path:'products',
         component:ProductsComponent
     },
+    // {
+    //     path:'productDetails/:id',
+    //     component:ProductDetailsComponent
+    // },
     {
-        path:'productDetails/:id',
+        path:'productDetails/:id1/:id2/:id3',
         component:ProductDetailsComponent
     },
+
+    {
+        path:'dynamic-form',
+        loadChildren:() => import('../dashboard/dynamic-form/dynamic-form.module').then(m=>m.DynamicFormModule)
+    },
+  
     {
         path:'about',
         component:AboutComponent

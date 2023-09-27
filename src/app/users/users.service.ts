@@ -10,7 +10,7 @@ export class UsersService {
 
  public users=UsersData;
 
-  constructor(private route:ActivatedRoute) { 
+  constructor() { 
     // let users = UsersData
   }
 

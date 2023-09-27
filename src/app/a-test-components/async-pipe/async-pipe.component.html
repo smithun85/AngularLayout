@@ -20,8 +20,9 @@
 
 <!-- This would allow us to reuse the variable multiple times inside the template without creating repeat subscriptions: -->
 
-<div *ngIf="(pizzas$ | async) as pizzas" class="mb-3 bg-success">
-    <p class="text-white">🍕 {{ pizzas.length }} Pizzas!</p>
+<div *ngIf="(pizzas$ | async) as pizzas;else loading" class="mb-3 bg-success">
+    <div *ngIf="pizzas.length >= 0">
+        <p class="text-white">🍕 {{ pizzas.length }} Pizzas!</p>
     <table class="table">
         <thead>
             <tr scope="col">
@@ -38,4 +39,21 @@
             </tr>
         </tbody>
     </table>
+    </div>
+
+    <div *ngIf="pizzas.length === 0">
+        Data not found
+    </div>
+</div>
+<ng-template #loading>
+    loading...
+</ng-template>
+
+
+<h2>Using Custom pipe</h2>
+<div *ngIf="(pizzas$ | withLoading | async) as pizzas">
+    <!-- <ng-template [ngIf]="pizzas">
+
+    </ng-template> -->
+    {{pizzas}}
 </div>
