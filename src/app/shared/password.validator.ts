@@ -96,6 +96,20 @@ export const passwordMismatchValidator:ValidatorFn = (fg:AbstractControl):Valida
       confirmPasswordControl.setErrors(null);
       return null;
     }
+};
+
+// ===============================OR====================================
+// it is working when we use in form of .ts file  view as 
+//  confirm_Password: new FormControl('', [Validators.required, this.PasswordMismatchValidator1.bind(this)]),
+export const PasswordMismatchValidator1:ValidatorFn = (control: AbstractControl): { [key: string]: boolean } | null => {
+  const password = control.root.get('password');
+  const confirmPassword = control.value;
+
+  if (password && password.value === confirmPassword) {
+    return null; // Validation passed
+  } else {
+    return { 'passwordMismatch': true }; // Validation failed
+  }
 }
 // ===============================OR====================================
 // it is working when we use in template view as 
