@@ -125,7 +125,6 @@ export const PasswordMismatchValidator = (fg: FormGroup) => {
 };  
 
 
-
 // ============Image Validation==============
 export function imageValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {

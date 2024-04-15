@@ -97,9 +97,64 @@ validateImage(control: AbstractControl): ValidationErrors | null {
       }
     };
   });
+};
+
+// ===========Check-Expiry- Date in past and today:================
+// Apply in form: 
+// it is working when we use in form of Component.ts file  view as 
+//  expiryDate: new FormControl('', [Validators.required, this.checkExpiryDate()]),
+checkExpiryDate(){
+  return (control: AbstractControl): { [key: string]: boolean } | null => {
+    const selectedDate = new Date(control.value);
+    const currentDate = new Date(); 
+  if(selectedDate){
+    if(selectedDate <= currentDate){
+      return {'validateExpiryDate': true}
+    } else {
+      return null;
+    }
+  }
+    return null;
+  };
+};
+// ================================END==================================
+
+// =============================Check date of birth is 18+ or not=======================
+checkValidBirthDate(){
+return (control: AbstractControl): { [key:string]:boolean} | null => {
+  console.log(control.value);
+  const currentDate = new Date();
+  const selectedDate = new Date(control.value);
+  const _18YearAgoDate = new Date(selectedDate.setFullYear(selectedDate.getFullYear() + 18));
+  if(control.value){
+    if(_18YearAgoDate <= currentDate){
+      return null
+    }else{
+      return {'validBirthDate' : true}
+    }
+  }
+  return null
+}
+}
+// ======================END========================================================
+
+// ============Image-size Validation==============
+imageValidator() {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    if (control.value) {
+      const file = control.value as File;
+      const fileType = file.type.split('/')[0];
+      const fileSize = file.size / 1024 / 1024; // Convert bytes to megabytes
+     
+
+      if (fileType !== 'image' || fileSize > 2 ) {
+        return { 'invalidImage': true };
+      }
+    }
+    return null;
+  };
+  // ==================================end==========================
 }
 
-}
-
-
+};
 

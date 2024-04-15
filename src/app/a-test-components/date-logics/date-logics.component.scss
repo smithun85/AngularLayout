@@ -1,0 +1,27 @@
+.p-rel{
+    position: relative;
+}
+.d-center{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .count-down{
+        background-color: aquamarine;
+        display: inline-block;
+        padding: 20px;
+        p{
+            font-size: 20px;
+            span{
+                background-color: #fff;
+                color:rgb(198, 31, 112) ;
+                padding: 5px;
+            }
+            .count{
+                background-color: #bcf8cf;
+                color:rgb(31, 56, 198) ;
+                padding: 5px;
+            }
+        }
+    }
+}
